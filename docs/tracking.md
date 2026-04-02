@@ -13,6 +13,8 @@ La prioridad inmediata sigue siendo mantener el sitio principal simple y publica
 
 | Fecha | Cambio | Archivos / carpetas |
 | --- | --- | --- |
+| 2026-04-02 | Auditoria comparativa de referencias scrapeadas y descomposicion tecnica de features, motion, 3D, scroll y riesgos. | `docs/auditoria-referencias-creativas.md`, `context/` |
+| 2026-04-02 | Definicion de propuesta de stack static-first y arquitectura evolutiva para una futura version premium de `baruchlopez.com`. | `docs/propuesta-stack-static-first.md`, `docs/README.md` |
 | 2026-04-02 | Captura del mirror de `www.igloo.inc` con screenshots, estados WebGL/canvas, assets y resumen de dominio. | `context/www.igloo.inc` |
 | 2026-04-02 | Reorganizacion del tooling de scraping en un modulo independiente. | `scripts/mirror/` |
 | 2026-04-02 | Creacion de documentacion de mirrors, indice de paginas scrapeadas y tracking del proyecto. | `README.md`, `docs/`, `context/README.md`, `scripts/mirror/README.md` |
@@ -23,10 +25,12 @@ La prioridad inmediata sigue siendo mantener el sitio principal simple y publica
 - `context/` no se borra: funciona como archivo de referencia y banco de material.
 - El scraping/mirroring queda aislado en `scripts/mirror/` para no contaminar la raiz del sitio publico.
 - Los mirrors no se usan como contenido publico final; se usan como ejemplos para extraer referencias de UX, layout, motion, sistemas visuales y stacks tecnicos.
+- Para una futura version avanzada, la direccion recomendada es Astro SSG + React islands + TypeScript + Tailwind/CSS Modules + GSAP + Lenis + Three/R3F + Zustand, manteniendo GitHub Pages como objetivo de v1.
+- Las referencias mas adecuadas como norte arquitectonico inicial son `www.valentincheval.design` y `www.onestudios.nl`; `www.zolviz.xyz` y `www.igloo.inc` deben tratarse como laboratorio experimental, no como base de v1.
 
 ## Backlog propuesto
 
-- Extraer patrones visuales reutilizables desde `context/www.igloo.inc` y `context/www.valentincheval.design`.
+- Convertir la propuesta static-first en un backlog de implementacion por fases v1/v2/v3 sin tocar aun el sitio publico actual.
+- Extraer un primer sistema de tokens visuales propio tomando referencias de `context/www.valentincheval.design`, `context/www.onestudios.nl` y el concept board local.
 - Definir una primera direccion visual propia para la siguiente version de `baruchlopez.com` sin perder la simplicidad de despliegue.
-- Crear un documento de benchmark comparando referencias por navegacion, motion, tipografia, composicion y tratamiento 3D.
 - Evaluar si conviene mantener una version estatica pura o migrar mas adelante a un build ligero cuando el contenido y las interacciones crezcan.

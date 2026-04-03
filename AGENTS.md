@@ -4,20 +4,21 @@
 
 This repository is intentionally split into two layers:
 
-- Public static site: `index.html`, `styles.css`, and `CNAME`.
+- Public static site source: `src/`, `public/`, `astro.config.mjs`, `package.json`, and `.github/workflows/deploy.yml`.
+- Legacy static snapshot: `index.html`, `styles.css`, and `CNAME` are still kept in the root as a reference/fallback from the pre-Astro phase.
 - Reference and tooling layer: local-only `context/`, `scripts/mirror/`, and `docs/`.
 
 `context/` must be preserved locally but kept out of Git because it contains mirrors, screenshots, raw extracts, prompts, and source material for future revisions. `scripts/mirror/` contains scraping/mirroring scripts and should stay isolated from the public site root. `docs/` tracks references, decisions, and project progress.
 
 ## Editing Rules
 
-Keep the public site simple and static. Prefer direct edits to the root HTML and CSS files instead of introducing frameworks, build steps, or backend code unless the publishing model changes. Avoid adding JavaScript to the public site unless it is strictly necessary.
+The publishing model has now moved to Astro static build output deployed to GitHub Pages. Keep the public site static-first and do not add backend/server code for v1. Prefer edits in `src/` and `public/`; do not edit generated `dist/` output manually. JavaScript should remain progressive-enhancement only, with SSR/static HTML and fallbacks preserved.
 
 When updating mirrors or scraping tooling, keep generated outputs inside local `context/<host>/` and document the change in `docs/mirrors.md` and `docs/tracking.md`.
 
 ## Local Preview
 
-Open `index.html` directly in a browser for the fastest preview, or run a minimal static server such as `py -m http.server 3000` from the repository root.
+Install dependencies with `npm.cmd install`, run `npm.cmd run dev`, and open the local Astro server shown in the terminal. Use `npm.cmd run build` to validate static output in `dist/`.
 
 ## Mirroring Tooling
 
@@ -25,4 +26,4 @@ Use `scripts/mirror/advanced_mirror_site.mjs` as the generic scraper and follow 
 
 ## Deployment
 
-The repository is intended for GitHub Pages with the custom domain `baruchlopez.com`. Do not move mirror data or documentation into the public site root unless there is a deliberate reason to expose it.
+The repository is intended for GitHub Pages with the custom domain `baruchlopez.com`, using the Astro GitHub Actions workflow in `.github/workflows/deploy.yml`. Keep mirror data and documentation out of the public build unless there is a deliberate reason to expose it.

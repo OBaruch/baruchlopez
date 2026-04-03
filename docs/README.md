@@ -13,6 +13,7 @@ Nota: `context/` es una carpeta local-only y esta ignorada por Git para no publi
 - `mirrors.md`: inventario completo de mirrors y paginas scrapeadas.
 - `arquitectura-portal-y-wireframes.md`: arquitectura de informacion, sitemap, wireframes textuales y modelo de contenido con placeholders `{dummie text}`.
 - `auditoria-referencias-creativas.md`: analisis comparativo de referencias visuales/interactivas scrapeadas y descomposicion de features.
+- `plan-liquid-glass-command-deck.md`: concepto visual, stack aplicado y plan de evolucion del Hero/portal bajo Astro + React + GSAP + Lenis + R3F.
 - `propuesta-stack-static-first.md`: recomendacion de stack, arquitectura static-first, blueprint de proyecto y roadmap de implementacion.
 - `tracking.md`: bitacora de trabajo, cambios recientes, decisiones y backlog.
 

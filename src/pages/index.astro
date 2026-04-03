@@ -1,0 +1,251 @@
+---
+import HeroCommandDeck from "@/components/react/HeroCommandDeck";
+import OrbitalLayer from "@/components/react/OrbitalLayer";
+import {
+  alphaFlow,
+  contactItems,
+  corporateCards,
+  gatewayItems,
+  highlights,
+  labProjects,
+  labTaxonomy,
+  mediaRoadmap,
+  navigationLinks,
+  talks,
+} from "@/data/portal";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <div class="site-frame">
+    <header class="site-header">
+      <a class="brand-mark" href="#top">Baruch Lopez</a>
+      <nav class="site-nav" aria-label="Primary">
+        {navigationLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+      </nav>
+    </header>
+
+    <main>
+      <div class="content-shell">
+        <div class="relative">
+          <HeroCommandDeck client:load gateways={gatewayItems} />
+          <div class="pointer-events-none absolute inset-0">
+            <OrbitalLayer client:load />
+          </div>
+        </div>
+      </div>
+
+      <section class="section-shell" id="overview">
+        <div class="content-shell" data-fx-rise>
+          <span class="section-label">Executive Overview</span>
+          <h2 class="section-title">A concise read of the operating map.</h2>
+
+          <div class="split-grid">
+            <div class="overview-copy">
+              <h3>Snapshot</h3>
+              <p>
+                I work at the intersection of AI, data systems, business execution, and capital
+                thinking. The current public site is being reorganized so each audience can enter
+                through a clear path without reading a long biography first.
+              </p>
+              <p>
+                Core intersections: AI, data systems, finance, strategy, robotics, and venture
+                architecture.
+              </p>
+            </div>
+
+            <div class="route-panel">
+              <span class="route-label">Primary pathways</span>
+              <div class="route-list">
+                <span>Home -&gt; Corporate Profile -&gt; LinkedIn / CV</span>
+                <span>Home -&gt; Alpha Signature -&gt; Contact</span>
+                <span>Home -&gt; Cyrus Global Capital -&gt; Official Site</span>
+                <span>Home -&gt; Personal Project Lab -&gt; GitHub</span>
+                <span>Home -&gt; Talks / Writing -&gt; Contact</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell" id="selected-highlights">
+        <div class="content-shell" data-fx-rise>
+          <span class="section-label">Selected Highlights</span>
+          <h2 class="section-title">A short credibility layer, not a full archive.</h2>
+          <p class="section-copy">
+            A compressed set of signals that points into deeper sections without turning the
+            homepage into a long CV or a complete project index.
+          </p>
+
+          <div class="card-grid">
+            {
+              highlights.map((item) => (
+                <article class="glass-card">
+                  <span class="route-label">{item.label}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                  <span class="meta-pill">{item.meta}</span>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell" id="alpha-signature">
+        <div class="content-shell" data-fx-rise>
+          <span class="section-label">Alpha Signature</span>
+          <h2 class="section-title">Where strategy, systems, and execution converge.</h2>
+          <p class="section-copy">
+            A consulting and implementation platform designed to translate business ambiguity into
+            structured operating systems, decision frameworks, and execution roadmaps.
+          </p>
+
+          <div class="alpha-flow">
+            {
+              alphaFlow.map((step) => (
+                <article class="glass-card">
+                  <div class="step-num">{step.step}</div>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell" id="corporate-profile">
+        <div class="content-shell" data-fx-rise>
+          <span class="section-label">Corporate Profile</span>
+          <h2 class="section-title">A formal, corporate-safe profile layer.</h2>
+          <p class="section-copy">
+            Only non-confidential, high-level summaries are presented. This section should explain
+            current enterprise focus, capabilities, safe work areas, and credentials without
+            exposing sensitive implementation details.
+          </p>
+
+          <div class="profile-grid">
+            {
+              corporateCards.map((card) => (
+                <article class="glass-card">
+                  <h3>{card.title}</h3>
+                  <ul>
+                    {card.items.map((item) => <li>{item}</li>)}
+                  </ul>
+                </article>
+              ))
+            }
+          </div>
+
+          <p class="safe-note">ONLY NON-CONFIDENTIAL, HIGH-LEVEL SUMMARIES ARE PRESENTED.</p>
+        </div>
+      </section>
+
+      <section class="section-shell" id="personal-project-lab">
+        <div class="content-shell" data-fx-rise>
+          <span class="section-label">Personal Project Lab</span>
+          <h2 class="section-title">A tagged archive for public, private-summary, and in-progress work.</h2>
+          <p class="section-copy">
+            V1 keeps this as a curated static preview. The future Lab should evolve into a
+            filterable project system with status, affiliation, type, domain, and year metadata.
+          </p>
+
+          <div class="taxonomy-strip" aria-label="Project taxonomy preview">
+            {labTaxonomy.map((tag) => <span>{tag}</span>)}
+          </div>
+
+          <div class="lab-grid">
+            {
+              labProjects.map((project) => (
+                <article class="glass-card">
+                  <span class="route-label">{project.label}</span>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <span class="meta-pill">{project.meta}</span>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell" id="talks-writing">
+        <div class="content-shell" data-fx-rise>
+          <span class="section-label">Talks / Writing</span>
+          <h2 class="section-title">Talks now, writing and media left open as a future lane.</h2>
+          <p class="section-copy">
+            This page family should support talks, essays, interviews, and future media formats. V1
+            keeps the talks visible and leaves explicit placeholders where writing/media are not
+            ready yet.
+          </p>
+
+          <div class="talks-grid">
+            <div class="timeline-panel">
+              {
+                talks.map((talk) => (
+                  <article class="timeline-item">
+                    <span class="timeline-date">{talk.date}</span>
+                    <h4>{talk.title}</h4>
+                    <p>{talk.description}</p>
+                  </article>
+                ))
+              }
+            </div>
+
+            <div class="glass-card">
+              <h3>Writing / Media / Future Work</h3>
+              <div class="roadmap-list">
+                {
+                  mediaRoadmap.map((item) => (
+                    <article class="roadmap-item">
+                      <div class="roadmap-code">{item.code}</div>
+                      <div>
+                        <h4>{item.title}</h4>
+                        <p>{item.description}</p>
+                      </div>
+                    </article>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell" id="contact">
+        <div class="content-shell" data-fx-rise>
+          <span class="section-label">Contact</span>
+          <h2 class="section-title">Next steps and collaboration paths.</h2>
+          <p class="section-copy">
+            For consulting, ventures, speaking, technical collaborations, or direct professional
+            contact.
+          </p>
+
+          <div class="contact-grid">
+            {
+              contactItems.map((contact) =>
+                contact.href ? (
+                  <a
+                    class="glass-card contact-card"
+                    href={contact.href}
+                    target={contact.href.startsWith("http") ? "_blank" : undefined}
+                    rel={contact.href.startsWith("http") ? "noreferrer" : undefined}
+                  >
+                    <span class="contact-label">{contact.label}</span>
+                    <strong>{contact.value}</strong>
+                  </a>
+                ) : (
+                  <article class="glass-card contact-card">
+                    <span class="contact-label">{contact.label}</span>
+                    <strong>{contact.value}</strong>
+                  </article>
+                ),
+              )
+            }
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</BaseLayout>

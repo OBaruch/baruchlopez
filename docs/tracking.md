@@ -13,6 +13,7 @@ La prioridad inmediata sigue siendo mantener el sitio principal simple y publica
 
 | Fecha | Cambio | Archivos / carpetas |
 | --- | --- | --- |
+| 2026-04-02 | Documentacion de arquitectura estructural del portal, navegacion, wireframes textuales, modelo de metadata y reglas de placeholders `{dummie text}`. | `docs/arquitectura-portal-y-wireframes.md`, `docs/README.md` |
 | 2026-04-02 | Auditoria comparativa de referencias scrapeadas y descomposicion tecnica de features, motion, 3D, scroll y riesgos. | `docs/auditoria-referencias-creativas.md`, `context/` |
 | 2026-04-02 | Definicion de propuesta de stack static-first y arquitectura evolutiva para una futura version premium de `baruchlopez.com`. | `docs/propuesta-stack-static-first.md`, `docs/README.md` |
 | 2026-04-02 | Captura del mirror de `www.igloo.inc` con screenshots, estados WebGL/canvas, assets y resumen de dominio. | `context/www.igloo.inc` |
@@ -27,6 +28,8 @@ La prioridad inmediata sigue siendo mantener el sitio principal simple y publica
 - Los mirrors no se usan como contenido publico final; se usan como ejemplos para extraer referencias de UX, layout, motion, sistemas visuales y stacks tecnicos.
 - Para una futura version avanzada, la direccion recomendada es Astro SSG + React islands + TypeScript + Tailwind/CSS Modules + GSAP + Lenis + Three/R3F + Zustand, manteniendo GitHub Pages como objetivo de v1.
 - Las referencias mas adecuadas como norte arquitectonico inicial son `www.valentincheval.design` y `www.onestudios.nl`; `www.zolviz.xyz` y `www.igloo.inc` deben tratarse como laboratorio experimental, no como base de v1.
+- La estructura de informacion objetivo pasa a ser un portal jerarquico: Home como hub, Cyrus/Alpha como puertas explicitas, Corporate Profile como capa formal segura, Personal Project Lab como archivo filtrable y Talks/Writing como expansion publica.
+- `Cyrus Global Capital` debe operar como gateway/redirect hacia `https://www.cyrusglobalcapital.com/`, no como una pagina interna larga duplicada.
 
 ## Backlog propuesto
 

@@ -11,6 +11,7 @@ Nota: `context/` es una carpeta local-only y esta ignorada por Git para no publi
 ## Indice
 
 - `mirrors.md`: inventario completo de mirrors y paginas scrapeadas.
+- `arquitectura-portal-y-wireframes.md`: arquitectura de informacion, sitemap, wireframes textuales y modelo de contenido con placeholders `{dummie text}`.
 - `auditoria-referencias-creativas.md`: analisis comparativo de referencias visuales/interactivas scrapeadas y descomposicion de features.
 - `propuesta-stack-static-first.md`: recomendacion de stack, arquitectura static-first, blueprint de proyecto y roadmap de implementacion.
 - `tracking.md`: bitacora de trabajo, cambios recientes, decisiones y backlog.

@@ -1,4 +1,4 @@
-import type { GatewayId } from "@/store/experienceStore";
+export type GatewayId = "cyrus" | "alpha" | "corporate" | "lab";
 
 export interface GatewayItem {
   id: GatewayId;
@@ -11,11 +11,11 @@ export interface GatewayItem {
 
 export const navigationLinks = [
   { label: "Home", href: "#top" },
-  { label: "Cyrus Global Capital", href: "/cyrus-global-capital/" },
-  { label: "Alpha Signature", href: "#alpha-signature" },
-  { label: "Corporate Profile", href: "#corporate-profile" },
-  { label: "Personal Project Lab", href: "#personal-project-lab" },
-  { label: "Talks / Writing", href: "#talks-writing" },
+  { label: "Cyrus", href: "/cyrus-global-capital/" },
+  { label: "Alpha", href: "#alpha-signature" },
+  { label: "Corporate", href: "#corporate-profile" },
+  { label: "Lab", href: "#personal-project-lab" },
+  { label: "Talks", href: "#talks-writing" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -212,19 +212,19 @@ export const mediaRoadmap = [
     code: "01",
     title: "Writing / Essays",
     description:
-      "Future long-form reflections on AI systems, capital strategy, and the operating logic behind selected ventures and projects. {dummie text}",
+      "Future long-form reflections on AI systems, capital strategy, and the operating logic behind selected ventures and projects.",
   },
   {
     code: "02",
     title: "Media / Interviews",
     description:
-      "A future archive for interviews, public conversations, and external references once those assets are ready to publish. {dummie text}",
+      "A future archive for interviews, public conversations, and external references once those assets are ready to publish.",
   },
   {
     code: "03",
     title: "Future formats",
     description:
-      "A reserved space for essays, notes, presentations, and other editorial formats that extend the platform over time. {dummie text}",
+      "A reserved space for essays, notes, presentations, and other editorial formats that extend the platform over time.",
   },
 ];
 
@@ -236,7 +236,7 @@ export const contactItems = [
   },
   {
     label: "LinkedIn",
-    value: "{dummie text} LinkedIn URL pending",
+    value: "Available on request",
     href: null,
   },
   {

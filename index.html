@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Baruch Lopez | Portal</title>
     <meta
       name="description"
@@ -30,18 +30,18 @@
       <a class="brand" href="#top">Baruch Lopez</a>
       <nav class="site-nav" aria-label="Primary">
         <a href="#top">Home</a>
-        <a href="./cyrus-global-capital/index.html">Cyrus Global Capital</a>
-        <a href="#alpha-signature">Alpha Signature</a>
-        <a href="#corporate-profile">Corporate Profile</a>
-        <a href="#personal-project-lab">Personal Project Lab</a>
-        <a href="#talks-writing">Talks / Writing</a>
+        <a href="./cyrus-global-capital/index.html">Cyrus</a>
+        <a href="#alpha-signature">Alpha</a>
+        <a href="#corporate-profile">Corporate</a>
+        <a href="#personal-project-lab">Lab</a>
+        <a href="#talks-writing">Talks</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <main>
       <section class="hero" id="top">
-        <div class="hero-content reveal">
+        <div class="hero-content">
           <div class="hero-identity-grid">
             <div class="hero-intro-copy">
               <div class="hero-badge">
@@ -139,12 +139,6 @@
           </div>
         </div>
 
-        <div class="scroll-cue" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <polyline points="7 13 12 18 17 13"></polyline>
-            <line x1="12" y1="5" x2="12" y2="18"></line>
-          </svg>
-        </div>
       </section>
 
       <section class="problem" id="overview">
@@ -152,7 +146,7 @@
           <span class="section-label">Executive Overview</span>
           <h2 class="section-title">A concise read of the operating map.</h2>
 
-          <div class="problem-grid reveal">
+          <div class="problem-grid">
             <div class="problem-text">
               <h3>Snapshot</h3>
               <p>
@@ -191,7 +185,7 @@
             homepage into a long CV or a complete project index.
           </p>
 
-          <div class="source-grid reveal">
+          <div class="source-grid">
             <article class="source-card">
               <span class="route-label">Corporate</span>
               <h4>Bosch Mexico</h4>
@@ -244,7 +238,7 @@
             structured operating systems, decision frameworks, and execution roadmaps.
           </p>
 
-          <div class="method-flow reveal">
+          <div class="method-flow">
             <div class="method-step">
               <div class="step-num">01</div>
               <h4>What it is</h4>
@@ -291,7 +285,7 @@
             exposing sensitive implementation details.
           </p>
 
-          <div class="profile-grid reveal">
+          <div class="profile-grid">
             <article class="profile-card">
               <h3>Current Role</h3>
               <ul>
@@ -334,7 +328,7 @@
             filterable project system with status, affiliation, type, domain, and year metadata.
           </p>
 
-          <div class="lab-filter-strip reveal" aria-label="Project taxonomy preview">
+          <div class="lab-filter-strip" aria-label="Project taxonomy preview">
             <span>AI / ML</span>
             <span>Finance</span>
             <span>Data Engineering</span>
@@ -347,7 +341,7 @@
             <span>Archived</span>
           </div>
 
-          <div class="source-grid reveal">
+          <div class="source-grid">
             <article class="source-card">
               <span class="route-label">Public / Independent / Model / AI</span>
               <h4>Vehicle Detection Using IBM Clusters</h4>
@@ -401,7 +395,7 @@
             ready yet.
           </p>
 
-          <div class="integration-grid reveal">
+          <div class="integration-grid">
             <div class="timeline-panel">
               <div class="timeline-item">
                 <span class="timeline-date">October 28, 2022</span>
@@ -480,7 +474,7 @@
             contact.
           </p>
 
-          <div class="contact-grid reveal">
+          <div class="contact-grid">
             <a class="contact-card" href="mailto:mmbarruchmm@gmail.com">
               <span class="contact-label">Email</span>
               <strong>mmbarruchmm@gmail.com</strong>
@@ -503,47 +497,5 @@
     <footer class="site-footer">
       <p>Baruch Lopez | Static portal hub for GitHub Pages</p>
     </footer>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        document.body.classList.add("js-ready");
-
-        var heroPanel = document.querySelector(".hero-portrait-card");
-        var heroSection = document.querySelector(".hero");
-
-        function syncHeroPanel() {
-          if (!heroPanel || !heroSection) return;
-
-          var heroHeight = heroSection.offsetHeight || 1;
-          var progress = Math.min(1, Math.max(0, window.scrollY / heroHeight));
-
-          heroPanel.style.setProperty("--hero-glass-shift", progress * 28 + "px");
-          heroPanel.style.setProperty(
-            "--hero-portrait-opacity",
-            String(Math.max(0.52, 0.9 - progress * 0.26))
-          );
-        }
-
-        syncHeroPanel();
-        window.addEventListener("scroll", syncHeroPanel, { passive: true });
-        window.addEventListener("resize", syncHeroPanel);
-
-        var reveals = document.querySelectorAll(".reveal");
-        var observer = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-              }
-            });
-          },
-          { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-        );
-
-        reveals.forEach(function (element) {
-          observer.observe(element);
-        });
-      });
-    </script>
   </body>
 </html>

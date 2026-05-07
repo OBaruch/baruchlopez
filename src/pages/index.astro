@@ -1,6 +1,5 @@
 ---
-import HeroCommandDeck from "@/components/react/HeroCommandDeck";
-import OrbitalLayer from "@/components/react/OrbitalLayer";
+import HeroPortal from "@/components/HeroPortal.astro";
 import {
   alphaFlow,
   contactItems,
@@ -26,17 +25,10 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </header>
 
     <main>
-      <div class="content-shell">
-        <div class="relative">
-          <HeroCommandDeck client:load gateways={gatewayItems} />
-          <div class="pointer-events-none absolute inset-0">
-            <OrbitalLayer client:load />
-          </div>
-        </div>
-      </div>
+      <HeroPortal gateways={gatewayItems} />
 
       <section class="section-shell" id="overview">
-        <div class="content-shell" data-fx-rise>
+        <div class="content-shell">
           <span class="section-label">Executive Overview</span>
           <h2 class="section-title">A concise read of the operating map.</h2>
 
@@ -69,7 +61,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       </section>
 
       <section class="section-shell" id="selected-highlights">
-        <div class="content-shell" data-fx-rise>
+        <div class="content-shell">
           <span class="section-label">Selected Highlights</span>
           <h2 class="section-title">A short credibility layer, not a full archive.</h2>
           <p class="section-copy">
@@ -93,7 +85,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       </section>
 
       <section class="section-shell" id="alpha-signature">
-        <div class="content-shell" data-fx-rise>
+        <div class="content-shell">
           <span class="section-label">Alpha Signature</span>
           <h2 class="section-title">Where strategy, systems, and execution converge.</h2>
           <p class="section-copy">
@@ -116,7 +108,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       </section>
 
       <section class="section-shell" id="corporate-profile">
-        <div class="content-shell" data-fx-rise>
+        <div class="content-shell">
           <span class="section-label">Corporate Profile</span>
           <h2 class="section-title">A formal, corporate-safe profile layer.</h2>
           <p class="section-copy">
@@ -143,7 +135,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       </section>
 
       <section class="section-shell" id="personal-project-lab">
-        <div class="content-shell" data-fx-rise>
+        <div class="content-shell">
           <span class="section-label">Personal Project Lab</span>
           <h2 class="section-title">A tagged archive for public, private-summary, and in-progress work.</h2>
           <p class="section-copy">
@@ -171,7 +163,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       </section>
 
       <section class="section-shell" id="talks-writing">
-        <div class="content-shell" data-fx-rise>
+        <div class="content-shell">
           <span class="section-label">Talks / Writing</span>
           <h2 class="section-title">Talks now, writing and media left open as a future lane.</h2>
           <p class="section-copy">
@@ -214,7 +206,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       </section>
 
       <section class="section-shell" id="contact">
-        <div class="content-shell" data-fx-rise>
+        <div class="content-shell">
           <span class="section-label">Contact</span>
           <h2 class="section-title">Next steps and collaboration paths.</h2>
           <p class="section-copy">

@@ -1,6 +1,6 @@
 # Docs
 
-Esta carpeta concentra la documentacion operativa del repo y el tracking de trabajo.
+Esta carpeta concentra la documentacion operativa del repo, el tracking de trabajo y el material de referencia que no debe mezclarse con la capa publica del sitio.
 
 ## Objetivo
 
@@ -8,15 +8,33 @@ Separar la documentacion de proyecto, mirrors y tooling del sitio publico estati
 
 Nota: `context/` es una carpeta local-only y esta ignorada por Git para no publicar mirrors, capturas ni material pesado en el repositorio publico.
 
-## Indice
+## Como leer esta carpeta
 
-- `preview-local.md`: comando de una sola linea para levantar Astro en un puerto poco comun libre y abrirlo en el navegador.
+La documentacion se divide en tres estados:
+
+- **Vigente**: describe la arquitectura, el deploy y la operacion real del repo hoy.
+- **Referencia**: conserva analisis, mirrors o planeacion futura.
+- **Archivo**: documenta experimentos descartados para no reintroducir deuda tecnica.
+
+## Indice operativo
+
+### Vigente
+
+- `estado-actual-del-repo.md`: source of truth del estado actual del sitio, capas del repo, rutas reales y restricciones tecnicas vigentes.
+- `deploy-github-pages.md`: configuracion correcta de GitHub Pages, workflow actual y troubleshooting del conflicto Astro vs Jekyll legacy.
+- `propuesta-stack-static-first.md`: principios de arquitectura vigentes para mantener el sitio lean y static-first.
+- `tracking.md`: bitacora de trabajo, decisiones recientes y backlog.
+- `preview-local.md`: comando de una sola linea para levantar Astro localmente.
+
+### Referencia
+
 - `mirrors.md`: inventario completo de mirrors y paginas scrapeadas.
-- `arquitectura-portal-y-wireframes.md`: arquitectura de informacion, sitemap, wireframes textuales y modelo de contenido con placeholders `{dummie text}`.
-- `auditoria-referencias-creativas.md`: analisis comparativo de referencias visuales/interactivas scrapeadas y descomposicion de features.
+- `auditoria-referencias-creativas.md`: analisis comparativo de referencias visuales/interactivas. Sirve como benchmark, no como plan de implementacion vigente.
+- `arquitectura-portal-y-wireframes.md`: arquitectura de informacion y modelo de contenido exploratorio para futuras rutas, con placeholders de contenido pendiente.
+
+### Archivo
+
 - `plan-liquid-glass-command-deck.md`: nota de archivo del experimento descartado de Hero con runtime visual complejo.
-- `propuesta-stack-static-first.md`: propuesta vigente para mantener el sitio en Astro SSG con CSS propio y enhancement puntual.
-- `tracking.md`: bitacora de trabajo, cambios recientes, decisiones y backlog.
 
 ## Regla de trabajo
 

@@ -18,6 +18,18 @@ La home no necesita runtime visual complejo. La prioridad es claridad, mantenimi
 | Assets | `public/` para paths estables y `assets/` solo si un build asset lo justifica |
 | Deploy | `astro build` -> `dist/` -> GitHub Pages |
 
+## Estado aplicado al repo
+
+Hoy esta tesis ya se refleja en la implementacion:
+
+- Home principal en `src/pages/index.astro`
+- Bridge de Cyrus en `src/pages/cyrus-global-capital/index.astro`
+- Contenido estructurado en `src/data/portal.ts`
+- Estilos en `src/styles/global.css`
+- Deploy con `.github/workflows/deploy.yml`
+
+La home opera como hub con secciones internas; todavia no existe una familia completa de rutas Astro separadas para Alpha, Corporate, Lab, Talks o Contact.
+
 ## Principios vigentes
 
 - El HTML principal debe existir pre-renderizado y ser legible sin JS.
@@ -25,6 +37,13 @@ La home no necesita runtime visual complejo. La prioridad es claridad, mantenimi
 - Las animaciones deben ser discretas y prescindibles.
 - El costo de mantenimiento pesa mas que una capa visual "premium" si esa capa complica lectura, performance o build.
 - `context/` y `scripts/mirror/` siguen aislados del sitio publico.
+
+## Guardrails de deploy
+
+- GitHub Pages debe usar `Source = GitHub Actions`.
+- `public/CNAME` mantiene el dominio custom dentro del build Astro.
+- `.nojekyll` en raiz y `public/.nojekyll` reducen el riesgo de que GitHub intente reconstruir el sitio como Jekyll legacy.
+- El alias de `astro/entrypoints/prerender` en `astro.config.mjs` sigue siendo un workaround tecnico necesario para el build local actual en Windows/OneDrive.
 
 ## Estructura recomendada
 

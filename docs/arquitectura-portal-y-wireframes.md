@@ -1,5 +1,16 @@
 # Arquitectura estructural del portal y wireframes textuales
 
+## Estado del documento
+
+Este documento es **exploratorio**. Sirve para arquitectura de informacion, futuros contenidos y posibles rutas, pero **no describe el estado implementado actual** del sitio.
+
+Antes de usarlo como referencia operativa, tomar en cuenta:
+
+- hoy solo existen las rutas Astro `/` y `/cyrus-global-capital/`;
+- Alpha, Corporate, Lab, Talks/Writing y Contact viven como secciones de la home, no como paginas separadas;
+- la direccion visual actual es mas sobria que varias de las exploraciones descritas aqui;
+- los placeholders `{dummie text}` son una marca interna de contenido pendiente, no copy aprobado.
+
 ## Objetivo
 
 Definir una arquitectura de informacion y una estructura de paginas para una futura evolucion de `baruchlopez.com` sin implementar aun el sitio.

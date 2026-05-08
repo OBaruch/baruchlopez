@@ -1,5 +1,15 @@
 # Auditoria de referencias creativas
 
+## Estado del documento
+
+Este documento se conserva como **benchmark de referencias**, no como plan de implementacion vigente.
+
+Importante:
+
+- varias referencias aqui analizadas usan 3D, WebGL, motion complejo o runtimes que ya fueron descartados para la home actual;
+- su valor hoy es comparativo: ayudan a entender riesgos, lenguaje visual y tradeoffs;
+- no deben leerse como backlog aprobado para v1.
+
 ## Alcance
 
 Este documento analiza los mirrors locales en `context/` como banco de referencias visuales, interactivas y tecnicas para una futura evolucion de `baruchlopez.com`.

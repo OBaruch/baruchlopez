@@ -6,6 +6,8 @@ Estos mirrors guardan ejemplos reales de estructura, UI, motion, interacciones, 
 
 Los mirrors viven en `context/` de forma local-only y el tooling para generarlos vive en `scripts/mirror/`.
 
+Nota operativa: varios mirrors documentan experiencias con 3D, WebGL, audio o motion complejo. Esas tecnicas **no forman parte de la implementacion vigente** del sitio actual; se conservan solo como referencia.
+
 ## Indice general
 
 | Sitio | Mirror local | Paginas | Assets | Resumen |

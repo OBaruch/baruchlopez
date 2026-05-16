@@ -1,0 +1,105 @@
+---
+import CTASection from "@/components/CTASection.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import { featuredProjects, type ProjectItem } from "@/data/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return featuredProjects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: ProjectItem;
+}
+
+const { project } = Astro.props as Props;
+---
+
+<BaseLayout
+  title={`${project.title} | Baruch Lopez Project Lab`}
+  description={project.summary}
+  currentPath={Astro.url.pathname}
+  canonicalPath={`/projects/${project.slug}/`}
+>
+  <section class="hero-shell hero-shell-text">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal-enter">
+        <span class="eyebrow">{project.label}</span>
+        <h1>{project.title}</h1>
+        <p class="hero-intro">{project.summary}</p>
+        <p class="hero-body">{project.note}</p>
+
+        <div class="button-row">
+          <LinkButton label="Back to Projects" href="/projects/" variant="secondary" />
+          {project.externalHref ? (
+            <LinkButton
+              label={project.externalLabel ?? "External reference"}
+              href={project.externalHref}
+              variant="ghost"
+              external={true}
+            />
+          ) : null}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader eyebrow="PROJECT READ" title="Context, status and why it matters." />
+
+      <div class="project-detail-grid">
+        <article class="panel reveal-enter">
+          <span class="footer-label">Status</span>
+          <p>{project.status}</p>
+        </article>
+
+        <article class="panel reveal-enter">
+          <span class="footer-label">Category</span>
+          <p>{project.category}</p>
+        </article>
+
+        <article class="panel reveal-enter">
+          <span class="footer-label">Year</span>
+          <p>{project.year}</p>
+        </article>
+      </div>
+
+      <div class="section-spacer-sm"></div>
+
+      <div class="card-grid card-grid-2">
+        <article class="panel reveal-enter">
+          <h3>What this project explores</h3>
+          <ul class="meta-list meta-list-spacious">
+            {project.details.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+
+        <article class="panel reveal-enter">
+          <h3>Technologies and themes</h3>
+          <ul class="meta-list meta-list-spacious">
+            {project.technologies.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell section-shell-last">
+    <div class="container">
+      <CTASection
+        eyebrow="NEXT STEP"
+        title="Continue through the lab or move to the wider profile."
+        body="This detail page is a narrative layer, not a full technical dump. Use Projects for the broader archive and Experience for the formal professional layer."
+        actions={[
+          { label: "Back to Projects", href: "/projects/", variant: "primary" },
+          { label: "View Experience", href: "/experience/", variant: "secondary" },
+        ]}
+      />
+    </div>
+  </section>
+</BaseLayout>

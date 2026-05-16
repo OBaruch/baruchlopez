@@ -1,0 +1,115 @@
+---
+import CTASection from "@/components/CTASection.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import SafeDisclosure from "@/components/SafeDisclosure.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import {
+  featuredProjects,
+  projectArchiveGroups,
+  projectCategories,
+} from "@/data/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Projects / Project Lab | Baruch Lopez"
+  description="A curated project lab spanning robotics, AI, automation, finance experiments and selected public repositories."
+  currentPath={Astro.url.pathname}
+  canonicalPath="/projects/"
+>
+  <section class="hero-shell hero-shell-text">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal-enter">
+        <span class="eyebrow">PROJECT LAB</span>
+        <h1>Experiments, systems and technical evolution.</h1>
+        <p class="hero-intro">
+          A curated archive of academic, personal, experimental and applied work across AI,
+          robotics, automation, finance and software.
+        </p>
+        <p class="hero-body">
+          The page is organized to show progress and range without pretending that every archive item
+          is a polished product.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="TAXONOMY"
+        title="How to read the lab."
+        copy="These categories are qualitative. They organize the archive without pretending to be a strict product catalog."
+      />
+
+      <div class="tag-list tag-list-wide" aria-label="Project categories">
+        {projectCategories.map((item) => <span class="tag">{item}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="FEATURED PROJECTS"
+        title="Selected public-facing work."
+        copy="Projects are shown with publication context, status and a level of caution when they touch institutional or finance-adjacent themes."
+      />
+
+      <div class="card-grid card-grid-projects">
+        {featuredProjects.map((item) => <ProjectCard item={item} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="ARCHIVE GROUPS"
+        title="The broader technical archive."
+      />
+
+      <div class="card-grid card-grid-3">
+        {
+          projectArchiveGroups.map((item) => (
+            <article class="panel reveal-enter">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell section-shell-last">
+    <div class="container">
+      <SafeDisclosure
+        title="What stays public, and what stays abstract."
+        intro="Some work can be described directly. Some is better shown as a category, prototype or archive signal."
+        allowed={[
+          "Academic and personal technical projects",
+          "Selected public repositories",
+          "Prototype language, archive framing and learning context",
+        ]}
+        avoid={[
+          "Private repository links",
+          "Sensitive internal tools",
+          "Finance experiments framed as advisory or performance",
+        ]}
+      />
+
+      <div class="section-spacer-sm"></div>
+
+      <CTASection
+        eyebrow="EXTERNAL REFERENCE"
+        title="Use GitHub for the wider public archive."
+        body="The website curates the narrative. GitHub remains the better place for raw repository depth and public code references."
+        actions={[
+          { label: "Open GitHub", href: "https://github.com/OBaruch", variant: "primary", external: true },
+          { label: "View Experience", href: "/experience/", variant: "secondary" },
+        ]}
+      />
+    </div>
+  </section>
+</BaseLayout>

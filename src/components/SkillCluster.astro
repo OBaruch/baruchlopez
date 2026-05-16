@@ -1,0 +1,17 @@
+---
+import type { SkillCluster as SkillClusterType } from "@/data/site";
+
+interface Props {
+  cluster: SkillClusterType;
+}
+
+const { cluster } = Astro.props as Props;
+---
+
+<article class="panel skill-card reveal-enter">
+  <h3>{cluster.title}</h3>
+  <p>{cluster.summary}</p>
+  <ul class="meta-list">
+    {cluster.items.map((item) => <li>{item}</li>)}
+  </ul>
+</article>

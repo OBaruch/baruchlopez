@@ -1,0 +1,123 @@
+---
+import CTASection from "@/components/CTASection.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import Timeline from "@/components/Timeline.astro";
+import {
+  aboutBio,
+  condensedTimeline,
+  educationHighlights,
+  futureDirections,
+  philosophyCards,
+} from "@/data/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="About Baruch Lopez | Robotics, AI and Structured Growth"
+  description="Read the public professional story of Baruch Lopez across robotics, AI, data systems, corporate execution and structured growth."
+  currentPath={Astro.url.pathname}
+  canonicalPath="/about/"
+>
+  <PageHero
+    eyebrow={aboutBio.eyebrow}
+    title={aboutBio.title}
+    intro={aboutBio.intro}
+    body={aboutBio.body.join(" ")}
+    actions={[
+      { label: "View Experience", href: "/experience/", variant: "primary" },
+      { label: "Explore Projects", href: "/projects/", variant: "secondary" },
+    ]}
+  />
+
+  <section class="section-shell">
+    <div class="container prose-section">
+      <SectionHeader
+        eyebrow="PUBLIC STORY"
+        title="Engineering first, then systems, execution and institutional context."
+      />
+
+      <div class="narrative-grid">
+        {aboutBio.body.map((paragraph) => <p class="lead-paragraph reveal-enter">{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="TIMELINE"
+        title="The shortest accurate version of the path."
+        copy="A public-safe reading of technical formation, corporate growth, project work and current expansion."
+      />
+      <Timeline items={condensedTimeline} />
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="EDUCATION"
+        title="Technical foundation with current business expansion."
+      />
+
+      <div class="card-grid">
+        {
+          educationHighlights.map((item) => (
+            <article class="panel reveal-enter">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="WORKING PHILOSOPHY"
+        title="The site should read like the work: clear, disciplined and useful."
+      />
+
+      <div class="card-grid card-grid-3">
+        {
+          philosophyCards.map((item) => (
+            <article class="panel reveal-enter">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell section-shell-last">
+    <div class="container">
+      <SectionHeader
+        eyebrow="FUTURE DIRECTION"
+        title="What this platform is growing toward."
+      />
+
+      <div class="panel reveal-enter">
+        <ul class="meta-list meta-list-spacious">
+          {futureDirections.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+
+      <div class="section-spacer-sm"></div>
+
+      <CTASection
+        eyebrow="NEXT STEP"
+        title="Go from story to proof."
+        body="Use Experience for the formal career layer and Projects for a more technical reading of the work."
+        actions={[
+          { label: "View Experience", href: "/experience/", variant: "primary" },
+          { label: "Explore Projects", href: "/projects/", variant: "secondary" },
+        ]}
+      />
+    </div>
+  </section>
+</BaseLayout>

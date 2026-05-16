@@ -1,0 +1,43 @@
+---
+import type { ActionLink } from "@/data/site";
+import LinkButton from "@/components/LinkButton.astro";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  body?: string;
+  actions?: ActionLink[];
+  image?: string;
+  imageAlt?: string;
+}
+
+const { eyebrow, title, intro, body, actions = [], image, imageAlt = "" } = Astro.props as Props;
+---
+
+<section class={`hero-shell ${image ? "hero-shell-media" : "hero-shell-text"}`}>
+  <div class="container hero-grid">
+    <div class="hero-copy reveal-enter">
+      <span class="eyebrow">{eyebrow}</span>
+      <h1>{title}</h1>
+      <p class="hero-intro">{intro}</p>
+      {body ? <p class="hero-body">{body}</p> : null}
+
+      {
+        actions.length ? (
+          <div class="button-row">
+            {actions.map((action) => <LinkButton {...action} external={action.external ?? false} />)}
+          </div>
+        ) : null
+      }
+    </div>
+
+    {
+      image ? (
+        <figure class="hero-media panel reveal-enter">
+          <img src={image} alt={imageAlt} width="720" height="960" loading="eager" decoding="async" />
+        </figure>
+      ) : null
+    }
+  </div>
+</section>

@@ -1,0 +1,123 @@
+---
+import CTASection from "@/components/CTASection.astro";
+import CertificationCard from "@/components/CertificationCard.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import SkillCluster from "@/components/SkillCluster.astro";
+import Timeline from "@/components/Timeline.astro";
+import {
+  certifications,
+  experienceHero,
+  experienceSnapshots,
+  experienceTimeline,
+  recommendations,
+  skillClusters,
+} from "@/data/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const featuredCertifications = certifications.filter((item) => item.featured).slice(0, 8);
+---
+
+<BaseLayout
+  title="Experience | Baruch Lopez - AI, Data and Analytics"
+  description="Review the public-safe professional experience of Baruch Lopez across AI, data engineering, analytics, automation and technical enablement."
+  currentPath={Astro.url.pathname}
+  canonicalPath="/experience/"
+>
+  <PageHero
+    eyebrow={experienceHero.eyebrow}
+    title={experienceHero.title}
+    intro={experienceHero.intro}
+    actions={[
+      { label: "See Corporate Profile", href: "/corporate/", variant: "primary" },
+      { label: "View Credentials", href: "/credentials/", variant: "secondary" },
+      {
+        label: "Open LinkedIn",
+        href: "https://www.linkedin.com/in/baruchlopez/",
+        variant: "ghost",
+        external: true,
+      },
+    ]}
+  />
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader eyebrow="CURRENT SNAPSHOT" title="A profile built across AI, data and structured execution." />
+
+      <div class="card-grid card-grid-3">
+        {
+          experienceSnapshots.map((item) => (
+            <article class="panel reveal-enter">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="ROLE TIMELINE"
+        title="Professional progression without turning the page into a CV dump."
+      />
+      <Timeline items={experienceTimeline} />
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="SKILL CLUSTERS"
+        title="Technical depth paired with business-facing range."
+      />
+
+      <div class="card-grid card-grid-2">
+        {skillClusters.map((cluster) => <SkillCluster cluster={cluster} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="CREDENTIALS PREVIEW"
+        title="Selected public certifications."
+        copy="The full credentials archive lives on a separate page to keep Experience readable and focused."
+      />
+
+      <div class="card-grid card-grid-certifications">
+        {featuredCertifications.map((item) => <CertificationCard item={item} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell section-shell-last">
+    <div class="container">
+      <SectionHeader
+        eyebrow="PUBLIC SIGNALS"
+        title="What the visible professional layer suggests."
+      />
+
+      <div class="panel reveal-enter">
+        <ul class="meta-list meta-list-spacious">
+          {recommendations.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+
+      <div class="section-spacer-sm"></div>
+
+      <CTASection
+        eyebrow="NEXT STEP"
+        title="Need the corporate-safe layer?"
+        body="Use the Corporate page for a narrower Bosch-safe reading, or move to Projects for a more technical view."
+        actions={[
+          { label: "See Corporate Profile", href: "/corporate/", variant: "primary" },
+          { label: "Explore Projects", href: "/projects/", variant: "secondary" },
+        ]}
+      />
+    </div>
+  </section>
+</BaseLayout>

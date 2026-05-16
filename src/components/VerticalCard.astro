@@ -1,0 +1,24 @@
+---
+import type { VerticalItem } from "@/data/site";
+
+interface Props {
+  item: VerticalItem;
+}
+
+const { item } = Astro.props as Props;
+---
+
+<article class="panel vertical-card reveal-enter">
+  <a class="vertical-link" href={item.href}>
+    <div class="vertical-media">
+      <img src={item.image} alt="" width="480" height="320" loading="lazy" decoding="async" />
+    </div>
+
+    <div class="vertical-copy">
+      <span class="mini-label">{item.label}</span>
+      <h3>{item.title}</h3>
+      <p>{item.summary}</p>
+      <span class="text-link">{item.cta}</span>
+    </div>
+  </a>
+</article>

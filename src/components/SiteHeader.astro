@@ -1,0 +1,43 @@
+---
+import { externalLinks, navigation } from "@/data/site";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props as Props;
+
+const isActive = (href: string) => {
+  if (href === "/") {
+    return currentPath === "/";
+  }
+
+  return currentPath.startsWith(href);
+};
+---
+
+<header class="site-header">
+  <div class="container header-shell">
+    <a class="brand-mark" href="/">Baruch Lopez</a>
+
+    <nav class="site-nav" aria-label="Primary">
+      {
+        navigation.map((item) => (
+          <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="utility-links" aria-label="External">
+      {
+        externalLinks.map((item) => (
+          <a href={item.href} target="_blank" rel="noreferrer">
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</header>

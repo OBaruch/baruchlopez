@@ -230,18 +230,18 @@ export const mediaRoadmap = [
 
 export const contactItems = [
   {
-    label: "Email",
-    value: "mmbarruchmm@gmail.com",
-    href: "mailto:mmbarruchmm@gmail.com",
-  },
-  {
     label: "LinkedIn",
-    value: "Available on request",
-    href: null,
+    value: "linkedin.com/in/baruchlopez",
+    href: "https://www.linkedin.com/in/baruchlopez/",
   },
   {
     label: "GitHub",
     value: "github.com/OBaruch",
     href: "https://github.com/OBaruch",
+  },
+  {
+    label: "Consulting",
+    value: "Alpha Signature bridge",
+    href: "/alpha-signature/",
   },
 ];

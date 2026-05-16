@@ -1,0 +1,19 @@
+---
+import type { CertificationItem } from "@/data/site";
+
+interface Props {
+  item: CertificationItem;
+}
+
+const { item } = Astro.props as Props;
+---
+
+<article class="panel certification-card reveal-enter">
+  <div class="project-topline">
+    <span class="mini-label">{item.category}</span>
+    <span class="project-year">{item.date}</span>
+  </div>
+  <h3>{item.title}</h3>
+  <p class="issuer-line">{item.issuer}</p>
+  <p>{item.note}</p>
+</article>

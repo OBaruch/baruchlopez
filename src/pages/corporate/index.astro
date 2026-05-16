@@ -1,0 +1,79 @@
+---
+import CTASection from "@/components/CTASection.astro";
+import PageHero from "@/components/PageHero.astro";
+import SafeDisclosure from "@/components/SafeDisclosure.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import {
+  corporateAllowed,
+  corporateAvoid,
+  corporateHero,
+  corporateThemes,
+} from "@/data/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Corporate Profile | Baruch Lopez"
+  description="A corporate-safe overview of Baruch Lopez across enterprise AI, analytics, ETL, reporting and technical enablement."
+  currentPath={Astro.url.pathname}
+  canonicalPath="/corporate/"
+>
+  <PageHero
+    eyebrow={corporateHero.eyebrow}
+    title={corporateHero.title}
+    intro={corporateHero.intro}
+    actions={[
+      {
+        label: "Open LinkedIn",
+        href: "https://www.linkedin.com/in/baruchlopez/",
+        variant: "primary",
+        external: true,
+      },
+      { label: "Contact", href: "/contact/", variant: "secondary" },
+    ]}
+  />
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="PUBLIC-SAFE OVERVIEW"
+        title="Capability, not confidential detail."
+        copy="This layer is intentionally written at a high level. It reflects enterprise-facing work across AI, data, analytics, automation and enablement without disclosing sensitive systems."
+      />
+
+      <div class="card-grid card-grid-2">
+        {
+          corporateThemes.map((item) => (
+            <article class="panel reveal-enter">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell section-shell-last">
+    <div class="container">
+      <SafeDisclosure
+        title="What this page can and cannot include."
+        intro="The corporate layer should show professional maturity and technical range without turning public pages into internal documentation."
+        allowed={corporateAllowed}
+        avoid={corporateAvoid}
+      />
+
+      <div class="section-spacer-sm"></div>
+
+      <CTASection
+        eyebrow="NEXT STEP"
+        title="Move from enterprise context to broader profile."
+        body="Use Experience for the full public career read or Projects for technical exploration and archive depth."
+        actions={[
+          { label: "View Experience", href: "/experience/", variant: "primary" },
+          { label: "Explore Projects", href: "/projects/", variant: "secondary" },
+        ]}
+      />
+    </div>
+  </section>
+</BaseLayout>

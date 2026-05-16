@@ -1,0 +1,78 @@
+---
+import CTASection from "@/components/CTASection.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import { contactPathways } from "@/data/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Contact | Baruch Lopez"
+  description="Professional pathways and external links for the public profile of Baruch Lopez."
+  currentPath={Astro.url.pathname}
+  canonicalPath="/contact/"
+>
+  <section class="hero-shell hero-shell-text">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal-enter">
+        <span class="eyebrow">CONTACT</span>
+        <h1>Choose the right channel.</h1>
+        <p class="hero-intro">
+          For professional context, consulting, selected projects or external references.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="PATHWAYS"
+        title="Different intents, different next steps."
+      />
+
+      <div class="card-grid card-grid-2">
+        {
+          contactPathways.map((item) => (
+            <article class="panel reveal-enter">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <a class="text-link" href={item.href}>{item.label}</a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="CONTACT APPROACH"
+        title="Public channels stay intentional and low-friction."
+        copy="This site routes outreach through the channels that are already confirmed and appropriate for public use."
+      />
+
+      <article class="panel reveal-enter">
+        <p>
+          For formal outreach, the preferred path is LinkedIn. For technical context, GitHub remains
+          the best public layer. Consulting or venture-related conversations can also begin through
+          the Alpha Signature and Cyrus bridge pages already included in this site.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-shell section-shell-last">
+    <div class="container">
+      <CTASection
+        eyebrow="NEXT STEP"
+        title="Use the site as a gateway, not a data collection form."
+        body="The current implementation keeps contact low-friction and privacy-safe. Once channels are confirmed, placeholders can be replaced deliberately."
+        actions={[
+          { label: "Open LinkedIn", href: "https://www.linkedin.com/in/baruchlopez/", variant: "primary", external: true },
+          { label: "Open GitHub", href: "https://github.com/OBaruch", variant: "secondary", external: true },
+        ]}
+      />
+    </div>
+  </section>
+</BaseLayout>

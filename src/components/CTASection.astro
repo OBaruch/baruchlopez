@@ -1,0 +1,23 @@
+---
+import type { ActionLink } from "@/data/site";
+import LinkButton from "@/components/LinkButton.astro";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  body: string;
+  actions: ActionLink[];
+}
+
+const { eyebrow, title, body, actions } = Astro.props as Props;
+---
+
+<section class="panel cta-panel reveal-enter">
+  <span class="eyebrow">{eyebrow}</span>
+  <h2>{title}</h2>
+  <p>{body}</p>
+
+  <div class="button-row">
+    {actions.map((action) => <LinkButton {...action} external={action.external ?? false} />)}
+  </div>
+</section>

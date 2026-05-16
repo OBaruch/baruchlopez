@@ -1,0 +1,137 @@
+---
+import LinkButton from "@/components/LinkButton.astro";
+import { manifestoEnglish, manifestoPage, manifestoSpanish } from "@/data/manifesto";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: "Manifiesto de Valores",
+  inLanguage: ["es", "en"],
+  author: {
+    "@type": "Person",
+    name: "Baruch Lopez",
+    url: "https://baruchlopez.com/",
+  },
+  url: "https://baruchlopez.com/manifesto/",
+  description: "Manifesto of values by Baruch Lopez, available in Spanish and English.",
+};
+---
+
+<BaseLayout
+  title="Manifiesto de Valores | Baruch Lopez"
+  description="Explora el manifiesto de valores de Baruch Lopez, disponible en español y en inglés."
+  currentPath={Astro.url.pathname}
+  canonicalPath="/manifesto/"
+  structuredData={structuredData}
+  lang="es"
+>
+  <section class="hero-shell manifesto-hero-shell">
+    <div class="container">
+      <div class="manifesto-hero panel reveal-enter">
+        <span class="eyebrow">{manifestoPage.eyebrow}</span>
+        <h1>{manifestoSpanish.title}</h1>
+        <p class="manifesto-subtitle">{manifestoSpanish.subtitle}</p>
+        <div class="manifesto-hero-actions">
+          <LinkButton label="Volver al inicio" href="/" variant="ghost" />
+          <LinkButton label="Ver trayectoria" href="/experience/" variant="secondary" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell section-shell-last manifesto-page-shell">
+    <div class="container manifesto-language-shell">
+      <input class="manifesto-toggle-input" type="radio" name="manifesto-language" id="manifesto-language-es" checked />
+      <input class="manifesto-toggle-input" type="radio" name="manifesto-language" id="manifesto-language-en" />
+
+      <div class="manifesto-toolbar panel reveal-enter">
+        <div class="manifesto-toolbar-top">
+          <span class="eyebrow">Language / Idioma</span>
+          <div class="manifesto-toggle" aria-label={manifestoPage.languageToggleLabel}>
+            <label for="manifesto-language-es">
+              {manifestoPage.languageOptions.es}
+            </label>
+            <label for="manifesto-language-en">
+              {manifestoPage.languageOptions.en}
+            </label>
+          </div>
+        </div>
+
+        <div class="manifesto-map manifesto-map-es">
+          <span class="manifesto-map-label">{manifestoPage.indexLabels.es}</span>
+          <div class="manifesto-map-links">
+            {manifestoSpanish.sections.map((section) => <a href={`#es-${section.id}`}>{section.title}</a>)}
+          </div>
+        </div>
+
+        <div class="manifesto-map manifesto-map-en">
+          <span class="manifesto-map-label">{manifestoPage.indexLabels.en}</span>
+          <div class="manifesto-map-links">
+            {manifestoEnglish.sections.map((section) => <a href={`#en-${section.id}`}>{section.title}</a>)}
+          </div>
+        </div>
+      </div>
+
+      <div class="manifesto-panels">
+        <article id="manifesto-panel-es" class="manifesto-panel manifesto-panel-es" lang="es">
+          <section class="manifesto-entry manifesto-entry-intro panel reveal-enter">
+            <span class="eyebrow">Manifiesto</span>
+            <h2>{manifestoSpanish.subtitle}</h2>
+            <div class="manifesto-copy">
+              {manifestoSpanish.intro.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          </section>
+
+          <div class="manifesto-entry-stack">
+            {
+              manifestoSpanish.sections.map((section) => (
+                <section
+                  id={`es-${section.id}`}
+                  class={`manifesto-entry panel reveal-enter ${section.id === "compromiso" ? "manifesto-entry-commitment" : ""}`}
+                >
+                  <span class="manifesto-entry-rule" aria-hidden="true"></span>
+                  <div class="manifesto-entry-body">
+                    <h2>{section.title}</h2>
+                    <div class="manifesto-copy">
+                      {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+                    </div>
+                  </div>
+                </section>
+              ))
+            }
+          </div>
+        </article>
+
+        <article id="manifesto-panel-en" class="manifesto-panel manifesto-panel-en" lang="en">
+          <section class="manifesto-entry manifesto-entry-intro panel reveal-enter">
+            <span class="eyebrow">Manifesto</span>
+            <h2>{manifestoEnglish.subtitle}</h2>
+            <div class="manifesto-copy">
+              {manifestoEnglish.intro.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          </section>
+
+          <div class="manifesto-entry-stack">
+            {
+              manifestoEnglish.sections.map((section) => (
+                <section
+                  id={`en-${section.id}`}
+                  class={`manifesto-entry panel reveal-enter ${section.id === "commitment" ? "manifesto-entry-commitment" : ""}`}
+                >
+                  <span class="manifesto-entry-rule" aria-hidden="true"></span>
+                  <div class="manifesto-entry-body">
+                    <h2>{section.title}</h2>
+                    <div class="manifesto-copy">
+                      {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+                    </div>
+                  </div>
+                </section>
+              ))
+            }
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

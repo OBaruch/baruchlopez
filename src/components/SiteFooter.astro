@@ -1,0 +1,39 @@
+---
+import { footerLinks } from "@/data/site";
+---
+
+<footer class="site-footer">
+  <div class="container footer-shell">
+    <div class="footer-copy">
+      <span class="eyebrow">Baruch Lopez</span>
+      <p>
+        A personal platform connecting AI, data systems, corporate execution, consulting context and
+        selected technical projects.
+      </p>
+    </div>
+
+    <div class="footer-columns">
+      <div>
+        <span class="footer-label">Navigate</span>
+        <ul>
+          {footerLinks.internal.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </div>
+
+      <div>
+        <span class="footer-label">External</span>
+        <ul>
+          {
+            footerLinks.external.map((item) => (
+              <li>
+                <a href={item.href} target="_blank" rel="noreferrer">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,44 @@
+---
+import LinkButton from "@/components/LinkButton.astro";
+import type { ProjectItem } from "@/data/site";
+
+interface Props {
+  item: ProjectItem;
+  compact?: boolean;
+}
+
+const { item, compact = false } = Astro.props as Props;
+---
+
+<article class={`panel project-card reveal-enter ${compact ? "project-card-compact" : ""}`}>
+  <div class="project-topline">
+    <span class="mini-label">{item.label}</span>
+    <span class="project-year">{item.year}</span>
+  </div>
+
+  <h3>{item.title}</h3>
+  <p>{item.summary}</p>
+
+  <div class="tag-list">
+    <span class="tag">{item.category}</span>
+    <span class="tag">{item.status}</span>
+  </div>
+
+  <ul class="meta-list">
+    {item.technologies.map((technology) => <li>{technology}</li>)}
+  </ul>
+
+  <p class="project-note">{item.note}</p>
+
+  <div class="button-row">
+    <LinkButton label="View summary" href={`/projects/${item.slug}/`} variant="secondary" />
+    {item.externalHref ? (
+      <LinkButton
+        label={item.externalLabel ?? "External reference"}
+        href={item.externalHref}
+        external={true}
+        variant="ghost"
+      />
+    ) : null}
+  </div>
+</article>

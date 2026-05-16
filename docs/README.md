@@ -24,7 +24,7 @@ La documentacion se divide en tres estados:
 - `deploy-github-pages.md`: configuracion correcta de GitHub Pages, workflow actual y troubleshooting del conflicto Astro vs Jekyll legacy.
 - `propuesta-stack-static-first.md`: principios de arquitectura vigentes para mantener el sitio lean y static-first.
 - `tracking.md`: bitacora de trabajo, decisiones recientes y backlog.
-- `preview-local.md`: comando de una sola linea para levantar Astro localmente.
+- `preview-local.md`: inicio oficial del sitio en local con `npm.cmd run dev -- --port 43127`.
 
 ### Referencia
 

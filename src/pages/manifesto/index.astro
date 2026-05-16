@@ -32,50 +32,70 @@ const structuredData = {
         <span class="eyebrow">{manifestoPage.eyebrow}</span>
         <h1>{manifestoSpanish.title}</h1>
         <p class="manifesto-subtitle">{manifestoSpanish.subtitle}</p>
+        <div class="manifesto-hero-pills" aria-label="Manifesto highlights">
+          <span class="manifesto-meta-pill">{`${manifestoSpanish.sections.length} principios`}</span>
+          <span class="manifesto-meta-pill">Español por defecto</span>
+          <span class="manifesto-meta-pill">English available</span>
+        </div>
         <div class="manifesto-hero-actions">
+          <LinkButton label="Empezar lectura" href="#manifesto-start" variant="primary" size="large" />
           <LinkButton label="Volver al inicio" href="/" variant="ghost" />
-          <LinkButton label="Ver trayectoria" href="/experience/" variant="secondary" />
         </div>
       </div>
     </div>
   </section>
 
   <section class="section-shell section-shell-last manifesto-page-shell">
-    <div class="container manifesto-language-shell">
+    <div class="container manifesto-language-shell" id="manifesto-start">
       <input class="manifesto-toggle-input" type="radio" name="manifesto-language" id="manifesto-language-es" checked />
       <input class="manifesto-toggle-input" type="radio" name="manifesto-language" id="manifesto-language-en" />
 
-      <div class="manifesto-toolbar panel reveal-enter">
-        <div class="manifesto-toolbar-top">
-          <span class="eyebrow">Language / Idioma</span>
-          <div class="manifesto-toggle" aria-label={manifestoPage.languageToggleLabel}>
-            <label for="manifesto-language-es">
-              {manifestoPage.languageOptions.es}
-            </label>
-            <label for="manifesto-language-en">
-              {manifestoPage.languageOptions.en}
-            </label>
-          </div>
+      <div class="manifesto-controls reveal-enter">
+        <div class="manifesto-controls-copy">
+          <span class="eyebrow">Idioma</span>
+          <p>Elige el idioma y entra directo al texto.</p>
         </div>
-
-        <div class="manifesto-map manifesto-map-es">
-          <span class="manifesto-map-label">{manifestoPage.indexLabels.es}</span>
-          <div class="manifesto-map-links">
-            {manifestoSpanish.sections.map((section) => <a href={`#es-${section.id}`}>{section.title}</a>)}
-          </div>
+        <div class="manifesto-toggle" aria-label={manifestoPage.languageToggleLabel}>
+          <label for="manifesto-language-es">
+            {manifestoPage.languageOptions.es}
+          </label>
+          <label for="manifesto-language-en">
+            {manifestoPage.languageOptions.en}
+          </label>
         </div>
+      </div>
 
-        <div class="manifesto-map manifesto-map-en">
-          <span class="manifesto-map-label">{manifestoPage.indexLabels.en}</span>
-          <div class="manifesto-map-links">
-            {manifestoEnglish.sections.map((section) => <a href={`#en-${section.id}`}>{section.title}</a>)}
-          </div>
+      <div
+        class="manifesto-progress-rail reveal-enter"
+        data-manifesto-progress-rail
+        data-label-es="Lectura"
+        data-label-en="Reading"
+        data-complete-es="Lectura completa"
+        data-complete-en="Reading complete"
+      >
+        <div class="manifesto-progress-copy">
+          <span class="manifesto-progress-label" data-manifesto-progress-label>Lectura</span>
+          <strong class="manifesto-progress-value" data-manifesto-progress-value>0%</strong>
+          <span class="manifesto-progress-divider" aria-hidden="true"></span>
+          <span class="manifesto-progress-title" data-manifesto-progress-title>{manifestoSpanish.subtitle}</span>
+        </div>
+        <div class="manifesto-progress-track" aria-hidden="true">
+          <span class="manifesto-progress-fill" data-manifesto-progress-fill></span>
         </div>
       </div>
 
       <div class="manifesto-panels">
-        <article id="manifesto-panel-es" class="manifesto-panel manifesto-panel-es" lang="es">
-          <section class="manifesto-entry manifesto-entry-intro panel reveal-enter">
+        <article
+          id="manifesto-panel-es"
+          class="manifesto-panel manifesto-panel-es"
+          lang="es"
+          data-manifesto-panel="es"
+        >
+          <section
+            class="manifesto-entry manifesto-entry-intro panel reveal-enter"
+            data-manifesto-section
+            data-title={manifestoSpanish.subtitle}
+          >
             <span class="eyebrow">Manifiesto</span>
             <h2>{manifestoSpanish.subtitle}</h2>
             <div class="manifesto-copy">
@@ -85,14 +105,19 @@ const structuredData = {
 
           <div class="manifesto-entry-stack">
             {
-              manifestoSpanish.sections.map((section) => (
+              manifestoSpanish.sections.map((section, index) => (
                 <section
                   id={`es-${section.id}`}
                   class={`manifesto-entry panel reveal-enter ${section.id === "compromiso" ? "manifesto-entry-commitment" : ""}`}
+                  data-manifesto-section
+                  data-title={section.title}
                 >
                   <span class="manifesto-entry-rule" aria-hidden="true"></span>
                   <div class="manifesto-entry-body">
-                    <h2>{section.title}</h2>
+                    <div class="manifesto-entry-heading">
+                      <span class="manifesto-entry-index">{String(index + 1).padStart(2, "0")}</span>
+                      <h2>{section.title}</h2>
+                    </div>
                     <div class="manifesto-copy">
                       {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
                     </div>
@@ -103,8 +128,17 @@ const structuredData = {
           </div>
         </article>
 
-        <article id="manifesto-panel-en" class="manifesto-panel manifesto-panel-en" lang="en">
-          <section class="manifesto-entry manifesto-entry-intro panel reveal-enter">
+        <article
+          id="manifesto-panel-en"
+          class="manifesto-panel manifesto-panel-en"
+          lang="en"
+          data-manifesto-panel="en"
+        >
+          <section
+            class="manifesto-entry manifesto-entry-intro panel reveal-enter"
+            data-manifesto-section
+            data-title={manifestoEnglish.subtitle}
+          >
             <span class="eyebrow">Manifesto</span>
             <h2>{manifestoEnglish.subtitle}</h2>
             <div class="manifesto-copy">
@@ -114,14 +148,19 @@ const structuredData = {
 
           <div class="manifesto-entry-stack">
             {
-              manifestoEnglish.sections.map((section) => (
+              manifestoEnglish.sections.map((section, index) => (
                 <section
                   id={`en-${section.id}`}
                   class={`manifesto-entry panel reveal-enter ${section.id === "commitment" ? "manifesto-entry-commitment" : ""}`}
+                  data-manifesto-section
+                  data-title={section.title}
                 >
                   <span class="manifesto-entry-rule" aria-hidden="true"></span>
                   <div class="manifesto-entry-body">
-                    <h2>{section.title}</h2>
+                    <div class="manifesto-entry-heading">
+                      <span class="manifesto-entry-index">{String(index + 1).padStart(2, "0")}</span>
+                      <h2>{section.title}</h2>
+                    </div>
                     <div class="manifesto-copy">
                       {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
                     </div>
@@ -134,4 +173,103 @@ const structuredData = {
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (() => {
+      const rail = document.querySelector("[data-manifesto-progress-rail]");
+      const inputEs = document.getElementById("manifesto-language-es");
+      const inputEn = document.getElementById("manifesto-language-en");
+      const panelEs = document.getElementById("manifesto-panel-es");
+      const panelEn = document.getElementById("manifesto-panel-en");
+
+      if (!rail || !inputEs || !inputEn || !panelEs || !panelEn) {
+        return;
+      }
+
+      const progressLabel = rail.querySelector("[data-manifesto-progress-label]");
+      const progressValue = rail.querySelector("[data-manifesto-progress-value]");
+      const progressTitle = rail.querySelector("[data-manifesto-progress-title]");
+      const progressFill = rail.querySelector("[data-manifesto-progress-fill]");
+
+      const labels = {
+        es: {
+          mode: rail.getAttribute("data-label-es") || "Lectura",
+          complete: rail.getAttribute("data-complete-es") || "Lectura completa",
+        },
+        en: {
+          mode: rail.getAttribute("data-label-en") || "Reading",
+          complete: rail.getAttribute("data-complete-en") || "Reading complete",
+        },
+      };
+
+      let rafId = 0;
+
+      const getLanguage = () => (inputEn.checked ? "en" : "es");
+
+      const getPanel = (language) => (language === "en" ? panelEn : panelEs);
+
+      const getSections = (language) =>
+        Array.from(getPanel(language).querySelectorAll("[data-manifesto-section]"));
+
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+      const updateProgress = () => {
+        const language = getLanguage();
+        const panel = getPanel(language);
+        const sections = getSections(language);
+        const textLabels = labels[language];
+
+        if (!sections.length || !progressLabel || !progressValue || !progressTitle || !progressFill) {
+          return;
+        }
+
+        const viewportMarker = window.scrollY + window.innerHeight * 0.3;
+        let currentSection = sections[0];
+
+        sections.forEach((section) => {
+          const top = section.getBoundingClientRect().top + window.scrollY;
+
+          if (viewportMarker >= top) {
+            currentSection = section;
+          }
+        });
+
+        sections.forEach((section) => {
+          section.classList.toggle("is-current", section === currentSection);
+        });
+
+        const panelTop = panel.getBoundingClientRect().top + window.scrollY;
+        const distance = window.scrollY + window.innerHeight * 0.34 - panelTop;
+        const maxDistance = Math.max(panel.offsetHeight - window.innerHeight * 0.68, 1);
+        const progress = clamp((distance / maxDistance) * 100, 0, 100);
+        const roundedProgress = Math.round(progress);
+
+        progressLabel.textContent = textLabels.mode;
+        progressValue.textContent = `${roundedProgress}%`;
+        progressTitle.textContent =
+          roundedProgress >= 99
+            ? textLabels.complete
+            : currentSection.getAttribute("data-title") || textLabels.mode;
+        progressFill.style.width = `${progress}%`;
+      };
+
+      const requestProgressUpdate = () => {
+        if (rafId) {
+          return;
+        }
+
+        rafId = window.requestAnimationFrame(() => {
+          rafId = 0;
+          updateProgress();
+        });
+      };
+
+      window.addEventListener("scroll", requestProgressUpdate, { passive: true });
+      window.addEventListener("resize", requestProgressUpdate);
+      inputEs.addEventListener("change", requestProgressUpdate);
+      inputEn.addEventListener("change", requestProgressUpdate);
+
+      updateProgress();
+    })();
+  </script>
 </BaseLayout>

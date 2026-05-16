@@ -643,6 +643,190 @@ main {
     linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025));
 }
 
+.manifesto-hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.manifesto-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.42rem 0.8rem;
+  border: 1px solid rgba(255, 248, 216, 0.18);
+  border-radius: 999px;
+  color: rgba(245, 241, 232, 0.78);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.manifesto-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.manifesto-controls-copy {
+  display: grid;
+  gap: 0.42rem;
+  max-width: 26rem;
+}
+
+.manifesto-controls-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+#manifesto-language-es:checked ~ .manifesto-controls .manifesto-toggle label[for="manifesto-language-es"],
+#manifesto-language-en:checked ~ .manifesto-controls .manifesto-toggle label[for="manifesto-language-en"] {
+  color: #111214;
+  background: #f2f0ed;
+}
+
+#manifesto-language-es:focus-visible ~ .manifesto-controls .manifesto-toggle label[for="manifesto-language-es"],
+#manifesto-language-en:focus-visible ~ .manifesto-controls .manifesto-toggle label[for="manifesto-language-en"] {
+  outline: 2px solid rgba(242, 240, 237, 0.7);
+  outline-offset: 2px;
+}
+
+.manifesto-progress-rail {
+  position: sticky;
+  top: calc(var(--header-offset) + 0.5rem);
+  z-index: 18;
+  display: grid;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid rgba(255, 248, 216, 0.18);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(11, 11, 14, 0.94), rgba(11, 11, 14, 0.84)),
+    rgba(11, 11, 14, 0.86);
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px) saturate(150%);
+}
+
+.manifesto-progress-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.manifesto-progress-label {
+  color: rgba(229, 226, 221, 0.7);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.manifesto-progress-value {
+  color: var(--ink);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.manifesto-progress-divider {
+  inline-size: 1px;
+  block-size: 1rem;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.manifesto-progress-title {
+  color: rgba(245, 241, 232, 0.82);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.manifesto-progress-track {
+  position: relative;
+  overflow: hidden;
+  inline-size: 100%;
+  block-size: 0.42rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.manifesto-progress-fill {
+  position: relative;
+  display: block;
+  inline-size: 0;
+  block-size: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f2f0ed 0%, #f6e9a8 100%);
+  box-shadow: 0 0 20px rgba(246, 233, 168, 0.34);
+  transition: width 0.22s ease;
+}
+
+.manifesto-progress-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: translateX(-100%);
+  animation: manifesto-progress-glow 2.3s linear infinite;
+}
+
+.manifesto-entry-heading {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.manifesto-entry-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: fit-content;
+  min-height: 2rem;
+  padding: 0.28rem 0.6rem;
+  border: 1px solid rgba(255, 248, 216, 0.2);
+  border-radius: 999px;
+  color: rgba(245, 241, 232, 0.72);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.manifesto-entry[data-manifesto-section] {
+  scroll-margin-top: calc(var(--header-offset) + 5.5rem);
+}
+
+.manifesto-entry.is-current {
+  border-color: rgba(255, 248, 216, 0.34);
+  transform: translateY(-2px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+}
+
+.manifesto-entry.is-current .manifesto-entry-rule {
+  background: linear-gradient(180deg, rgba(246, 233, 168, 0.92), rgba(255, 255, 255, 0.1));
+}
+
+.manifesto-entry.is-current .manifesto-entry-index {
+  border-color: rgba(246, 233, 168, 0.34);
+  color: rgba(255, 248, 216, 0.96);
+}
+
+@keyframes manifesto-progress-glow {
+  to {
+    transform: translateX(100%);
+  }
+}
+
 .card-grid {
   display: grid;
   gap: 1rem;
@@ -955,12 +1139,17 @@ main {
     padding-top: 0.7rem;
   }
 
-  .manifesto-toolbar {
+  .manifesto-progress-rail {
     top: calc(var(--header-offset) + 0.4rem);
+    padding: 0.82rem 0.9rem 0.92rem;
   }
 
-  .manifesto-toolbar-top {
+  .manifesto-controls {
     align-items: flex-start;
+  }
+
+  .manifesto-controls-copy {
+    max-width: none;
   }
 
   .manifesto-entry {
@@ -1059,6 +1248,15 @@ main {
     font-size: clamp(2.65rem, 13vw, 3.6rem);
   }
 
+  .manifesto-hero-pills {
+    gap: 0.45rem;
+  }
+
+  .manifesto-meta-pill {
+    font-size: 0.66rem;
+    letter-spacing: 0.09em;
+  }
+
   .manifesto-subtitle,
   .manifesto-copy p {
     font-size: 0.96rem;
@@ -1072,19 +1270,17 @@ main {
     flex: 1 1 0;
   }
 
-  .manifesto-map-links {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 0.3rem;
-    scrollbar-width: none;
+  .manifesto-progress-copy {
+    align-items: flex-start;
+    gap: 0.5rem 0.65rem;
   }
 
-  .manifesto-map-links::-webkit-scrollbar {
+  .manifesto-progress-divider {
     display: none;
   }
 
-  .manifesto-map-links a {
-    flex: 0 0 auto;
+  .manifesto-progress-title {
+    width: 100%;
   }
 }
 
@@ -1107,6 +1303,14 @@ main {
   .hero-media,
   .hero-media img {
     min-height: 14rem;
+  }
+
+  .manifesto-progress-value {
+    font-size: 1.22rem;
+  }
+
+  .manifesto-progress-title {
+    font-size: 0.84rem;
   }
 }
 

@@ -33,6 +33,16 @@ export interface SkillCluster {
   items: string[];
 }
 
+export interface PathwayItem {
+  eyebrow?: string;
+  title: string;
+  body: string;
+  href: string;
+  label: string;
+  external?: boolean;
+  tone?: "default" | "accent";
+}
+
 export interface CertificationItem {
   title: string;
   issuer: string;
@@ -160,6 +170,38 @@ export const trustSignals = [
   {
     title: "Academic growth",
     body: "Dual MBA in progress, extending the technical layer into business administration, leadership and operational thinking.",
+  },
+];
+
+export const homePathways: PathwayItem[] = [
+  {
+    eyebrow: "Recruiters",
+    title: "Start with the formal career layer.",
+    body: "Use Experience for the shortest public-safe read on role progression, capabilities, credentials and current professional context.",
+    href: "/experience/",
+    label: "Open Experience",
+    tone: "accent",
+  },
+  {
+    eyebrow: "Clients",
+    title: "See how consulting fits the ecosystem.",
+    body: "Alpha Signature explains the consulting and implementation layer without turning the personal site into a generic agency page.",
+    href: "/alpha-signature/",
+    label: "See Alpha bridge",
+  },
+  {
+    eyebrow: "Institutional",
+    title: "Use the institutional bridge directly.",
+    body: "Cyrus Global Capital should be read as a disciplined institutional layer with its own boundaries and official path.",
+    href: "/cyrus-global-capital/",
+    label: "Open Cyrus bridge",
+  },
+  {
+    eyebrow: "Technical",
+    title: "Go straight to the project archive.",
+    body: "Project Lab is the fastest route for peers who want code-adjacent context, experiments and technical evolution.",
+    href: "/projects/",
+    label: "Explore Project Lab",
   },
 ];
 
@@ -744,24 +786,31 @@ export const cyrusPage = {
 
 export const contactPathways = [
   {
+    eyebrow: "Recruiting",
     title: "Professional profile",
     body: "LinkedIn remains the fastest external layer for formal background, current role and public recommendations.",
     href: "https://www.linkedin.com/in/baruchlopez/",
     label: "Open LinkedIn",
+    external: true,
+    tone: "accent",
   },
   {
+    eyebrow: "Technical",
     title: "Technical work",
     body: "GitHub is the best external bridge for public repositories, systems thinking and technical archive depth.",
     href: "https://github.com/OBaruch",
     label: "Open GitHub",
+    external: true,
   },
   {
+    eyebrow: "Consulting",
     title: "Alpha Signature",
     body: "The Alpha Signature bridge page explains how consulting and implementation fit into the broader professional ecosystem.",
     href: "/alpha-signature/",
     label: "See Alpha bridge",
   },
   {
+    eyebrow: "Institutional",
     title: "Cyrus Global Capital",
     body: "Cyrus is represented through a short public-safe institutional bridge and an official external path.",
     href: "/cyrus-global-capital/",

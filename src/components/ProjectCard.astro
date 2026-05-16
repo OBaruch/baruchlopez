@@ -31,7 +31,7 @@ const { item, compact = false } = Astro.props as Props;
   <p class="project-note">{item.note}</p>
 
   <div class="button-row">
-    <LinkButton label="View summary" href={`/projects/${item.slug}/`} variant="secondary" />
+    <LinkButton label="Read project context" href={`/projects/${item.slug}/`} variant="secondary" />
     {item.externalHref ? (
       <LinkButton
         label={item.externalLabel ?? "External reference"}

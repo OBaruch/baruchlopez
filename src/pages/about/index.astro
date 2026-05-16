@@ -1,5 +1,6 @@
 ---
 import CTASection from "@/components/CTASection.astro";
+import ContextNav from "@/components/ContextNav.astro";
 import PageHero from "@/components/PageHero.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import Timeline from "@/components/Timeline.astro";
@@ -11,6 +12,14 @@ import {
   philosophyCards,
 } from "@/data/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const aboutGuide = [
+  { label: "Story", href: "#about-story", note: "Read the core narrative" },
+  { label: "Timeline", href: "#about-timeline", note: "See the progression" },
+  { label: "Education", href: "#about-education", note: "Review the foundation" },
+  { label: "Philosophy", href: "#about-philosophy", note: "How the work is framed" },
+  { label: "Direction", href: "#about-direction", note: "Where it is going" },
+];
 ---
 
 <BaseLayout
@@ -30,12 +39,40 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     ]}
   />
 
-  <section class="section-shell">
+  <section class="section-shell section-shell-tight">
+    <div class="container">
+      <ContextNav
+        title="Read the story in five moves."
+        copy="This page is meant to explain identity and continuity, not to repeat the entire CV. Use it to understand the narrative logic behind the broader profile."
+        items={aboutGuide}
+      />
+    </div>
+  </section>
+
+  <section class="section-shell" id="about-story">
     <div class="container prose-section">
       <SectionHeader
         eyebrow="PUBLIC STORY"
         title="Engineering first, then systems, execution and institutional context."
+        copy="The point of this page is to show continuity: how the technical base evolved, what it expanded into and why the profile now reads across multiple layers."
       />
+
+      <div class="card-grid card-grid-3">
+        <article class="panel reveal-enter">
+          <h3>Technical origin</h3>
+          <p>Robotics and engineering created the first layer: systems, experimentation, technical discipline and applied problem solving.</p>
+        </article>
+        <article class="panel reveal-enter">
+          <h3>Current layer</h3>
+          <p>The profile now sits across AI, data systems, automation, documentation and business-facing execution.</p>
+        </article>
+        <article class="panel reveal-enter">
+          <h3>Why it matters</h3>
+          <p>That range explains why the site connects corporate work, consulting, institutional context and technical exploration.</p>
+        </article>
+      </div>
+
+      <div class="section-spacer-sm"></div>
 
       <div class="narrative-grid">
         {aboutBio.body.map((paragraph) => <p class="lead-paragraph reveal-enter">{paragraph}</p>)}
@@ -43,22 +80,23 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell" id="about-timeline">
     <div class="container">
       <SectionHeader
         eyebrow="TIMELINE"
         title="The shortest accurate version of the path."
-        copy="A public-safe reading of technical formation, corporate growth, project work and current expansion."
+        copy="The timeline compresses the broader story into a sequence that is easy to scan before opening Experience, Projects or the bridge pages."
       />
       <Timeline items={condensedTimeline} />
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell" id="about-education">
     <div class="container">
       <SectionHeader
         eyebrow="EDUCATION"
         title="Technical foundation with current business expansion."
+        copy="Education matters here because it explains both the original engineering layer and the current expansion toward management, leadership and structured growth."
       />
 
       <div class="card-grid">
@@ -74,11 +112,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell" id="about-philosophy">
     <div class="container">
       <SectionHeader
         eyebrow="WORKING PHILOSOPHY"
         title="The site should read like the work: clear, disciplined and useful."
+        copy="These principles explain the kind of work Baruch gravitates toward and the reason the public platform favors structure over noise."
       />
 
       <div class="card-grid card-grid-3">
@@ -94,11 +133,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="section-shell section-shell-last">
+  <section class="section-shell section-shell-last" id="about-direction">
     <div class="container">
       <SectionHeader
         eyebrow="FUTURE DIRECTION"
         title="What this platform is growing toward."
+        copy="The profile is still compounding. The public site should show that direction clearly without making inflated claims."
       />
 
       <div class="panel reveal-enter">
@@ -112,10 +152,11 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       <CTASection
         eyebrow="NEXT STEP"
         title="Go from story to proof."
-        body="Use Experience for the formal career layer and Projects for a more technical reading of the work."
+        body="Use Experience for the formal professional layer, Projects for technical depth and the Manifesto for the values framework behind the work."
         actions={[
           { label: "View Experience", href: "/experience/", variant: "primary" },
           { label: "Explore Projects", href: "/projects/", variant: "secondary" },
+          { label: "Read the Manifesto", href: "/manifesto/", variant: "ghost" },
         ]}
       />
     </div>

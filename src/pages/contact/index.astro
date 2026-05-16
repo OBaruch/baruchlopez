@@ -1,5 +1,6 @@
 ---
 import CTASection from "@/components/CTASection.astro";
+import PathwayCard from "@/components/PathwayCard.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import { contactPathways } from "@/data/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -28,18 +29,11 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       <SectionHeader
         eyebrow="PATHWAYS"
         title="Different intents, different next steps."
+        copy="This page works best as routing, not as a catch-all contact dump. Choose the channel that matches the conversation you actually want to have."
       />
 
       <div class="card-grid card-grid-2">
-        {
-          contactPathways.map((item) => (
-            <article class="panel reveal-enter">
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-              <a class="text-link" href={item.href}>{item.label}</a>
-            </article>
-          ))
-        }
+        {contactPathways.map((item) => <PathwayCard item={item} />)}
       </div>
     </div>
   </section>
@@ -49,14 +43,15 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       <SectionHeader
         eyebrow="CONTACT APPROACH"
         title="Public channels stay intentional and low-friction."
-        copy="This site routes outreach through the channels that are already confirmed and appropriate for public use."
+        copy="The architecture avoids fake forms, unverified contact data and unnecessary friction. It routes visitors through channels that are already public, confirmed and appropriate."
       />
 
       <article class="panel reveal-enter">
         <p>
-          For formal outreach, the preferred path is LinkedIn. For technical context, GitHub remains
-          the best public layer. Consulting or venture-related conversations can also begin through
-          the Alpha Signature and Cyrus bridge pages already included in this site.
+          For recruiting or formal background checks, LinkedIn is the fastest route. For technical
+          credibility and code-adjacent context, GitHub is stronger. For consulting or institutional
+          conversations, the site first frames the relevant layer so outreach starts with clearer
+          expectations.
         </p>
       </article>
     </div>
@@ -67,7 +62,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       <CTASection
         eyebrow="NEXT STEP"
         title="Use the site as a gateway, not a data collection form."
-        body="The current implementation keeps contact low-friction and privacy-safe. Once channels are confirmed, placeholders can be replaced deliberately."
+        body="The goal is clarity and trust: the user understands where to go, what that path is for and why the site avoids collecting unnecessary information."
         actions={[
           { label: "Open LinkedIn", href: "https://www.linkedin.com/in/baruchlopez/", variant: "primary", external: true },
           { label: "Open GitHub", href: "https://github.com/OBaruch", variant: "secondary", external: true },

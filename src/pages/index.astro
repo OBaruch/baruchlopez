@@ -1,6 +1,8 @@
 ---
 import CTASection from "@/components/CTASection.astro";
+import ContextNav from "@/components/ContextNav.astro";
 import PageHero from "@/components/PageHero.astro";
+import PathwayCard from "@/components/PathwayCard.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import SkillCluster from "@/components/SkillCluster.astro";
@@ -10,12 +12,22 @@ import {
   condensedTimeline,
   featuredProjects,
   homeHero,
+  homePathways,
   siteMeta,
   skillClusters,
   trustSignals,
   verticals,
 } from "@/data/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const homeGuide = [
+  { label: "Start here", href: "#home-pathways", note: "Choose your intent" },
+  { label: "Core verticals", href: "#home-domains", note: "See the full ecosystem" },
+  { label: "Snapshot", href: "#home-snapshot", note: "Read the short version" },
+  { label: "Trajectory", href: "#home-trajectory", note: "Follow the progression" },
+  { label: "Selected work", href: "#home-projects", note: "Open technical proof" },
+  { label: "Capabilities", href: "#home-capabilities", note: "See the operating range" },
+];
 ---
 
 <BaseLayout
@@ -26,12 +38,36 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 >
   <PageHero {...homeHero} />
 
+  <section class="section-shell section-shell-tight" id="home-pathways">
+    <div class="container">
+      <ContextNav
+        title="Start from the layer that matches your reason for visiting."
+        copy="This site is not meant to be read in one fixed order. Use the shortest path for recruiting, consulting, institutional context or technical depth."
+        items={homeGuide}
+      />
+    </div>
+  </section>
+
   <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="START HERE"
+        title="Choose the route that gives you value fastest."
+        copy="The homepage should orient before it explains. These pathways reduce friction by matching content depth to user intent."
+      />
+
+      <div class="card-grid card-grid-2">
+        {homePathways.map((item) => <PathwayCard item={item} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell" id="home-domains">
     <div class="container">
       <SectionHeader
         eyebrow="CORE DOMAINS"
         title="Four connected verticals, one central identity."
-        copy="The personal site acts as the hub. Each vertical explains a different layer of the public profile without collapsing them into one generic story."
+        copy="Each vertical serves a distinct purpose. Together they show range without collapsing consulting, institutional context, corporate work and technical exploration into one vague profile."
       />
 
       <div class="card-grid card-grid-4">
@@ -40,12 +76,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell" id="home-snapshot">
     <div class="container">
       <SectionHeader
         eyebrow="EXECUTIVE SNAPSHOT"
         title="A concise read before the deeper pages."
-        copy="The goal is clarity first: current work, technical foundation, institutional range and academic growth."
+        copy="This layer answers the first four questions quickly: what Baruch does now, what the technical base is, where the institutional layer fits and how the profile is still expanding."
       />
 
       <div class="card-grid">
@@ -61,23 +97,23 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell" id="home-trajectory">
     <div class="container">
       <SectionHeader
         eyebrow="TRAJECTORY"
         title="A professional path that keeps expanding in range."
-        copy="From robotics and engineering foundations to enterprise AI, institutional context and structured growth."
+        copy="The timeline matters because it shows continuity: robotics and engineering foundations, enterprise AI work, institutional expansion and current business development."
       />
       <Timeline items={condensedTimeline} />
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell" id="home-projects">
     <div class="container">
       <SectionHeader
         eyebrow="SELECTED WORK"
         title="A curated set of projects and systems."
-        copy="The Project Lab is not a raw archive. It is a curated reading of technical evolution, product thinking and public-safe experimentation."
+        copy="The Project Lab is curated for narrative value. It shows technical evolution, systems thinking and public-safe experimentation without pretending every project is a finished product."
       />
 
       <div class="card-grid card-grid-projects">
@@ -86,12 +122,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell" id="home-capabilities">
     <div class="container">
       <SectionHeader
         eyebrow="CAPABILITIES"
         title="Engineering discipline with business-facing clarity."
-        copy="The public profile is strongest where technical depth, documentation, systems thinking and execution meet."
+        copy="The strongest pattern across the profile is not one tool or one title. It is the ability to connect technical depth, documentation, operating structure and decision-support clarity."
       />
 
       <div class="card-grid card-grid-2">
@@ -105,11 +141,11 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       <CTASection
         eyebrow="NEXT PATHWAY"
         title="Open the right layer."
-        body="Use Experience for formal context, Projects for technical depth, Alpha Signature for consulting and Cyrus for the institutional bridge."
+        body="Use Experience for the formal career layer, Projects for technical depth, the Manifesto for values and intent, and Contact when you already know the kind of conversation you want to start."
         actions={[
           { label: "View Experience", href: "/experience/", variant: "primary" },
           { label: "Open Contact", href: "/contact/", variant: "secondary" },
-          { label: "GitHub", href: "https://github.com/OBaruch", variant: "ghost", external: true },
+          { label: "Read the Manifesto", href: "/manifesto/", variant: "ghost" },
         ]}
       />
     </div>

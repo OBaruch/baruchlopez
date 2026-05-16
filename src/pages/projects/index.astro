@@ -1,5 +1,7 @@
 ---
 import CTASection from "@/components/CTASection.astro";
+import ContextNav from "@/components/ContextNav.astro";
+import LinkButton from "@/components/LinkButton.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
 import SafeDisclosure from "@/components/SafeDisclosure.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
@@ -9,6 +11,14 @@ import {
   projectCategories,
 } from "@/data/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const projectsGuide = [
+  { label: "How to read", href: "#projects-read", note: "Start with the logic" },
+  { label: "Taxonomy", href: "#projects-taxonomy", note: "See the categories" },
+  { label: "Featured", href: "#projects-featured", note: "Open the curated set" },
+  { label: "Archive", href: "#projects-archive", note: "Review the broader groups" },
+  { label: "Boundaries", href: "#projects-boundaries", note: "Understand publication limits" },
+];
 ---
 
 <BaseLayout
@@ -30,11 +40,51 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
           The page is organized to show progress and range without pretending that every archive item
           is a polished product.
         </p>
+
+        <div class="button-row">
+          <LinkButton label="Jump to featured work" href="#projects-featured" variant="primary" />
+          <LinkButton label="Open GitHub" href="https://github.com/OBaruch" variant="ghost" external={true} />
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell section-shell-tight">
+    <div class="container">
+      <ContextNav
+        title="Use the lab as a guided archive, not as a raw repository dump."
+        copy="This page works best when it explains how the archive is structured, what deserves focused reading and what should stay framed as prototype or archive material."
+        items={projectsGuide}
+      />
+    </div>
+  </section>
+
+  <section class="section-shell" id="projects-read">
+    <div class="container">
+      <SectionHeader
+        eyebrow="HOW TO READ THIS PAGE"
+        title="Three layers, three different reading depths."
+        copy="The page separates the strongest public-facing projects from the wider archive and from the publication boundaries that keep the narrative honest."
+      />
+
+      <div class="card-grid card-grid-3">
+        <article class="panel reveal-enter">
+          <h3>Featured work</h3>
+          <p>Start here if you want the strongest public-safe projects with the clearest narrative value and technical signal.</p>
+        </article>
+        <article class="panel reveal-enter">
+          <h3>Archive groups</h3>
+          <p>Use the archive blocks to understand range without forcing every historical experiment into the spotlight.</p>
+        </article>
+        <article class="panel reveal-enter">
+          <h3>Publication boundaries</h3>
+          <p>The final section explains what stays public, what stays abstract and why some work is intentionally framed with caution.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell" id="projects-taxonomy">
     <div class="container">
       <SectionHeader
         eyebrow="TAXONOMY"
@@ -48,7 +98,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell" id="projects-featured">
     <div class="container">
       <SectionHeader
         eyebrow="FEATURED PROJECTS"
@@ -62,11 +112,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell" id="projects-archive">
     <div class="container">
       <SectionHeader
         eyebrow="ARCHIVE GROUPS"
         title="The broader technical archive."
+        copy="These groups keep the archive readable. They summarize the kinds of systems and experiments that shaped the profile without forcing every repository into equal prominence."
       />
 
       <div class="card-grid card-grid-3">
@@ -82,7 +133,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="section-shell section-shell-last">
+  <section class="section-shell section-shell-last" id="projects-boundaries">
     <div class="container">
       <SafeDisclosure
         title="What stays public, and what stays abstract."
@@ -104,7 +155,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       <CTASection
         eyebrow="EXTERNAL REFERENCE"
         title="Use GitHub for the wider public archive."
-        body="The website curates the narrative. GitHub remains the better place for raw repository depth and public code references."
+        body="The website curates the narrative. GitHub remains the better place for repository depth, while Experience shows the formal professional layer connected to this work."
         actions={[
           { label: "Open GitHub", href: "https://github.com/OBaruch", variant: "primary", external: true },
           { label: "View Experience", href: "/experience/", variant: "secondary" },

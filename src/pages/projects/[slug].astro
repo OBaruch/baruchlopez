@@ -1,6 +1,7 @@
 ---
 import CTASection from "@/components/CTASection.astro";
 import LinkButton from "@/components/LinkButton.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import { featuredProjects, type ProjectItem } from "@/data/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -17,6 +18,9 @@ interface Props {
 }
 
 const { project } = Astro.props as Props;
+const relatedProjects = featuredProjects
+  .filter((item) => item.slug !== project.slug)
+  .slice(0, 3);
 ---
 
 <BaseLayout
@@ -88,6 +92,22 @@ const { project } = Astro.props as Props;
       </div>
     </div>
   </section>
+
+  {relatedProjects.length ? (
+    <section class="section-shell">
+      <div class="container">
+        <SectionHeader
+          eyebrow="KEEP READING"
+          title="Related projects worth opening next."
+          copy="These projects continue the same reading logic: narrative value first, technical signal second, and honest publication framing throughout."
+        />
+
+        <div class="card-grid card-grid-projects">
+          {relatedProjects.map((item) => <ProjectCard item={item} compact={true} />)}
+        </div>
+      </div>
+    </section>
+  ) : null}
 
   <section class="section-shell section-shell-last">
     <div class="container">

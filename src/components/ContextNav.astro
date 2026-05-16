@@ -1,0 +1,35 @@
+---
+interface ContextNavItem {
+  label: string;
+  href: string;
+  note?: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  copy?: string;
+  items: ContextNavItem[];
+}
+
+const { eyebrow = "PAGE GUIDE", title, copy, items } = Astro.props as Props;
+---
+
+<section class="context-nav panel reveal-enter" aria-label={title ?? eyebrow}>
+  <div class="context-nav-header">
+    <span class="eyebrow">{eyebrow}</span>
+    {title ? <h2>{title}</h2> : null}
+    {copy ? <p>{copy}</p> : null}
+  </div>
+
+  <div class="context-nav-links">
+    {
+      items.map((item) => (
+        <a class="context-nav-link" href={item.href}>
+          <span>{item.label}</span>
+          {item.note ? <small>{item.note}</small> : null}
+        </a>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,36 @@
+---
+import LinkButton from "@/components/LinkButton.astro";
+
+interface PathwayCardItem {
+  eyebrow?: string;
+  title: string;
+  body: string;
+  href: string;
+  label: string;
+  external?: boolean;
+  tone?: "default" | "accent";
+}
+
+interface Props {
+  item: PathwayCardItem;
+}
+
+const { item } = Astro.props as Props;
+---
+
+<article class={`panel pathway-card reveal-enter pathway-card-${item.tone ?? "default"}`}>
+  <div class="pathway-card-copy">
+    {item.eyebrow ? <span class="mini-label">{item.eyebrow}</span> : null}
+    <h3>{item.title}</h3>
+    <p>{item.body}</p>
+  </div>
+
+  <div class="pathway-card-actions">
+    <LinkButton
+      label={item.label}
+      href={item.href}
+      variant={item.tone === "accent" ? "primary" : "secondary"}
+      external={item.external ?? false}
+    />
+  </div>
+</article>

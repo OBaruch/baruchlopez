@@ -1,6 +1,7 @@
 ---
 import CTASection from "@/components/CTASection.astro";
 import CertificationCard from "@/components/CertificationCard.astro";
+import ContextNav from "@/components/ContextNav.astro";
 import PageHero from "@/components/PageHero.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import SkillCluster from "@/components/SkillCluster.astro";
@@ -16,6 +17,13 @@ import {
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const featuredCertifications = certifications.filter((item) => item.featured).slice(0, 8);
+const experienceGuide = [
+  { label: "Snapshot", href: "#experience-snapshot", note: "Read the short version" },
+  { label: "Timeline", href: "#experience-timeline", note: "See the role progression" },
+  { label: "Capabilities", href: "#experience-capabilities", note: "Review the skill range" },
+  { label: "Credentials", href: "#experience-credentials", note: "Open selected proof" },
+  { label: "Signals", href: "#experience-signals", note: "See what the public layer suggests" },
+];
 ---
 
 <BaseLayout
@@ -40,9 +48,23 @@ const featuredCertifications = certifications.filter((item) => item.featured).sl
     ]}
   />
 
-  <section class="section-shell">
+  <section class="section-shell section-shell-tight">
     <div class="container">
-      <SectionHeader eyebrow="CURRENT SNAPSHOT" title="A profile built across AI, data and structured execution." />
+      <ContextNav
+        title="Use Experience as the formal reading layer."
+        copy="This page should answer what Baruch does, how the role evolved, what capabilities recur and where to go next for corporate-safe context or technical proof."
+        items={experienceGuide}
+      />
+    </div>
+  </section>
+
+  <section class="section-shell" id="experience-snapshot">
+    <div class="container">
+      <SectionHeader
+        eyebrow="CURRENT SNAPSHOT"
+        title="A profile built across AI, data and structured execution."
+        copy="This opening section is the shortest useful read for recruiters, collaborators and anyone who needs the professional shape before the detailed chronology."
+      />
 
       <div class="card-grid card-grid-3">
         {
@@ -57,21 +79,23 @@ const featuredCertifications = certifications.filter((item) => item.featured).sl
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell" id="experience-timeline">
     <div class="container">
       <SectionHeader
         eyebrow="ROLE TIMELINE"
         title="Professional progression without turning the page into a CV dump."
+        copy="The sequence is structured to show progression, not to overload the page with every task, tool or internal detail."
       />
       <Timeline items={experienceTimeline} />
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell" id="experience-capabilities">
     <div class="container">
       <SectionHeader
         eyebrow="SKILL CLUSTERS"
         title="Technical depth paired with business-facing range."
+        copy="The recurring pattern is not one narrow specialty. It is the ability to connect technical systems, reporting, enablement and structured decision support."
       />
 
       <div class="card-grid card-grid-2">
@@ -80,7 +104,7 @@ const featuredCertifications = certifications.filter((item) => item.featured).sl
     </div>
   </section>
 
-  <section class="section-shell">
+  <section class="section-shell" id="experience-credentials">
     <div class="container">
       <SectionHeader
         eyebrow="CREDENTIALS PREVIEW"
@@ -94,11 +118,12 @@ const featuredCertifications = certifications.filter((item) => item.featured).sl
     </div>
   </section>
 
-  <section class="section-shell section-shell-last">
+  <section class="section-shell section-shell-last" id="experience-signals">
     <div class="container">
       <SectionHeader
         eyebrow="PUBLIC SIGNALS"
         title="What the visible professional layer suggests."
+        copy="This is the interpretation layer: what the role history, recommendations and visible credentials imply about operating style and professional trust."
       />
 
       <div class="panel reveal-enter">
@@ -112,10 +137,11 @@ const featuredCertifications = certifications.filter((item) => item.featured).sl
       <CTASection
         eyebrow="NEXT STEP"
         title="Need the corporate-safe layer?"
-        body="Use the Corporate page for a narrower Bosch-safe reading, or move to Projects for a more technical view."
+        body="Use the Corporate page for a narrower Bosch-safe reading, Credentials for the broader public training archive or Projects for technical depth."
         actions={[
           { label: "See Corporate Profile", href: "/corporate/", variant: "primary" },
           { label: "Explore Projects", href: "/projects/", variant: "secondary" },
+          { label: "View Credentials", href: "/credentials/", variant: "ghost" },
         ]}
       />
     </div>

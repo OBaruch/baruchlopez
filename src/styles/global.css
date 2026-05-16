@@ -1117,6 +1117,7 @@ main {
     flex-wrap: nowrap;
     width: 100%;
     overflow-x: auto;
+    overflow-y: hidden;
     padding-bottom: 0.2rem;
     scrollbar-width: none;
   }
@@ -1125,8 +1126,68 @@ main {
     display: none;
   }
 
+  .site-nav,
   .utility-links {
     width: 100%;
+  }
+
+  .site-header {
+    transition:
+      background-color 0.22s ease,
+      border-color 0.22s ease,
+      transform 0.22s ease;
+  }
+
+  .header-shell {
+    transition: padding 0.22s ease;
+  }
+
+  .site-nav,
+  .utility-links {
+    max-height: 4rem;
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      max-height 0.26s ease,
+      opacity 0.2s ease,
+      transform 0.22s ease,
+      margin 0.22s ease,
+      padding 0.22s ease;
+  }
+
+  .site-nav {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .utility-links {
+    overflow: hidden;
+  }
+
+  body.mobile-header-condensed {
+    --header-offset: 4.8rem;
+  }
+
+  body.mobile-header-condensed .site-header {
+    background: rgba(6, 6, 8, 0.94);
+  }
+
+  body.mobile-header-condensed .header-shell {
+    padding-top: calc(0.7rem + env(safe-area-inset-top));
+    padding-bottom: 0.7rem;
+    gap: 0.55rem;
+  }
+
+  body.mobile-header-condensed .site-nav,
+  body.mobile-header-condensed .utility-links {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-0.45rem);
+    pointer-events: none;
+  }
+
+  body.mobile-header-condensed .site-nav {
+    padding-bottom: 0;
   }
 }
 

@@ -57,5 +57,51 @@ const ogImage = new URL(siteMeta.ogImage, siteUrl).toString();
       </main>
       <SiteFooter />
     </div>
+
+    <script is:inline>
+      (() => {
+        const mobileQuery = window.matchMedia("(max-width: 840px)");
+        const body = document.body;
+        let lastY = window.scrollY;
+        let ticking = false;
+
+        const applyHeaderState = () => {
+          ticking = false;
+
+          if (!mobileQuery.matches) {
+            body.classList.remove("mobile-header-condensed");
+            lastY = window.scrollY;
+            return;
+          }
+
+          const currentY = window.scrollY;
+          const delta = currentY - lastY;
+
+          if (currentY <= 36) {
+            body.classList.remove("mobile-header-condensed");
+          } else if (delta > 7 && currentY > 120) {
+            body.classList.add("mobile-header-condensed");
+          } else if (delta < -7) {
+            body.classList.remove("mobile-header-condensed");
+          }
+
+          lastY = currentY;
+        };
+
+        const requestHeaderUpdate = () => {
+          if (ticking) {
+            return;
+          }
+
+          ticking = true;
+          window.requestAnimationFrame(applyHeaderState);
+        };
+
+        mobileQuery.addEventListener("change", applyHeaderState);
+        window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
+        window.addEventListener("resize", applyHeaderState);
+        applyHeaderState();
+      })();
+    </script>
   </body>
 </html>

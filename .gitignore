@@ -4,3 +4,11 @@ node_modules/
 context/
 dist/
 .astro/
+
+# Local research, planning and review artifacts
+Architecture/
+_content_mining/
+_implementation_notes/
+
+# Local exported source material
+content/linkedln/

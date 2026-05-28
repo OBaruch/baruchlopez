@@ -18,12 +18,17 @@ const isActive = (href: string) => {
 
 <header class="site-header">
   <div class="container header-shell">
-    <a class="brand-mark" href="/">Baruch Lopez</a>
+    <a class="brand-mark" href="/">Baruch López</a>
 
     <nav class="site-nav" aria-label="Primary">
       {
         navigation.map((item) => (
-          <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+          <a
+            href={item.href}
+            aria-current={!item.external && isActive(item.href) ? "page" : undefined}
+            target={item.external ? "_blank" : undefined}
+            rel={item.external ? "noopener noreferrer" : undefined}
+          >
             {item.label}
           </a>
         ))
@@ -33,7 +38,7 @@ const isActive = (href: string) => {
     <div class="utility-links" aria-label="External">
       {
         externalLinks.map((item) => (
-          <a href={item.href} target="_blank" rel="noreferrer">
+          <a href={item.href} target="_blank" rel="noopener noreferrer">
             {item.label}
           </a>
         ))

@@ -1,70 +1,32 @@
 ---
-import CTASection from "@/components/CTASection.astro";
-import SafeDisclosure from "@/components/SafeDisclosure.astro";
+import LinkButton from "@/components/LinkButton.astro";
 import { cyrusPage } from "@/data/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Cyrus Global Capital | Baruch Lopez"
-  description="A public-safe institutional bridge connecting the personal profile of Baruch Lopez with Cyrus Global Capital."
+  title="Cyrus Global Capital | Official Site"
+  description="Redirecting to the official Cyrus Global Capital website."
   currentPath={Astro.url.pathname}
-  canonicalPath="/cyrus-global-capital/"
+  canonicalPath={cyrusPage.officialHref}
+  redirectTo={cyrusPage.officialHref}
+  noindex={true}
 >
   <section class="hero-shell hero-shell-text">
     <div class="container hero-grid">
       <div class="hero-copy reveal-enter">
-        <span class="eyebrow">{cyrusPage.eyebrow}</span>
-        <h1>{cyrusPage.title}</h1>
-        <p class="hero-intro">{cyrusPage.intro}</p>
-        <p class="hero-body">
-          Baruch appears publicly as Co-Founder and CFO. The role is presented here in an
-          institutional and public-safe way, without turning the personal site into an investment or
-          advisory surface.
+        <span class="eyebrow">CYRUS GLOBAL CAPITAL</span>
+        <h1>Redirecting to Cyrus Global Capital.</h1>
+        <p class="hero-intro">
+          Cyrus Global Capital now lives on its official website. This route is kept only as a
+          compatibility path.
         </p>
 
         <div class="button-row">
-          <a class="button-link button-link-primary" href={cyrusPage.officialHref} target="_blank" rel="noreferrer">
-            <span>Visit official site</span>
-          </a>
-          <a class="button-link button-link-secondary" href="/contact/">
-            <span>Contact</span>
-          </a>
+          <LinkButton label="Continue to Cyrus Global Capital" href={cyrusPage.officialHref} variant="primary" external={true} />
+          <LinkButton label="Back to Baruch López" href="/" variant="ghost" />
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section-shell section-shell-last">
-    <div class="container">
-      <SafeDisclosure
-        title="Institutional bridge only."
-        intro={cyrusPage.disclaimer}
-        allowed={[
-          "Institutional summary",
-          "Co-Founder and CFO role mention",
-          "Official website path",
-          "Long-term and disciplined positioning",
-        ]}
-        avoid={[
-          "Investment solicitation",
-          "Performance or returns",
-          "Advisory language",
-          "Private internal information",
-        ]}
-      />
-
-      <div class="section-spacer-sm"></div>
-
-      <CTASection
-        eyebrow="OFFICIAL PATH"
-        title="Use the official site for institutional context."
-        body="The personal website provides a short bridge only. More formal institutional context belongs on the Cyrus Global Capital website."
-        actions={[
-          { label: "Visit official site", href: cyrusPage.officialHref, variant: "primary", external: true },
-          { label: "Back to Home", href: "/", variant: "secondary" },
-        ]}
-      />
     </div>
   </section>
 </BaseLayout>

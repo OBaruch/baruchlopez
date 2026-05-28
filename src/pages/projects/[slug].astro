@@ -24,7 +24,7 @@ const relatedProjects = featuredProjects
 ---
 
 <BaseLayout
-  title={`${project.title} | Baruch Lopez Project Lab`}
+  title={`${project.title} | Baruch López Project Lab`}
   description={project.summary}
   currentPath={Astro.url.pathname}
   canonicalPath={`/projects/${project.slug}/`}
@@ -99,7 +99,7 @@ const relatedProjects = featuredProjects
         <SectionHeader
           eyebrow="KEEP READING"
           title="Related projects worth opening next."
-          copy="These projects continue the same reading logic: narrative value first, technical signal second, and honest publication framing throughout."
+          copy="These projects continue the same reading logic: narrative value, technical signal and honest publication framing."
         />
 
         <div class="card-grid card-grid-projects">
@@ -114,7 +114,7 @@ const relatedProjects = featuredProjects
       <CTASection
         eyebrow="NEXT STEP"
         title="Continue through the lab or move to the wider profile."
-        body="This detail page is a narrative layer, not a full technical dump. Use Projects for the broader archive and Experience for the formal professional layer."
+        body="This detail page gives context rather than a full technical dump. Projects returns to the broader archive, and Experience shows the formal professional layer."
         actions={[
           { label: "Back to Projects", href: "/projects/", variant: "primary" },
           { label: "View Experience", href: "/experience/", variant: "secondary" },

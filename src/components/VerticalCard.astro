@@ -9,9 +9,14 @@ const { item } = Astro.props as Props;
 ---
 
 <article class="panel vertical-card reveal-enter">
-  <a class="vertical-link" href={item.href}>
+  <a
+    class="vertical-link"
+    href={item.href}
+    target={item.external ? "_blank" : undefined}
+    rel={item.external ? "noopener noreferrer" : undefined}
+  >
     <div class="vertical-media">
-      <img src={item.image} alt="" width="480" height="320" loading="lazy" decoding="async" />
+      <img src={item.image} alt={item.imageAlt} width="480" height="320" loading="lazy" decoding="async" />
     </div>
 
     <div class="vertical-copy">

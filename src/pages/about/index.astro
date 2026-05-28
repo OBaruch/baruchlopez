@@ -16,6 +16,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 const aboutGuide = [
   { label: "Story", href: "#about-story", note: "Read the core narrative" },
   { label: "Timeline", href: "#about-timeline", note: "See the progression" },
+  { label: "Full timeline", href: "/timeline/", note: "Open the complete chronology" },
   { label: "Education", href: "#about-education", note: "Review the foundation" },
   { label: "Philosophy", href: "#about-philosophy", note: "How the work is framed" },
   { label: "Direction", href: "#about-direction", note: "Where it is going" },
@@ -23,8 +24,8 @@ const aboutGuide = [
 ---
 
 <BaseLayout
-  title="About Baruch Lopez | Robotics, AI and Structured Growth"
-  description="Read the public professional story of Baruch Lopez across robotics, AI, data systems, corporate execution and structured growth."
+  title="About Baruch López | Robotics, AI and Structured Growth"
+  description="Read the professional story of Baruch López across robotics, AI, data systems, corporate execution, business education and structured growth."
   currentPath={Astro.url.pathname}
   canonicalPath="/about/"
 >
@@ -42,8 +43,8 @@ const aboutGuide = [
   <section class="section-shell section-shell-tight">
     <div class="container">
       <ContextNav
-        title="Read the story in five moves."
-        copy="This page is meant to explain identity and continuity, not to repeat the entire CV. Use it to understand the narrative logic behind the broader profile."
+        title="Read the story through five useful lenses."
+        copy="About focuses on continuity: the technical base, the current work, the education layer, the working philosophy and the direction ahead."
         items={aboutGuide}
       />
     </div>
@@ -54,7 +55,7 @@ const aboutGuide = [
       <SectionHeader
         eyebrow="PUBLIC STORY"
         title="Engineering first, then systems, execution and institutional context."
-        copy="The point of this page is to show continuity: how the technical base evolved, what it expanded into and why the profile now reads across multiple layers."
+        copy="The throughline is not a sudden pivot. It is a technical foundation expanding into systems, business judgment and longer-term operating structure."
       />
 
       <div class="card-grid card-grid-3">
@@ -68,7 +69,7 @@ const aboutGuide = [
         </article>
         <article class="panel reveal-enter">
           <h3>Why it matters</h3>
-          <p>That range explains why the site connects corporate work, consulting, institutional context and technical exploration.</p>
+          <p>That range explains why the site connects corporate work, consulting, finance context and technical exploration.</p>
         </article>
       </div>
 
@@ -85,9 +86,12 @@ const aboutGuide = [
       <SectionHeader
         eyebrow="TIMELINE"
         title="The shortest accurate version of the path."
-        copy="The timeline compresses the broader story into a sequence that is easy to scan before opening Experience, Projects or the bridge pages."
+        copy="The short timeline gives a quick sense of progression before opening Experience, Projects or the full chronology."
       />
       <Timeline items={condensedTimeline} />
+      <div class="button-row">
+        <a class="button-link button-link-secondary" href="/timeline/">Open full timeline</a>
+      </div>
     </div>
   </section>
 
@@ -96,7 +100,7 @@ const aboutGuide = [
       <SectionHeader
         eyebrow="EDUCATION"
         title="Technical foundation with current business expansion."
-        copy="Education matters here because it explains both the original engineering layer and the current expansion toward management, leadership and structured growth."
+        copy="Education explains both the original engineering layer and the current expansion toward management, leadership, finance and structured growth."
       />
 
       <div class="card-grid">
@@ -116,8 +120,8 @@ const aboutGuide = [
     <div class="container">
       <SectionHeader
         eyebrow="WORKING PHILOSOPHY"
-        title="The site should read like the work: clear, disciplined and useful."
-        copy="These principles explain the kind of work Baruch gravitates toward and the reason the public platform favors structure over noise."
+        title="Clear, disciplined and useful."
+        copy="These principles explain the kind of work Baruch gravitates toward: systems that clarify, reduce noise and hold up under real use."
       />
 
       <div class="card-grid card-grid-3">
@@ -138,7 +142,7 @@ const aboutGuide = [
       <SectionHeader
         eyebrow="FUTURE DIRECTION"
         title="What this platform is growing toward."
-        copy="The profile is still compounding. The public site should show that direction clearly without making inflated claims."
+        copy="The profile is still compounding. The public site keeps that direction visible without making claims ahead of the evidence."
       />
 
       <div class="panel reveal-enter">
@@ -152,7 +156,7 @@ const aboutGuide = [
       <CTASection
         eyebrow="NEXT STEP"
         title="Go from story to proof."
-        body="Use Experience for the formal professional layer, Projects for technical depth and the Manifesto for the values framework behind the work."
+        body="Experience gives the formal professional layer, Projects gives technical depth, and the Manifesto gives the values framework behind the work."
         actions={[
           { label: "View Experience", href: "/experience/", variant: "primary" },
           { label: "Explore Projects", href: "/projects/", variant: "secondary" },

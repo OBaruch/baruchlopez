@@ -10,9 +10,23 @@ interface Props {
   actions?: ActionLink[];
   image?: string;
   imageAlt?: string;
+  badges?: string[];
+  scrollCueHref?: string;
+  scrollCueLabel?: string;
 }
 
-const { eyebrow, title, intro, body, actions = [], image, imageAlt = "" } = Astro.props as Props;
+const {
+  eyebrow,
+  title,
+  intro,
+  body,
+  actions = [],
+  image,
+  imageAlt = "",
+  badges = [],
+  scrollCueHref,
+  scrollCueLabel = "Explore the page",
+} = Astro.props as Props;
 ---
 
 <section class={`hero-shell ${image ? "hero-shell-media" : "hero-shell-text"}`}>
@@ -21,6 +35,13 @@ const { eyebrow, title, intro, body, actions = [], image, imageAlt = "" } = Astr
       <span class="eyebrow">{eyebrow}</span>
       <h1>{title}</h1>
       <p class="hero-intro">{intro}</p>
+      {
+        badges.length ? (
+          <div class="hero-badges" aria-label="Profile highlights">
+            {badges.map((badge) => <span>{badge}</span>)}
+          </div>
+        ) : null
+      }
       {body ? <p class="hero-body">{body}</p> : null}
 
       {
@@ -28,6 +49,15 @@ const { eyebrow, title, intro, body, actions = [], image, imageAlt = "" } = Astr
           <div class="button-row">
             {actions.map((action) => <LinkButton {...action} external={action.external ?? false} />)}
           </div>
+        ) : null
+      }
+
+      {
+        scrollCueHref ? (
+          <a class="hero-scroll-cue" href={scrollCueHref}>
+            <span class="hero-scroll-cue-mark" aria-hidden="true"></span>
+            <span>{scrollCueLabel}</span>
+          </a>
         ) : null
       }
     </div>

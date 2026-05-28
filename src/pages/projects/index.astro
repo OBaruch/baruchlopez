@@ -22,7 +22,7 @@ const projectsGuide = [
 ---
 
 <BaseLayout
-  title="Projects / Project Lab | Baruch Lopez"
+  title="Projects / Project Lab | Baruch López"
   description="A curated project lab spanning robotics, AI, automation, finance experiments and selected public repositories."
   currentPath={Astro.url.pathname}
   canonicalPath="/projects/"
@@ -31,14 +31,13 @@ const projectsGuide = [
     <div class="container hero-grid">
       <div class="hero-copy reveal-enter">
         <span class="eyebrow">PROJECT LAB</span>
-        <h1>Experiments, systems and technical evolution.</h1>
+        <h1>Project Lab</h1>
         <p class="hero-intro">
-          A curated archive of academic, personal, experimental and applied work across AI,
-          robotics, automation, finance and software.
+          Experiments, systems and technical evolution across AI, robotics, automation, finance and software.
         </p>
         <p class="hero-body">
-          The page is organized to show progress and range without pretending that every archive item
-          is a polished product.
+          The lab is organized to show progress and range while keeping prototypes, archives and
+          finished work clearly distinguished.
         </p>
 
         <div class="button-row">
@@ -52,8 +51,8 @@ const projectsGuide = [
   <section class="section-shell section-shell-tight">
     <div class="container">
       <ContextNav
-        title="Use the lab as a guided archive, not as a raw repository dump."
-        copy="This page works best when it explains how the archive is structured, what deserves focused reading and what should stay framed as prototype or archive material."
+        title="A guided archive, not a repository dump."
+        copy="The lab separates the strongest public projects from the wider archive and from work that should remain carefully framed."
         items={projectsGuide}
       />
     </div>
@@ -64,13 +63,13 @@ const projectsGuide = [
       <SectionHeader
         eyebrow="HOW TO READ THIS PAGE"
         title="Three layers, three different reading depths."
-        copy="The page separates the strongest public-facing projects from the wider archive and from the publication boundaries that keep the narrative honest."
+        copy="Featured work, archive groups and publication boundaries make the project story easier to scan."
       />
 
       <div class="card-grid card-grid-3">
         <article class="panel reveal-enter">
           <h3>Featured work</h3>
-          <p>Start here if you want the strongest public-safe projects with the clearest narrative value and technical signal.</p>
+          <p>Start here for the strongest public projects with the clearest narrative value and technical signal.</p>
         </article>
         <article class="panel reveal-enter">
           <h3>Archive groups</h3>
@@ -89,7 +88,7 @@ const projectsGuide = [
       <SectionHeader
         eyebrow="TAXONOMY"
         title="How to read the lab."
-        copy="These categories are qualitative. They organize the archive without pretending to be a strict product catalog."
+        copy="These categories organize the archive without pretending to be a strict product catalog."
       />
 
       <div class="tag-list tag-list-wide" aria-label="Project categories">
@@ -103,7 +102,7 @@ const projectsGuide = [
       <SectionHeader
         eyebrow="FEATURED PROJECTS"
         title="Selected public-facing work."
-        copy="Projects are shown with publication context, status and a level of caution when they touch institutional or finance-adjacent themes."
+        copy="Each project is shown with context, status and careful framing when it touches corporate or finance-adjacent themes."
       />
 
       <div class="card-grid card-grid-projects">
@@ -117,7 +116,7 @@ const projectsGuide = [
       <SectionHeader
         eyebrow="ARCHIVE GROUPS"
         title="The broader technical archive."
-        copy="These groups keep the archive readable. They summarize the kinds of systems and experiments that shaped the profile without forcing every repository into equal prominence."
+        copy="These groups summarize the systems and experiments that shaped the profile without forcing every repository into equal prominence."
       />
 
       <div class="card-grid card-grid-3">
@@ -155,7 +154,7 @@ const projectsGuide = [
       <CTASection
         eyebrow="EXTERNAL REFERENCE"
         title="Use GitHub for the wider public archive."
-        body="The website curates the narrative. GitHub remains the better place for repository depth, while Experience shows the formal professional layer connected to this work."
+        body="The website curates the narrative. GitHub carries repository depth, while Experience shows the formal professional layer connected to this work."
         actions={[
           { label: "Open GitHub", href: "https://github.com/OBaruch", variant: "primary", external: true },
           { label: "View Experience", href: "/experience/", variant: "secondary" },

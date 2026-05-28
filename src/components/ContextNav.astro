@@ -1,8 +1,11 @@
 ---
+import IconGlyph, { type IconName } from "@/components/IconGlyph.astro";
+
 interface ContextNavItem {
   label: string;
   href: string;
   note?: string;
+  icon?: IconName;
 }
 
 interface Props {
@@ -25,9 +28,12 @@ const { eyebrow = "PAGE GUIDE", title, copy, items } = Astro.props as Props;
   <div class="context-nav-links">
     {
       items.map((item) => (
-        <a class="context-nav-link" href={item.href}>
-          <span>{item.label}</span>
-          {item.note ? <small>{item.note}</small> : null}
+        <a class={`context-nav-link ${item.icon ? "context-nav-link-has-icon" : "context-nav-link-plain"}`} href={item.href}>
+          {item.icon ? <IconGlyph name={item.icon} /> : null}
+          <span class="context-nav-link-copy">
+            <span>{item.label}</span>
+            {item.note ? <small>{item.note}</small> : null}
+          </span>
         </a>
       ))
     }

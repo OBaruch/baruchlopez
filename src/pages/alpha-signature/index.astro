@@ -1,81 +1,32 @@
 ---
-import CTASection from "@/components/CTASection.astro";
 import LinkButton from "@/components/LinkButton.astro";
-import SectionHeader from "@/components/SectionHeader.astro";
 import { alphaPage } from "@/data/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Alpha Signature | Baruch Lopez"
-  description="A public bridge page explaining how Alpha Signature fits inside the wider professional ecosystem of Baruch Lopez."
+  title="Alpha Signature | Official Site"
+  description="Redirecting to the official Alpha Signature website."
   currentPath={Astro.url.pathname}
-  canonicalPath="/alpha-signature/"
+  canonicalPath={alphaPage.officialHref}
+  redirectTo={alphaPage.officialHref}
+  noindex={true}
 >
   <section class="hero-shell hero-shell-text">
     <div class="container hero-grid">
       <div class="hero-copy reveal-enter">
-        <span class="eyebrow">{alphaPage.eyebrow}</span>
-        <h1>{alphaPage.title}</h1>
-        <p class="hero-intro">{alphaPage.intro}</p>
-        <p class="hero-body">
-          This page stays intentionally short so the personal site does not duplicate the consulting
-          property or overstate claims that belong to the firm itself.
+        <span class="eyebrow">ALPHA SIGNATURE</span>
+        <h1>Redirecting to Alpha Signature.</h1>
+        <p class="hero-intro">
+          Alpha Signature now lives on its official website. This route is kept only as a
+          compatibility path.
         </p>
 
         <div class="button-row">
-          <LinkButton label="Contact pathway" href="/contact/" variant="primary" />
-          <LinkButton label="Back to Home" href="/" variant="ghost" />
+          <LinkButton label="Continue to Alpha Signature" href={alphaPage.officialHref} variant="primary" external={true} />
+          <LinkButton label="Back to Baruch López" href="/" variant="ghost" />
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section-shell">
-    <div class="container">
-      <SectionHeader
-        eyebrow="WHAT IT IS"
-        title="Consulting and implementation for businesses that need structure."
-        copy="Alpha Signature should read like a sober operating partner: practical, disciplined and oriented toward clarity, systems and follow-through."
-      />
-
-      <div class="card-grid card-grid-3">
-        {alphaPage.practices.map((item) => <article class="panel reveal-enter"><h3>{item}</h3></article>)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section-shell">
-    <div class="container">
-      <SectionHeader
-        eyebrow="SIGNATURE CYCLE"
-        title="How the bridge should frame the work."
-      />
-
-      <div class="timeline-list timeline-list-compact">
-        {
-          alphaPage.cycle.map((item, index) => (
-            <article class="timeline-item panel reveal-enter">
-              <span class="timeline-period">{`0${index + 1}`}</span>
-              <h3>{item}</h3>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="section-shell section-shell-last">
-    <div class="container">
-      <CTASection
-        eyebrow="BRIDGE ROLE"
-        title="A focused bridge, not a duplicated firm website."
-        body="This page stays inside the personal platform to explain where Alpha Signature fits in the broader ecosystem without duplicating the consulting property itself."
-        actions={[
-          { label: "Go to Contact", href: "/contact/", variant: "primary" },
-          { label: "Back to Home", href: "/", variant: "secondary" },
-        ]}
-      />
     </div>
   </section>
 </BaseLayout>

@@ -1,0 +1,93 @@
+---
+import CTASection from "@/components/CTASection.astro";
+import ContextNav from "@/components/ContextNav.astro";
+import PageHero from "@/components/PageHero.astro";
+import SafeDisclosure from "@/components/SafeDisclosure.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import Timeline from "@/components/Timeline.astro";
+import { lifeTimelineStages, timelinePage } from "@/data/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const timelineGuide = lifeTimelineStages.map((stage) => ({
+  label: stage.label,
+  href: `#${stage.id}`,
+  note: stage.period,
+}));
+---
+
+<BaseLayout
+  title="Timeline | Baruch López"
+  description="A careful public chronology of Baruch López across early leadership, robotics, AI, Bosch, Cyrus Global Capital, Alpha Signature, MBA studies, projects and values."
+  currentPath={Astro.url.pathname}
+  canonicalPath="/timeline/"
+>
+  <PageHero
+    eyebrow={timelinePage.eyebrow}
+    title={timelinePage.title}
+    intro={timelinePage.intro}
+    body={timelinePage.body}
+    actions={[
+      { label: "Start Timeline", href: "#timeline-roots", variant: "primary" },
+      { label: "View Experience", href: "/experience/", variant: "secondary" },
+      { label: "Read Manifesto", href: "/manifesto/", variant: "ghost" },
+    ]}
+  />
+
+  <section class="section-shell section-shell-tight">
+    <div class="container">
+      <ContextNav
+        title="Read the story as stages, not isolated dates."
+        copy="The chronology moves from roots and early leadership into robotics, enterprise AI, institutional context and the current build."
+        items={timelineGuide}
+      />
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SectionHeader
+        eyebrow="FULL CHRONOLOGY"
+        title="Continuity, context and room to grow."
+        copy="Each event is written for public context. Sensitive details, private locations and unverified claims are omitted."
+      />
+
+      <Timeline stages={lifeTimelineStages} variant="editorial" />
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="container">
+      <SafeDisclosure
+        title="What this timeline deliberately protects."
+        intro="The timeline is designed to be complete enough for public storytelling while still respecting privacy, NDA boundaries and unconfirmed details."
+        allowed={[
+          "Public roles, education, selected projects and documented milestones",
+          "High-level Bosch-safe AI, data, analytics and enablement language",
+          "Careful Cyrus, Alpha Signature and finance-adjacent framing",
+          "Values, roots and philosophy without private biographical detail",
+        ]}
+        avoid={[
+          "Exact private locations or personal identifiers",
+          "Internal Bosch systems, metrics, tables, architecture or stakeholders",
+          "Cyrus internal reporting, structures, performance or solicitation language",
+          "Unverified launch dates, client names or inflated leadership claims",
+        ]}
+      />
+    </div>
+  </section>
+
+  <section class="section-shell section-shell-last">
+    <div class="container">
+      <CTASection
+        eyebrow="NEXT READING"
+        title="Move from chronology to proof."
+        body="Experience gives the formal professional layer, Projects gives technical artifacts, and the Manifesto gives the values behind the trajectory."
+        actions={[
+          { label: "View Experience", href: "/experience/", variant: "primary" },
+          { label: "Explore Projects", href: "/projects/", variant: "secondary" },
+          { label: "Read Manifesto", href: "/manifesto/", variant: "ghost" },
+        ]}
+      />
+    </div>
+  </section>
+</BaseLayout>

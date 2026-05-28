@@ -1,21 +1,474 @@
 ---
-import type { TimelineItem } from "@/data/site";
+import type { TimelineItem, TimelineStage } from "@/data/site";
 
 interface Props {
-  items: TimelineItem[];
+  items?: TimelineItem[];
+  stages?: TimelineStage[];
+  variant?: "simple" | "editorial";
 }
 
-const { items } = Astro.props as Props;
+const { items = [], stages = [], variant = "simple" } = Astro.props as Props;
+const hasStages = stages.length > 0;
+const isEditorial = hasStages || variant === "editorial";
+const flatItems = hasStages ? [] : items;
+const totalEvents = hasStages ? stages.reduce((count, stage) => count + stage.items.length, 0) : flatItems.length;
 ---
 
-<div class="timeline-list">
+<div
+  class:list={["timeline-component", isEditorial ? "timeline-component-editorial" : "timeline-component-simple"]}
+  data-timeline
+>
   {
-    items.map((item) => (
-      <article class="timeline-item panel reveal-enter">
-        <span class="timeline-period">{item.period}</span>
-        <h3>{item.title}</h3>
-        <p>{item.body}</p>
-      </article>
-    ))
+    isEditorial ? (
+      <div class="timeline-editorial" aria-label={`Timeline with ${totalEvents} events`}>
+        <div class="timeline-progress-meter" aria-hidden="true">
+          <span class="timeline-progress-fill" data-timeline-progress></span>
+        </div>
+
+        <div class="timeline-stage-stack">
+          {stages.map((stage, stageIndex) => (
+            <section class="timeline-stage" id={stage.id} aria-labelledby={`${stage.id}-title`}>
+              <div class="timeline-stage-heading">
+                <span class="timeline-stage-index">{String(stageIndex + 1).padStart(2, "0")}</span>
+                <span class="timeline-stage-period">{stage.period}</span>
+                <h3 id={`${stage.id}-title`}>{stage.title}</h3>
+                <p>{stage.summary}</p>
+              </div>
+
+              <div class="timeline-events">
+                {stage.items.map((item) => (
+                  <article class="timeline-item timeline-event panel reveal-enter" data-timeline-item>
+                    <div class="timeline-card-header">
+                      <div>
+                        <span class="timeline-period">{item.period}</span>
+                        <h4>{item.title}</h4>
+                      </div>
+                      <div class="timeline-card-meta">
+                        {item.category ? <span>{item.category}</span> : null}
+                        {item.status ? <span>{item.status}</span> : null}
+                      </div>
+                    </div>
+
+                    <p>{item.body}</p>
+
+                    {item.location ? <p class="timeline-detail"><strong>Context</strong>{item.location}</p> : null}
+                    {item.importance ? <p class="timeline-detail"><strong>Why it matters</strong>{item.importance}</p> : null}
+                    {item.impact ? <p class="timeline-detail"><strong>Impact</strong>{item.impact}</p> : null}
+
+                    {item.tags?.length ? (
+                      <div class="timeline-tags" aria-label={`Tags for ${item.title}`}>
+                        {item.tags.map((tag) => <span>{tag}</span>)}
+                      </div>
+                    ) : null}
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <div class="timeline-list" aria-label={`Timeline with ${totalEvents} events`}>
+        {flatItems.map((item) => (
+          <article class="timeline-item panel reveal-enter" data-timeline-item>
+            <div class="timeline-card-header">
+              <div>
+                <span class="timeline-period">{item.period}</span>
+                <h3>{item.title}</h3>
+              </div>
+              {item.category ? <div class="timeline-card-meta"><span>{item.category}</span></div> : null}
+            </div>
+
+            <p>{item.body}</p>
+
+            {item.importance ? <p class="timeline-detail"><strong>Why it matters</strong>{item.importance}</p> : null}
+            {item.impact ? <p class="timeline-detail"><strong>Impact</strong>{item.impact}</p> : null}
+
+            {item.tags?.length ? (
+              <div class="timeline-tags" aria-label={`Tags for ${item.title}`}>
+                {item.tags.map((tag) => <span>{tag}</span>)}
+              </div>
+            ) : null}
+          </article>
+        ))}
+      </div>
+    )
   }
 </div>
+
+<script is:inline>
+  (() => {
+    const timelines = Array.from(document.querySelectorAll("[data-timeline]:not([data-timeline-ready])"));
+
+    if (!timelines.length) {
+      return;
+    }
+
+    timelines.forEach((timeline) => timeline.setAttribute("data-timeline-ready", "true"));
+    const timelineItems = timelines.flatMap((timeline) => Array.from(timeline.querySelectorAll("[data-timeline-item]")));
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    let ticking = false;
+
+    const updateProgress = () => {
+      ticking = false;
+
+      timelines.forEach((timeline) => {
+        const rect = timeline.getBoundingClientRect();
+        const anchor = window.innerHeight * 0.58;
+        const distance = Math.max(rect.height - window.innerHeight * 0.35, 1);
+        const progress = clamp((anchor - rect.top) / distance, 0, 1);
+        timeline.style.setProperty("--timeline-progress", `${progress * 100}%`);
+      });
+    };
+
+    const requestUpdate = () => {
+      if (ticking) {
+        return;
+      }
+
+      ticking = true;
+      window.requestAnimationFrame(updateProgress);
+    };
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            entry.target.classList.toggle("is-active", entry.isIntersecting);
+          });
+
+          requestUpdate();
+        },
+        {
+          threshold: 0.22,
+          rootMargin: "-8% 0px -32%",
+        },
+      );
+
+      timelineItems.forEach((item) => observer.observe(item));
+    } else {
+      timelineItems.forEach((item) => item.classList.add("is-active"));
+    }
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    updateProgress();
+  })();
+</script>
+
+<style>
+  .timeline-component {
+    --timeline-white: #ffffff;
+    --timeline-cream: #fefbec;
+    --timeline-ink: #2c2c2c;
+    --timeline-deep: #1f1c1f;
+    --timeline-line: rgba(254, 251, 236, 0.2);
+    --timeline-line-strong: rgba(254, 251, 236, 0.44);
+    --timeline-progress: 0%;
+  }
+
+  .timeline-component-simple .timeline-list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  }
+
+  .timeline-component .timeline-item {
+    overflow: visible;
+    border-radius: 8px;
+    border-color: rgba(254, 251, 236, 0.14);
+    background:
+      linear-gradient(180deg, rgba(254, 251, 236, 0.08), rgba(254, 251, 236, 0.025)),
+      rgba(31, 28, 31, 0.86);
+    box-shadow: 0 22px 58px rgba(0, 0, 0, 0.28);
+    transition:
+      opacity 0.38s ease,
+      transform 0.38s ease,
+      border-color 0.22s ease,
+      background-color 0.22s ease;
+  }
+
+  .timeline-component-editorial .timeline-item {
+    opacity: 0.74;
+    transform: translateY(10px);
+  }
+
+  .timeline-component-editorial .timeline-item.is-active,
+  .timeline-component-simple .timeline-item.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    border-color: rgba(254, 251, 236, 0.34);
+  }
+
+  .timeline-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .timeline-card-header h3,
+  .timeline-card-header h4 {
+    margin: 0.35rem 0 0;
+    color: var(--timeline-white);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.38rem, 2.5vw, 1.85rem);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .timeline-card-header h4 {
+    font-size: clamp(1.32rem, 2vw, 1.72rem);
+  }
+
+  .timeline-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.45rem;
+    max-width: 17rem;
+  }
+
+  .timeline-card-meta span,
+  .timeline-tags span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.8rem;
+    padding: 0.38rem 0.62rem;
+    border: 1px solid rgba(254, 251, 236, 0.16);
+    border-radius: 999px;
+    color: rgba(254, 251, 236, 0.78);
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .timeline-component .timeline-item > p {
+    margin: 0.8rem 0 0;
+  }
+
+  .timeline-detail {
+    display: grid;
+    gap: 0.16rem;
+    padding-top: 0.76rem;
+    border-top: 1px solid rgba(254, 251, 236, 0.1);
+  }
+
+  .timeline-detail strong {
+    color: rgba(254, 251, 236, 0.92);
+    font-size: 0.67rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.95rem;
+  }
+
+  .timeline-editorial {
+    position: relative;
+  }
+
+  .timeline-progress-meter {
+    position: sticky;
+    top: calc(var(--header-offset) + 0.65rem);
+    z-index: 18;
+    overflow: hidden;
+    width: 100%;
+    height: 0.38rem;
+    margin-bottom: 1.1rem;
+    border: 1px solid rgba(254, 251, 236, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.055);
+    backdrop-filter: blur(14px);
+  }
+
+  .timeline-progress-fill {
+    display: block;
+    width: var(--timeline-progress);
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--timeline-white), var(--timeline-cream));
+    transition: width 0.14s ease-out;
+  }
+
+  .timeline-stage-stack {
+    display: grid;
+    gap: clamp(1.4rem, 4vw, 2.7rem);
+  }
+
+  .timeline-stage {
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.34fr) minmax(0, 0.66fr);
+    gap: clamp(1.1rem, 3vw, 2.3rem);
+    align-items: start;
+  }
+
+  .timeline-stage-heading {
+    position: sticky;
+    top: calc(var(--header-offset) + 1.4rem);
+    display: grid;
+    gap: 0.55rem;
+    align-self: start;
+    padding: 0.95rem 0 1.1rem;
+  }
+
+  .timeline-stage-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.45rem;
+    min-height: 2.45rem;
+    border: 1px solid var(--timeline-line-strong);
+    border-radius: 50%;
+    color: var(--timeline-deep);
+    background: var(--timeline-cream);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .timeline-stage-period {
+    color: rgba(254, 251, 236, 0.62);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .timeline-stage-heading h3 {
+    margin: 0;
+    color: var(--timeline-white);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  .timeline-stage-heading p {
+    max-width: 27rem;
+    margin: 0;
+    color: rgba(254, 251, 236, 0.72);
+    font-size: 0.96rem;
+  }
+
+  .timeline-events {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+    padding-left: 1.75rem;
+  }
+
+  .timeline-events::before {
+    content: "";
+    position: absolute;
+    top: 0.65rem;
+    bottom: 0.65rem;
+    left: 0.42rem;
+    width: 1px;
+    background: linear-gradient(180deg, var(--timeline-line-strong), var(--timeline-line));
+  }
+
+  .timeline-event::before {
+    content: "";
+    position: absolute;
+    top: 1.55rem;
+    left: -1.64rem;
+    z-index: 2;
+    width: 0.76rem;
+    height: 0.76rem;
+    border: 2px solid var(--timeline-cream);
+    border-radius: 50%;
+    background: var(--timeline-deep);
+    box-shadow: 0 0 0 0 rgba(254, 251, 236, 0);
+    transition:
+      background-color 0.22s ease,
+      box-shadow 0.22s ease,
+      transform 0.22s ease;
+  }
+
+  .timeline-event.is-active::before {
+    background: var(--timeline-cream);
+    box-shadow: 0 0 0 0.32rem rgba(254, 251, 236, 0.08);
+    transform: scale(1.08);
+  }
+
+  @media (max-width: 980px) {
+    .timeline-stage {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline-stage-heading {
+      position: static;
+      padding-bottom: 0;
+    }
+
+    .timeline-events {
+      padding-left: 1.55rem;
+    }
+
+    .timeline-event::before {
+      left: -1.44rem;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .timeline-card-header {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .timeline-card-meta {
+      justify-content: flex-start;
+      max-width: none;
+    }
+
+    .timeline-component-simple .timeline-list {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline-progress-meter {
+      top: calc(var(--header-offset) + 0.45rem);
+      margin-bottom: 0.85rem;
+    }
+
+    .timeline-stage-stack {
+      gap: 1.6rem;
+    }
+
+    .timeline-stage-heading h3 {
+      font-size: clamp(1.85rem, 10vw, 2.45rem);
+    }
+
+    .timeline-stage-heading p {
+      font-size: 0.92rem;
+    }
+
+    .timeline-tags {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding-bottom: 0.25rem;
+      scrollbar-width: none;
+    }
+
+    .timeline-tags::-webkit-scrollbar {
+      display: none;
+    }
+
+    .timeline-tags span {
+      flex: 0 0 auto;
+    }
+  }
+</style>

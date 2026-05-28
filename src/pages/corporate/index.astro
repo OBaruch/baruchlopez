@@ -1,20 +1,14 @@
 ---
 import CTASection from "@/components/CTASection.astro";
 import PageHero from "@/components/PageHero.astro";
-import SafeDisclosure from "@/components/SafeDisclosure.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
-import {
-  corporateAllowed,
-  corporateAvoid,
-  corporateHero,
-  corporateThemes,
-} from "@/data/site";
+import { corporateHero, corporateThemes } from "@/data/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
   title="Corporate Profile | Baruch López"
-  description="A corporate-safe overview of Baruch López across enterprise AI, analytics, ETL, reporting and technical enablement."
+  description="A high-level corporate overview of Baruch López across enterprise AI, analytics, ETL, reporting and technical enablement."
   currentPath={Astro.url.pathname}
   canonicalPath="/corporate/"
 >
@@ -36,9 +30,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   <section class="section-shell">
     <div class="container">
       <SectionHeader
-        eyebrow="PUBLIC-SAFE OVERVIEW"
-        title="Capability, not confidential detail."
-        copy="This layer is intentionally high level. It reflects enterprise-facing work across AI, data, analytics, automation and enablement without disclosing sensitive systems."
+        eyebrow="CORPORATE OVERVIEW"
+        title="Enterprise capability, clearly framed."
+        copy="This layer reflects enterprise-facing work across AI, data, analytics, automation and enablement at a level appropriate for a public professional profile."
       />
 
       <div class="card-grid card-grid-2">
@@ -56,15 +50,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
   <section class="section-shell section-shell-last">
     <div class="container">
-      <SafeDisclosure
-        title="What this page can and cannot include."
-        intro="The corporate layer shows professional maturity and technical range without turning public pages into internal documentation."
-        allowed={corporateAllowed}
-        avoid={corporateAvoid}
-      />
-
-      <div class="section-spacer-sm"></div>
-
       <CTASection
         eyebrow="NEXT STEP"
         title="Move from enterprise context to broader profile."

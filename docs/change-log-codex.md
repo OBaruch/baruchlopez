@@ -1,5 +1,27 @@
 # Change log Codex
 
+## 2026-05-28 / Public Guidance Cleanup
+
+### Resumen
+
+Se removieron los bloques visibles de guia interna tipo `PUBLIC-SAFE GUIDANCE` de Timeline, Corporate y Projects. La cautela editorial queda integrada como copy natural en vez de mostrarse como listas operativas para el visitante.
+
+### Archivos modificados
+
+- `src/pages/timeline/index.astro`
+- `src/pages/corporate/index.astro`
+- `src/pages/projects/index.astro`
+- `src/data/site.ts`
+- `src/styles/global.css`
+- `src/components/SafeDisclosure.astro`
+- `docs/content-audit-production-readiness.md`
+- `docs/estado-actual-del-repo.md`
+- `docs/change-log-codex.md`
+
+### Validacion
+
+`npm.cmd run check` paso correctamente. No quedan referencias en `src/` a `PUBLIC-SAFE GUIDANCE`, `SafeDisclosure` ni `projects-boundaries`.
+
 ## 2026-05-28 / Hero Badge Update
 
 ### Resumen

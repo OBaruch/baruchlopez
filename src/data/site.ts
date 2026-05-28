@@ -1157,7 +1157,7 @@ export const certifications: CertificationItem[] = [
 ];
 
 export const corporateHero = {
-  eyebrow: "CORPORATE / PUBLIC-SAFE",
+  eyebrow: "CORPORATE PROFILE",
   title: "Enterprise AI, data and enablement.",
   intro:
     "A high-level corporate profile across applied AI, analytics, ETL, automation and stakeholder-facing systems work.",
@@ -1184,20 +1184,6 @@ export const corporateThemes = [
     body:
       "A recurring role in explaining systems, documenting workflows and helping stakeholders use technical outputs more effectively.",
   },
-];
-
-export const corporateAllowed = [
-  "AI, machine learning and analytics at a high level",
-  "Data engineering, ETL and reporting themes",
-  "Automation, documentation and technical enablement",
-  "Role evolution and public recognition",
-];
-
-export const corporateAvoid = [
-  "Internal clients, stakeholders or architecture",
-  "Private dashboards, tables, metrics or screenshots",
-  "Sensitive SAP, ABAP or proprietary workflow detail",
-  "Any data, code or operational disclosure that crosses NDA boundaries",
 ];
 
 export const alphaPage = {

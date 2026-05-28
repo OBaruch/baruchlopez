@@ -3,7 +3,6 @@ import CTASection from "@/components/CTASection.astro";
 import ContextNav from "@/components/ContextNav.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
-import SafeDisclosure from "@/components/SafeDisclosure.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import {
   featuredProjects,
@@ -17,7 +16,6 @@ const projectsGuide = [
   { label: "Taxonomy", href: "#projects-taxonomy", note: "See the categories" },
   { label: "Featured", href: "#projects-featured", note: "Open the curated set" },
   { label: "Archive", href: "#projects-archive", note: "Review the broader groups" },
-  { label: "Boundaries", href: "#projects-boundaries", note: "Understand publication limits" },
 ];
 ---
 
@@ -63,7 +61,7 @@ const projectsGuide = [
       <SectionHeader
         eyebrow="HOW TO READ THIS PAGE"
         title="Three layers, three different reading depths."
-        copy="Featured work, archive groups and publication boundaries make the project story easier to scan."
+        copy="Featured work, archive groups and careful framing make the project story easier to scan."
       />
 
       <div class="card-grid card-grid-3">
@@ -76,8 +74,8 @@ const projectsGuide = [
           <p>Use the archive blocks to understand range without forcing every historical experiment into the spotlight.</p>
         </article>
         <article class="panel reveal-enter">
-          <h3>Publication boundaries</h3>
-          <p>The final section explains what stays public, what stays abstract and why some work is intentionally framed with caution.</p>
+          <h3>Careful framing</h3>
+          <p>Some entries stay high level when the work touches private, corporate or finance-adjacent context.</p>
         </article>
       </div>
     </div>
@@ -132,25 +130,8 @@ const projectsGuide = [
     </div>
   </section>
 
-  <section class="section-shell section-shell-last" id="projects-boundaries">
+  <section class="section-shell section-shell-last">
     <div class="container">
-      <SafeDisclosure
-        title="What stays public, and what stays abstract."
-        intro="Some work can be described directly. Some is better shown as a category, prototype or archive signal."
-        allowed={[
-          "Academic and personal technical projects",
-          "Selected public repositories",
-          "Prototype language, archive framing and learning context",
-        ]}
-        avoid={[
-          "Private repository links",
-          "Sensitive internal tools",
-          "Finance experiments framed as advisory or performance",
-        ]}
-      />
-
-      <div class="section-spacer-sm"></div>
-
       <CTASection
         eyebrow="EXTERNAL REFERENCE"
         title="Use GitHub for the wider public archive."

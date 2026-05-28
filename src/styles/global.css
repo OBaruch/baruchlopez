@@ -387,7 +387,6 @@ main {
 .vertical-card,
 .skill-card,
 .certification-card,
-.disclosure-card,
 .placeholder-card {
   padding: 1.4rem;
 }
@@ -1417,7 +1416,6 @@ main {
   text-transform: uppercase;
 }
 
-.disclosure-grid,
 .project-detail-grid,
 .footer-columns,
 .narrative-grid {
@@ -1425,7 +1423,6 @@ main {
   gap: 1rem;
 }
 
-.disclosure-grid,
 .project-detail-grid {
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   margin-top: 1.1rem;
@@ -1743,7 +1740,6 @@ html.motion-ready .reveal-enter.is-visible {
   .vertical-copy,
   .skill-card,
   .certification-card,
-  .disclosure-card,
   .placeholder-card {
     padding: 1rem;
   }

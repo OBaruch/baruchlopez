@@ -2,7 +2,6 @@
 import CTASection from "@/components/CTASection.astro";
 import ContextNav from "@/components/ContextNav.astro";
 import PageHero from "@/components/PageHero.astro";
-import SafeDisclosure from "@/components/SafeDisclosure.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import Timeline from "@/components/Timeline.astro";
 import { lifeTimelineStages, timelinePage } from "@/data/site";
@@ -48,31 +47,10 @@ const timelineGuide = lifeTimelineStages.map((stage) => ({
       <SectionHeader
         eyebrow="FULL CHRONOLOGY"
         title="Continuity, context and room to grow."
-        copy="Each event is written for public context. Sensitive details, private locations and unverified claims are omitted."
+        copy="A curated chronology of roles, studies, projects and milestones that can be read without needing private context."
       />
 
       <Timeline stages={lifeTimelineStages} variant="editorial" />
-    </div>
-  </section>
-
-  <section class="section-shell">
-    <div class="container">
-      <SafeDisclosure
-        title="What this timeline deliberately protects."
-        intro="The timeline is designed to be complete enough for public storytelling while still respecting privacy, NDA boundaries and unconfirmed details."
-        allowed={[
-          "Public roles, education, selected projects and documented milestones",
-          "High-level Bosch-safe AI, data, analytics and enablement language",
-          "Careful Cyrus, Alpha Signature and finance-adjacent framing",
-          "Values, roots and philosophy without private biographical detail",
-        ]}
-        avoid={[
-          "Exact private locations or personal identifiers",
-          "Internal Bosch systems, metrics, tables, architecture or stakeholders",
-          "Cyrus internal reporting, structures, performance or solicitation language",
-          "Unverified launch dates, client names or inflated leadership claims",
-        ]}
-      />
     </div>
   </section>
 

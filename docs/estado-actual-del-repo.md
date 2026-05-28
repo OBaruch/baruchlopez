@@ -48,7 +48,6 @@ Estas rutas de compatibilidad deben mantenerse `noindex` mientras las paginas of
 - `src/components/PageHero.astro`, `SectionHeader.astro`, `CTASection.astro`, `LinkButton.astro`: bloques base de contenido.
 - `src/components/ProjectCard.astro`, `PathwayCard.astro`, `VerticalCard.astro`, `CertificationCard.astro`, `SkillCluster.astro`: tarjetas y agrupadores.
 - `src/components/Timeline.astro`: timeline visual.
-- `src/components/SafeDisclosure.astro`: bloque para disclosure publico seguro.
 - `src/data/site.ts`: contenido principal del sitio.
 - `src/data/manifesto.ts`: contenido del manifesto.
 

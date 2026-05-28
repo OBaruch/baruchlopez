@@ -57,7 +57,7 @@ The site already has a strong editorial direction: dark, premium, structured and
 
 - Recentered the homepage around "Baruch López" as the hero H1.
 - Rewrote homepage, About, Experience, Projects, Contact, Alpha Signature, Cyrus, Corporate, Credentials and Timeline copy to feel final and public-facing.
-- Reduced visible "public-safe" language and kept caution mostly in disclosure areas.
+- Reduced visible internal-guidance language and moved caution into natural public-facing framing instead of disclosure blocks.
 - Simplified main navigation to reduce wrapping and improve the first viewport.
 - Updated core metadata, Open Graph/Twitter metadata and Person schema.
 - Added meaningful alt text for vertical cards.

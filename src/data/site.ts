@@ -118,6 +118,7 @@ export const homeHero = {
   intro:
     "Robotics engineer and AI specialist connecting data, automation and business implementation with a calm, systems-minded way of working.",
   badges: [
+    "Founder / Alpha Signature",
     "AI Engineer II",
     "Co-Founder & CFO / Cyrus Global Capital",
     "MBA in progress",

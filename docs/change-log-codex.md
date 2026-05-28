@@ -1,5 +1,21 @@
 # Change log Codex
 
+## 2026-05-28 / Hero Badge Update
+
+### Resumen
+
+Se agrego `Founder / Alpha Signature` como primer badge del hero para reforzar desde el inicio la relacion entre Baruch y Alpha Signature.
+
+### Archivos modificados
+
+- `src/data/site.ts`
+- `docs/public-content-source-of-truth.md`
+- `docs/change-log-codex.md`
+
+### Validacion
+
+`npm.cmd run check` paso correctamente.
+
 ## 2026-05-28 / Favicon
 
 ### Resumen

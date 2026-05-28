@@ -11,7 +11,7 @@ Date: 2026-05-28
 - Public professional themes: AI, data engineering, analytics, ETL, SQL, Power BI/reporting, automation, documentation and technical enablement.
 - Education: Robotics Engineering at Universidad de Guadalajara.
 - Current graduate path: Dual MBA / Master of Business Administration through MIU City University Miami and UNIR Mexico, in progress from 2025 to 2027.
-- Alpha Signature: consulting + implementation initiative focused on business structure, data, technology and execution discipline for micro and mid-sized businesses.
+- Alpha Signature: consulting + implementation initiative founded by Baruch Lopez, focused on business structure, data, technology and execution discipline for micro and mid-sized businesses.
 - Cyrus Global Capital: private capital / institutional context connected to Baruch's public Co-Founder & CFO role.
 - Projects safe for public positioning: Snowy Robot, Vehicle Detection Using IBM Clusters, Staff Mobility Tool, AI-Driven Product Recommendation, Project Center and Patrimonia.
 - Public channels: LinkedIn and GitHub.

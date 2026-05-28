@@ -1,41 +1,55 @@
 # Docs
 
-Esta carpeta concentra la documentacion operativa del repo, el tracking de trabajo y el material de referencia que no debe mezclarse con la capa publica del sitio.
+Esta carpeta concentra la documentacion operativa del repo, auditorias, decisiones tecnicas, trazabilidad de contenido y material de referencia que no debe mezclarse con la capa publica del sitio.
 
 ## Objetivo
 
-Separar la documentacion de proyecto, mirrors y tooling del sitio publico estatico. El sitio publicado debe seguir siendo simple; `docs/` sirve para registrar contexto, decisiones y referencias sin mezclar ese material con la capa publica.
+Mantener separada la capa publica estatica del contexto de trabajo. El sitio publicado debe seguir siendo simple; `docs/` sirve para registrar decisiones, riesgos, pendientes y reglas para continuar el proyecto con Codex sin perder contexto.
 
-Nota: `context/` es una carpeta local-only y esta ignorada por Git para no publicar mirrors, capturas ni material pesado en el repositorio publico.
+Nota: `context/` es una carpeta local-only e ignorada por Git. No debe publicarse porque puede contener mirrors, capturas, prompts, raw extracts y material pesado o sensible.
 
 ## Como leer esta carpeta
 
 La documentacion se divide en tres estados:
 
-- **Vigente**: describe la arquitectura, el deploy y la operacion real del repo hoy.
-- **Referencia**: conserva analisis, mirrors o planeacion futura.
+- **Vigente**: describe arquitectura, stack, deploy, operacion, contenido y reglas reales del repo hoy.
+- **Referencia**: conserva analisis, mirrors o planeacion futura que puede inspirar cambios, pero no siempre describe el estado actual.
 - **Archivo**: documenta experimentos descartados para no reintroducir deuda tecnica.
 
 ## Indice operativo
 
 ### Vigente
 
-- `estado-actual-del-repo.md`: source of truth del estado actual del sitio, capas del repo, rutas reales y restricciones tecnicas vigentes.
-- `deploy-github-pages.md`: configuracion correcta de GitHub Pages, workflow actual y troubleshooting del conflicto Astro vs Jekyll legacy.
-- `propuesta-stack-static-first.md`: principios de arquitectura vigentes para mantener el sitio lean y static-first.
-- `tracking.md`: bitacora de trabajo, decisiones recientes y backlog.
-- `preview-local.md`: inicio oficial del sitio en local con `npm.cmd run dev -- --port 43127`.
+- `estado-actual-del-repo.md`: estado actual del sitio, capas del repo, rutas reales y restricciones tecnicas.
+- `tech-stack-audit.md`: auditoria del stack, dependencias, complejidad y recomendacion tecnica.
+- `project-architecture.md`: estructura actual, estructura recomendada y convenciones de trabajo.
+- `codex-operating-guide.md`: reglas operativas para futuras sesiones de Codex.
+- `development-workflow.md`: instalacion, comandos, build, preview y despliegue.
+- `technical-todos.md`: pendientes tecnicos priorizados.
+- `change-log-codex.md`: bitacora tecnica de cambios hechos por Codex.
+- `visual-engagement-audit.md`: auditoria de atencion visual, ritmo y engagement.
+- `motion-interaction-strategy.md`: reglas de animacion e interaccion para el sitio.
+- `engagement-improvements-log.md`: cambios visuales/motion implementados y riesgos.
+- `reading-retention-notes.md`: notas para mejorar lectura y permanencia sin manipulacion.
+- `public-image-sources.md`: fuentes, autores y licencia de imagenes publicas usadas.
+- `content-audit-production-readiness.md`: auditoria editorial, UX, SEO y SEM del contenido publico.
+- `public-content-source-of-truth.md`: hechos publicos usados, hechos no publicables y naming pendiente.
+- `content-todos.md`: pendientes de contenido, enlaces, proyectos e imagenes.
+- `deploy-github-pages.md`: configuracion correcta de GitHub Pages y troubleshooting.
+- `propuesta-stack-static-first.md`: principios de arquitectura static-first vigentes.
+- `tracking.md`: bitacora historica y backlog.
+- `preview-local.md`: forma recomendada de correr el sitio en local.
 
 ### Referencia
 
-- `mirrors.md`: inventario completo de mirrors y paginas scrapeadas.
-- `auditoria-referencias-creativas.md`: analisis comparativo de referencias visuales/interactivas. Sirve como benchmark, no como plan de implementacion vigente.
-- `arquitectura-portal-y-wireframes.md`: arquitectura de informacion y modelo de contenido exploratorio para futuras rutas, con placeholders de contenido pendiente.
+- `mirrors.md`: inventario de mirrors y paginas scrapeadas.
+- `auditoria-referencias-creativas.md`: benchmark visual/interactivo; no es plan de implementacion obligatorio.
+- `arquitectura-portal-y-wireframes.md`: arquitectura exploratoria de informacion; validar antes de aplicar.
 
 ### Archivo
 
-- `plan-liquid-glass-command-deck.md`: nota de archivo del experimento descartado de Hero con runtime visual complejo.
+- `plan-liquid-glass-command-deck.md`: nota del experimento descartado de hero con runtime visual complejo.
 
 ## Regla de trabajo
 
-Cada vez que se agregue un nuevo mirror, se ajuste el scraper o se tome una decision de estructura del repo, se debe actualizar esta carpeta para mantener trazabilidad.
+Cada cambio relevante de arquitectura, stack, contenido publico, deploy, scraper o convencion de Codex debe quedar documentado aqui. Si una fuente o hecho no es verificable, no debe convertirse en copy publico sin confirmacion.

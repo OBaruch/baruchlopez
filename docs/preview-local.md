@@ -1,19 +1,43 @@
-# Preview Local
+# Preview local
 
 ## Inicio oficial
 
-Desde la raiz del repo, el comando oficial para levantar el sitio en local es:
+Desde la raiz del repo:
+
+```powershell
+npm.cmd run dev
+```
+
+El script usa el puerto `4321` y host `0.0.0.0` por configuracion de `package.json`.
+
+## Cambiar puerto
+
+Si `4321` esta ocupado, usa un puerto explicito:
 
 ```powershell
 npm.cmd run dev -- --port 43127
 ```
 
-## Que hace
+## Build y preview de produccion
 
-- Ejecuta el script `dev` definido en `package.json`.
-- Fuerza el uso del puerto `43127` para el servidor local.
-- Deja Astro corriendo en la terminal actual y observando cambios de archivos.
+Validar salida estatica:
 
-## Nota
+```powershell
+npm.cmd run build
+```
 
-Si `43127` ya estuviera ocupado, Astro no podra arrancar en ese puerto y habra que liberar ese proceso o elegir otro puerto de forma explicita.
+Previsualizar el build:
+
+```powershell
+npm.cmd run preview
+```
+
+## Verificacion recomendada
+
+Antes de entregar cambios tecnicos o editoriales:
+
+```powershell
+npm.cmd run check
+```
+
+`check` ejecuta typecheck y build.

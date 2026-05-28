@@ -2,102 +2,108 @@
 
 ## Resumen
 
-Este repo ya no esta en fase experimental de motion/3D. El estado vigente es un sitio **Astro static-first**, con HTML pre-renderizado, CSS propio y JavaScript solo donde agrega valor real.
+Este repo es un sitio personal/profesional **Astro static-first**. La fuente publica vigente vive en `src/` y `public/`; la raiz conserva una fotografia legacy de la etapa pre-Astro solo como referencia/fallback.
 
-La documentacion de esta carpeta debe leerse con tres niveles:
-
-- **Vigente**: define como funciona hoy el repo y como se publica.
-- **Referencia**: sirve para inspiracion, mirrors o planeacion futura, pero no describe lo que ya esta shipping.
-- **Archivo**: conserva decisiones descartadas para no reabrirlas por error.
+La prioridad tecnica actual es mantener el sitio sobrio, estatico, rapido, documentado y facil de seguir trabajando con Codex.
 
 ## Capa publica vigente
 
-La fuente primaria del sitio publico vive en:
+Fuente primaria del sitio:
 
-- `src/`
-- `public/`
-- `astro.config.mjs`
-- `package.json`
-- `.github/workflows/deploy.yml`
+- `src/pages/`: rutas Astro.
+- `src/components/`: componentes reutilizables.
+- `src/data/`: contenido estructurado local.
+- `src/layouts/`: layout base y metadata.
+- `src/styles/global.css`: sistema visual global.
+- `public/`: imagenes, robots, sitemap, CNAME y assets servidos tal cual.
+- `astro.config.mjs`, `tsconfig.json`, `package.json`, `package-lock.json`.
+- `.github/workflows/deploy.yml`: deploy a GitHub Pages.
 
-### Implementacion actual
-
-- `src/pages/index.astro`: homepage principal.
-- `src/pages/cyrus-global-capital/index.astro`: bridge/redirect al sitio oficial de Cyrus.
-- `src/components/HeroPortal.astro`: hero principal con retrato + gateways.
-- `src/data/portal.ts`: contenido estructurado de navegacion, highlights, lab, talks y contacto.
-- `src/layouts/BaseLayout.astro`: shell base y metadata principal.
-- `src/styles/global.css`: estilos globales del sitio Astro.
-
-### Rutas publicas actuales
-
-Rutas reales que hoy genera Astro:
+## Rutas Astro actuales
 
 - `/`
-- `/cyrus-global-capital/`
+- `/about/`
+- `/experience/`
+- `/projects/`
+- `/projects/[slug]/`
+- `/corporate/`
+- `/credentials/`
+- `/contact/`
+- `/manifesto/`
+- `/timeline/`
 
-Secciones internas activas en la home:
+Tambien existen estas rutas de compatibilidad:
 
-- `#top`
-- `#overview`
-- `#selected-highlights`
-- `#alpha-signature`
-- `#corporate-profile`
-- `#personal-project-lab`
-- `#talks-writing`
-- `#contact`
+- `/alpha-signature/`: redireccion a `https://alphasignaturefirm.com/`.
+- `/cyrus-global-capital/`: redireccion a `https://www.cyrusglobalcapital.com/`.
 
-Importante: `Alpha Signature`, `Corporate Profile`, `Personal Project Lab`, `Talks / Writing` y `Contact` **todavia no existen como rutas Astro separadas**. Hoy viven como secciones de la home.
+Estas rutas de compatibilidad deben mantenerse `noindex` mientras las paginas oficiales externas sean la fuente publica principal.
+
+## Implementacion actual
+
+- `src/pages/index.astro`: hub principal.
+- `src/layouts/BaseLayout.astro`: shell base, metadata, canonical, Open Graph, Twitter card, noindex y redirects.
+- `src/components/SiteHeader.astro`: navegacion principal con soporte para links externos.
+- `src/components/SiteFooter.astro`: pie de sitio y enlaces.
+- `src/components/PageHero.astro`, `SectionHeader.astro`, `CTASection.astro`, `LinkButton.astro`: bloques base de contenido.
+- `src/components/ProjectCard.astro`, `PathwayCard.astro`, `VerticalCard.astro`, `CertificationCard.astro`, `SkillCluster.astro`: tarjetas y agrupadores.
+- `src/components/Timeline.astro`: timeline visual.
+- `src/components/SafeDisclosure.astro`: bloque para disclosure publico seguro.
+- `src/data/site.ts`: contenido principal del sitio.
+- `src/data/manifesto.ts`: contenido del manifesto.
 
 ## Capa legacy conservada
 
-La capa legacy sigue existiendo en la raiz del repo:
+Archivos legacy en raiz:
 
 - `index.html`
 - `styles.css`
 - `CNAME`
 
-Esta capa se conserva como **snapshot/fallback de la etapa pre-Astro**. No es la fuente primaria del sitio ni debe usarse como base de nuevas implementaciones.
+No son la fuente primaria del sitio. Solo deben tocarse por higiene de fallback, por ejemplo para evitar enlaces publicos rotos o inseguros.
 
 ## Build y deploy vigentes
 
-- Build local: `npm.cmd run build`
+- Instalacion: `npm.cmd install`
+- Dev local: `npm.cmd run dev`
 - Typecheck: `npm.cmd run typecheck`
+- Build: `npm.cmd run build`
+- Verificacion completa: `npm.cmd run check`
 - Output: `dist/`
 - Hosting: GitHub Pages
 - Dominio: `baruchlopez.com`
 
-### Reglas de publicacion
-
-- GitHub Pages debe usar `Source = GitHub Actions`.
-- El workflow oficial vive en `.github/workflows/deploy.yml`.
-- `public/CNAME` es la fuente principal del custom domain dentro del build Astro.
-- `.nojekyll` en raiz y `public/.nojekyll` existen como guardrail para evitar builds Jekyll accidentales.
+GitHub Pages debe usar `Source = GitHub Actions`. El workflow oficial vive en `.github/workflows/deploy.yml`.
 
 ## Restricciones tecnicas conocidas
 
 ### Alias de prerender en `astro.config.mjs`
 
-El alias a `astro/entrypoints/prerender` sigue presente por una razon concreta: con la version bloqueada de Astro en este repo, el build local en Windows/OneDrive falla si se elimina. No debe quitarse sin volver a validar `npm.cmd run build`.
+El alias a `astro/entrypoints/prerender` es un workaround tecnico para el entorno Windows/OneDrive con la version actual de Astro. No debe quitarse sin validar `npm.cmd run check`.
 
-### `spawn EPERM` dentro del sandbox
+### Dependencias locales extraneous
 
-En este entorno de trabajo, `astro build` puede fallar dentro del sandbox con `spawn EPERM`. Ese error no implica por si solo un problema del repo. El build ya fue validado fuera del sandbox y compila correctamente.
+Una inspeccion local con `npm.cmd ls --depth=0` mostro paquetes extraneous dentro de `node_modules`. Eso no viene de `package.json`; parece higiene local de instalacion. Si molesta, regenerar `node_modules` con una instalacion limpia.
 
-## Fuera de alcance actual
+### Archivos grandes
 
-Estas lineas quedan descartadas para la home y para v1:
+`src/data/site.ts`, `src/data/manifesto.ts` y `src/styles/global.css` son funcionales pero grandes. Conviene dividirlos en una fase posterior para mejorar mantenibilidad.
 
-- React runtime en portada
-- fondos 3D simulados
-- escenas WebGL/R3F/Three.js
-- scroll runtimes tipo Lenis/GSAP
-- backend/server runtime
-- overlays o effects que compliquen lectura, mantenimiento o deploy
+## Fuera de alcance para v1
 
-## Como leer el resto de `docs/`
+- Migrar a Next.js sin necesidad real.
+- Agregar React runtime en portada.
+- Agregar UI kit, Tailwind o animaciones pesadas sin justificacion.
+- Backend/server runtime.
+- Escenas 3D/WebGL o scroll runtimes para la estructura base.
 
-- Si necesitas saber **como funciona hoy el repo**, empieza aqui y sigue con `deploy-github-pages.md` y `propuesta-stack-static-first.md`.
-- Si necesitas **mirrors o referencias visuales**, ve a `mirrors.md` y `auditoria-referencias-creativas.md`.
-- Si necesitas **planeacion futura**, consulta `arquitectura-portal-y-wireframes.md`, pero tomandolo como documento de exploracion, no como estado implementado.
-- Si necesitas entender **decisiones descartadas**, revisa `plan-liquid-glass-command-deck.md`.
+## Lectura recomendada
+
+Para entender el proyecto hoy:
+
+1. `AGENTS.md`
+2. `docs/README.md`
+3. `docs/tech-stack-audit.md`
+4. `docs/project-architecture.md`
+5. `docs/development-workflow.md`
+6. `docs/public-content-source-of-truth.md`

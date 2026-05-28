@@ -43,6 +43,12 @@ Chequeo de tipos:
 npm.cmd run typecheck
 ```
 
+Verificacion completa recomendada:
+
+```powershell
+npm.cmd run check
+```
+
 Luego abre el servidor local que Astro imprima en terminal.
 
 ## Publicacion en GitHub Pages
@@ -56,6 +62,12 @@ Luego abre el servidor local que Astro imprima en terminal.
 ## Documentacion y tracking
 
 - `docs/estado-actual-del-repo.md`: estado implementado real del sitio, capas del repo, rutas activas y restricciones tecnicas vigentes.
+- `docs/tech-stack-audit.md`: auditoria del stack, dependencias, complejidad y recomendacion tecnica.
+- `docs/project-architecture.md`: estructura actual, estructura recomendada y convenciones.
+- `docs/codex-operating-guide.md`: reglas para futuras sesiones de Codex.
+- `docs/development-workflow.md`: instalacion, comandos y operacion local.
+- `docs/technical-todos.md`: pendientes tecnicos priorizados.
+- `docs/change-log-codex.md`: bitacora tecnica de cambios de Codex.
 - `docs/deploy-github-pages.md`: deploy actual en GitHub Pages, configuracion correcta y troubleshooting Astro vs Jekyll legacy.
 - `docs/README.md`: mapa general de documentacion.
 - `docs/mirrors.md`: indice de todas las paginas scrapeadas y su carpeta mirror local.

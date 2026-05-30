@@ -1,0 +1,81 @@
+---
+import type { RecognitionItem } from "@/data/recognitions";
+
+interface Props {
+  item: RecognitionItem;
+  compact?: boolean;
+}
+
+const { item, compact = false } = Astro.props as Props;
+const sortDate = item.date ?? (item.year ? `${item.year}-01-01` : "0000-00-00");
+const yearValue = item.year ? String(item.year) : "por-confirmar";
+const dateLabel = item.dateLabel || "Por confirmar";
+---
+
+<article
+  class:list={["recognition-card", "panel", "reveal-enter", compact ? "recognition-card-compact" : ""]}
+  data-recognition-card
+  data-title={item.title.toLowerCase()}
+  data-year={yearValue}
+  data-type={item.type}
+  data-category={item.category}
+  data-institution={item.institution}
+  data-status={item.reviewStatus}
+  data-date={sortDate}
+>
+  <div class="recognition-media">
+    {
+      item.publicImage ? (
+        <img src={item.publicImage} alt={item.alt} loading="lazy" decoding="async" />
+      ) : (
+        <div class:list={["recognition-placeholder", `recognition-placeholder-${item.visualStatus}`]} aria-label={item.alt}>
+          <span>{item.type}</span>
+          <strong>{dateLabel}</strong>
+        </div>
+      )
+    }
+  </div>
+  <div class="recognition-copy">
+    <div class="recognition-topline">
+      <span class="mini-label">{item.type}</span>
+      <span class="project-year">{dateLabel}</span>
+    </div>
+    <h3>{item.title}</h3>
+    <p class="issuer-line">{item.institution}</p>
+    <p>{item.description}</p>
+    <div class="tag-list recognition-tags" aria-label={`Categorías de ${item.title}`}>
+      <span class="tag">{item.category}</span>
+      <span class="tag">{item.confidence}</span>
+      {item.reviewStatus === "Preview publicada" ? null : <span class="tag tag-warning">{item.reviewStatus}</span>}
+    </div>
+    {
+      compact ? null : (
+        <details class="recognition-detail">
+          <summary>Ver detalle</summary>
+          <dl>
+            <div>
+              <dt>Fecha</dt>
+              <dd>{dateLabel}</dd>
+            </div>
+            <div>
+              <dt>Institución</dt>
+              <dd>{item.institution}</dd>
+            </div>
+            <div>
+              <dt>Tipo</dt>
+              <dd>{item.type}</dd>
+            </div>
+            <div>
+              <dt>Categoría</dt>
+              <dd>{item.category}</dd>
+            </div>
+            <div>
+              <dt>Estado</dt>
+              <dd>{item.reviewStatus}</dd>
+            </div>
+          </dl>
+        </details>
+      )
+    }
+  </div>
+</article>

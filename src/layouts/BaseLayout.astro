@@ -88,6 +88,7 @@ const ogImageAlt = "Portrait of Baruch López.";
         const body = document.body;
         const progressBar = document.querySelector("[data-site-progress]");
         const revealItems = Array.from(document.querySelectorAll(".reveal-enter"));
+        const scrollPassthroughAreas = Array.from(document.querySelectorAll(".site-nav"));
         const canUseMotion = document.documentElement.classList.contains("motion-ready");
         let lastY = window.scrollY;
         let ticking = false;
@@ -138,6 +139,25 @@ const ogImageAlt = "Portrait of Baruch López.";
         mobileQuery.addEventListener("change", applyHeaderState);
         window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
         window.addEventListener("resize", applyHeaderState);
+        scrollPassthroughAreas.forEach((area) => {
+          area.addEventListener(
+            "wheel",
+            (event) => {
+              if (Math.abs(event.deltaY) <= Math.abs(event.deltaX) || event.deltaY === 0) {
+                return;
+              }
+
+              const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+              if (maxScroll <= 0) {
+                return;
+              }
+
+              event.preventDefault();
+              window.scrollBy({ top: event.deltaY, left: 0, behavior: "auto" });
+            },
+            { passive: false }
+          );
+        });
         applyHeaderState();
 
         if (!canUseMotion || !("IntersectionObserver" in window)) {

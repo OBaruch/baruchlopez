@@ -212,6 +212,7 @@ main {
 
 .hero-copy {
   max-width: 46rem;
+  min-width: 0;
 }
 
 .hero-copy h1,
@@ -310,6 +311,7 @@ main {
   position: relative;
   max-width: 48rem;
   margin-bottom: 1.65rem;
+  min-width: 0;
 }
 
 .section-heading::before {
@@ -1416,6 +1418,286 @@ main {
   text-transform: uppercase;
 }
 
+.recognitions-hero .hero-copy {
+  max-width: 54rem;
+}
+
+.recognitions-overview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.recognitions-overview div {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.recognitions-overview strong {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.recognition-feature-grid,
+.recognition-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.recognition-feature-grid {
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+}
+
+.recognition-grid {
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  align-items: stretch;
+}
+
+.recognition-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: 0;
+}
+
+.recognition-media {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(235, 233, 228, 0.96)),
+    #f4f1eb;
+}
+
+.recognition-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  padding: 0.35rem;
+}
+
+.recognition-placeholder {
+  display: grid;
+  place-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  text-align: center;
+  color: #1d1a16;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(224, 219, 209, 0.92)),
+    #ece7dc;
+}
+
+.recognition-placeholder span {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.recognition-placeholder strong {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.6rem, 4vw, 2.35rem);
+  font-weight: 500;
+}
+
+.recognition-placeholder-privacidad {
+  background:
+    linear-gradient(135deg, rgba(242, 240, 237, 0.96), rgba(197, 188, 171, 0.92)),
+    #ddd6c9;
+}
+
+.recognition-placeholder-auxiliar,
+.recognition-placeholder-sin-preview {
+  background:
+    linear-gradient(135deg, rgba(236, 232, 225, 0.96), rgba(202, 211, 214, 0.86)),
+    #dfe5e5;
+}
+
+.recognition-copy {
+  display: grid;
+  align-content: start;
+  gap: 0.72rem;
+  min-width: 0;
+  padding: 1.1rem 1.15rem 1.2rem;
+}
+
+.recognitions-hero .hero-copy h1,
+.recognitions-hero .hero-intro,
+.recognitions-hero .hero-body,
+.recognition-copy h3,
+.recognition-copy p {
+  overflow-wrap: anywhere;
+}
+
+.recognition-copy h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.55rem, 2.4vw, 1.95rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.recognition-copy p {
+  margin: 0;
+}
+
+.recognition-topline {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.recognition-tags {
+  margin-top: 0;
+}
+
+.recognition-tags .tag {
+  min-height: 2rem;
+  padding: 0.45rem 0.68rem;
+  font-size: 0.64rem;
+}
+
+.recognition-tags .tag-warning {
+  border-color: rgba(238, 210, 148, 0.38);
+  color: #f0dfb8;
+  background: rgba(196, 142, 55, 0.12);
+}
+
+.recognition-detail {
+  margin-top: 0.15rem;
+  border-top: 1px solid var(--line);
+  padding-top: 0.72rem;
+}
+
+.recognition-detail summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--muted-strong);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.recognition-detail dl {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.8rem 0 0;
+}
+
+.recognition-detail div {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 0.8rem;
+}
+
+.recognition-detail dt {
+  color: rgba(229, 226, 221, 0.62);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.recognition-detail dd {
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 0.9rem;
+}
+
+.recognitions-toolbar {
+  display: grid;
+  grid-template-columns: minmax(16rem, 1.4fr) repeat(6, minmax(8.2rem, 1fr)) auto;
+  gap: 0.85rem;
+  align-items: end;
+  margin-bottom: 0.9rem;
+}
+
+.recognition-field {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.recognition-field label {
+  color: rgba(229, 226, 221, 0.68);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.recognition-field input,
+.recognition-field select {
+  width: 100%;
+  min-height: 2.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.88rem;
+  padding: 0.72rem 0.78rem;
+}
+
+.recognition-field select {
+  color-scheme: dark;
+}
+
+.recognition-field input::placeholder {
+  color: rgba(229, 226, 221, 0.46);
+}
+
+.recognition-field input:focus,
+.recognition-field select:focus {
+  border-color: var(--line-strong);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(242, 240, 237, 0.12);
+}
+
+.recognition-reset {
+  min-height: 2.75rem;
+  padding: 0.68rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted-strong);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.recognition-reset:hover,
+.recognition-reset:focus-visible {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.recognitions-result-line {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.recognitions-empty {
+  margin: 1rem 0 0;
+  color: var(--muted-strong);
+}
+
 .project-detail-grid,
 .footer-columns,
 .narrative-grid {
@@ -1554,6 +1836,18 @@ html.motion-ready .reveal-enter.is-visible {
   .footer-shell {
     grid-template-columns: 1fr;
   }
+
+  .recognitions-toolbar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .recognition-field-search {
+    grid-column: 1 / -1;
+  }
+
+  .recognition-reset {
+    width: 100%;
+  }
 }
 
 @media (max-width: 840px) {
@@ -1566,8 +1860,11 @@ html.motion-ready .reveal-enter.is-visible {
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
     padding-bottom: 0.2rem;
     scrollbar-width: none;
+    touch-action: pan-x pan-y;
   }
 
   .site-nav::-webkit-scrollbar {
@@ -1651,7 +1948,8 @@ html.motion-ready .reveal-enter.is-visible {
 
 @media (max-width: 720px) {
   .container {
-    width: min(var(--container), calc(100% - 1.2rem));
+    width: min(var(--container), calc(100vw - 1.2rem));
+    max-width: calc(100vw - 1.2rem);
   }
 
   .header-shell {
@@ -1679,6 +1977,12 @@ html.motion-ready .reveal-enter.is-visible {
     padding: 0.68rem 0.72rem;
     font-size: 0.68rem;
     letter-spacing: 0.07em;
+  }
+
+  .recognitions-hero .hero-copy .button-row .button-link {
+    flex-basis: 100%;
+    width: 100%;
+    min-width: 0;
   }
 
   .hero-shell {
@@ -1824,6 +2128,38 @@ html.motion-ready .reveal-enter.is-visible {
     flex: 1 1 0;
   }
 
+  .recognitions-overview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .recognitions-toolbar {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .recognition-feature-grid,
+  .recognition-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recognition-media {
+    aspect-ratio: 16 / 11;
+  }
+
+  .recognitions-hero .hero-copy,
+  .recognitions-overview,
+  .recognitions-feature-section .section-heading,
+  .recognitions-mural-section .section-heading,
+  .recognitions-toolbar,
+  .recognition-feature-grid,
+  .recognition-grid {
+    max-width: 22.5rem;
+  }
+
+  .recognition-card {
+    max-width: 22.5rem;
+  }
+
   .manifesto-progress-copy {
     align-items: flex-start;
     gap: 0.5rem 0.65rem;
@@ -1865,6 +2201,10 @@ html.motion-ready .reveal-enter.is-visible {
 
   .manifesto-progress-title {
     font-size: 0.84rem;
+  }
+
+  .recognitions-overview {
+    grid-template-columns: 1fr;
   }
 }
 

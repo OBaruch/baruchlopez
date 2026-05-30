@@ -13,7 +13,7 @@ Fecha: 2026-05-27
 | UI library | Ninguna |
 | Animacion | CSS nativo; sin librerias de motion |
 | Formularios | Sin libreria de formularios |
-| Datos | Data local en TypeScript (`src/data/site.ts`, `src/data/manifesto.ts`) |
+| Datos | Data local en TypeScript (`src/data/site.ts`, `src/data/manifesto.ts`, `src/data/recognitions.ts`) |
 | Charts/tablas | Ninguna libreria |
 | Build | `astro build` |
 | Typecheck | `tsc --noEmit` |
@@ -41,6 +41,14 @@ Recomendacion:
 
 - No cambiar `package.json` por esos paquetes.
 - Si se quiere limpiar el entorno local, regenerar `node_modules` con una instalacion limpia.
+
+Herramientas locales usadas para procesamiento documental del mural:
+
+- Tesseract OCR 5.5 instalado via `winget`.
+- Modelo `spa.traineddata` almacenado en `C:\tmp\tessdata`.
+- PyMuPDF y Pillow disponibles en el Python local via `py`.
+
+Estas herramientas no son dependencias runtime del sitio ni se agregaron a `package.json`; sirven para regenerar inventarios, OCR y previews desde archivos locales.
 
 ## Complejidad del stack
 

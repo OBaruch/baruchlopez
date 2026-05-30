@@ -133,6 +133,57 @@ Validacion adicional:
 - Browser smoke test confirmo que no quedan referencias activas a `public/assets/concept-board/`.
 - Las cuatro imagenes publicas cargaron correctamente al hacer scroll hasta Core Areas.
 
+## 2026-05-29
+
+### Mural de Reconocimientos
+
+Se agrego una nueva seccion publica y ruta `/recognitions/` para mostrar un mural visual, cronologico e interactivo de reconocimientos, certificados y premios publicables.
+
+Archivos principales agregados:
+
+- `scripts/recognitions/process_recognitions.py`
+- `src/data/recognitions.ts`
+- `src/components/RecognitionCard.astro`
+- `src/pages/recognitions/index.astro`
+- `data/recognitions.json`
+- `docs/recognitions-inventory.md`
+- `docs/recognitions-duplicates-report.md`
+- `docs/recognitions-processing-log.md`
+- `docs/recognitions-pending-review.md`
+- `public/recognitions/*.webp`
+
+Archivos modificados:
+
+- `src/pages/index.astro`
+- `src/data/site.ts`
+- `src/styles/global.css`
+- `public/sitemap.xml`
+
+Decisiones:
+
+- Mantener Astro static-first y usar data local tipada en `src/data/recognitions.ts`.
+- Separar el registro maestro interno con rutas locales en `data/recognitions.json` de la data publica usada por Astro.
+- No publicar rutas locales, PDFs originales ni enlaces a documentos fuente.
+- Publicar solo documentos con preview optimizada, metadatos razonables y sin banderas de privacidad.
+- Excluir del mural publico documentos con CURP/RFC/domicilio/codigos escolares/Global ID, OCR dudoso o contenido administrativo.
+
+Herramientas usadas:
+
+- PyMuPDF para extraccion/render de PDF.
+- Pillow para hashes visuales y previews WebP.
+- Tesseract OCR 5.5 instalado con `winget`.
+- Modelo OCR en espanol descargado en `C:\tmp\tessdata\spa.traineddata`.
+
+Dependencias npm agregadas:
+
+Ninguna.
+
+Validacion:
+
+- `npm.cmd run check` paso correctamente.
+- Chrome headless reviso `/recognitions/` en desktop y mobile.
+- Se corrigio un problema responsive donde el hero largo del mural recortaba texto en viewport movil.
+
 ## 2026-05-27
 
 ### Resumen

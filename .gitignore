@@ -2,6 +2,10 @@ node_modules/
 .DS_Store
 .env
 context/
+/data/
+docs/recognitions-*.md
+__pycache__/
+*.pyc
 dist/
 .astro/
 

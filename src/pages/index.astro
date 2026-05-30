@@ -5,10 +5,12 @@ import type { IconName } from "@/components/IconGlyph.astro";
 import PageHero from "@/components/PageHero.astro";
 import PathwayCard from "@/components/PathwayCard.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
+import RecognitionCard from "@/components/RecognitionCard.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import SkillCluster from "@/components/SkillCluster.astro";
 import Timeline from "@/components/Timeline.astro";
 import VerticalCard from "@/components/VerticalCard.astro";
+import { recognitionItems } from "@/data/recognitions";
 import {
   condensedTimeline,
   featuredProjects,
@@ -23,12 +25,15 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const homeGuide: Array<{ label: string; href: string; note: string; icon: IconName }> = [
   { label: "Start here", href: "#home-pathways", note: "Choose a path", icon: "compass" },
+  { label: "Mural", href: "/recognitions/", note: "Open recognitions", icon: "work" },
   { label: "Core areas", href: "#home-domains", note: "See the ecosystem", icon: "layers" },
   { label: "Snapshot", href: "#home-snapshot", note: "Read the short profile", icon: "profile" },
   { label: "Trajectory", href: "#home-trajectory", note: "Follow the progression", icon: "timeline" },
   { label: "Selected work", href: "#home-projects", note: "Open projects", icon: "work" },
   { label: "Capabilities", href: "#home-capabilities", note: "Review the range", icon: "systems" },
 ];
+
+const recognitionPreview = recognitionItems.filter((item) => item.publicImage).slice(0, 3);
 ---
 
 <BaseLayout
@@ -46,6 +51,25 @@ const homeGuide: Array<{ label: string; href: string; note: string; icon: IconNa
         copy="Recruiters, collaborators, clients and technical peers usually need different levels of detail. The site is structured so each group can move quickly."
         items={homeGuide}
       />
+    </div>
+  </section>
+
+  <section class="section-shell" id="home-recognitions">
+    <div class="container">
+      <SectionHeader
+        eyebrow="MURAL DE RECONOCIMIENTOS"
+        title="A visual archive of verified milestones."
+        copy="A curated view of public certificates, recognitions and awards, organized chronologically with document previews and context."
+      />
+
+      <div class="recognition-feature-grid">
+        {recognitionPreview.map((item) => <RecognitionCard item={item} compact={true} />)}
+      </div>
+
+      <div class="button-row">
+        <a class="button-link button-link-primary" href="/recognitions/"><span>Open Mural</span></a>
+        <a class="button-link button-link-secondary" href="/credentials/"><span>View Credentials</span></a>
+      </div>
     </div>
   </section>
 

@@ -93,6 +93,7 @@ Contenido estructurado y reusable. Reglas:
 - Evitar duplicar el mismo claim en varias rutas.
 - Mantener links oficiales en un solo lugar cuando sea posible.
 - No poner contenido no verificado en data publica.
+- `recognitions.ts` contiene solo datos publicos del Mural de Reconocimientos; el inventario maestro con rutas locales vive en `data/recognitions.json`.
 
 Pendiente recomendado: dividir `site.ts` en modulos por dominio cuando el mantenimiento lo justifique:
 
@@ -127,6 +128,7 @@ Assets servidos directamente. Reglas:
 - Optimizar imagenes grandes antes de produccion.
 - Mantener `robots.txt`, `sitemap.xml`, `CNAME` y `.nojekyll` aqui.
 - No publicar archivos de trabajo, mirrors ni material sensible.
+- `public/recognitions/` contiene previews WebP optimizadas para el Mural de Reconocimientos, no documentos originales.
 
 ### `docs/`
 

@@ -1,0 +1,263 @@
+---
+import CTASection from "@/components/CTASection.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import RecognitionCard from "@/components/RecognitionCard.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import { recognitionItems, recognitionsSummary } from "@/data/recognitions";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const years = [...new Set(recognitionItems.map((item) => item.year).filter((year): year is number => Boolean(year)))].sort((a, b) => b - a);
+const categories = [...new Set(recognitionItems.map((item) => item.category))].sort((a, b) => a.localeCompare(b));
+const types = [...new Set(recognitionItems.map((item) => item.type))].sort((a, b) => a.localeCompare(b));
+const institutions = [...new Set(recognitionItems.map((item) => item.institution))].sort((a, b) => a.localeCompare(b));
+const statuses = [...new Set(recognitionItems.map((item) => item.reviewStatus))].sort((a, b) => a.localeCompare(b));
+const latestItems = recognitionItems.filter((item) => item.publicImage).slice(0, 3);
+const yearRange = recognitionsSummary.yearRange;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Mural de Reconocimientos",
+  description:
+    "Mural visual de certificados, constancias, nominaciones y reconocimientos públicos asociados con la trayectoria de Baruch López.",
+  hasPart: recognitionItems.map((item) => ({
+    "@type": "CreativeWork",
+    name: item.title,
+    datePublished: item.date ?? (item.year ? String(item.year) : undefined),
+    publisher: item.institution,
+    genre: item.type,
+  })),
+};
+---
+
+<BaseLayout
+  title="Mural de Reconocimientos | Baruch López"
+  description="Una recopilación visual y cronológica de certificados, constancias, premios y reconocimientos públicos de la trayectoria académica y profesional de Baruch López."
+  currentPath={Astro.url.pathname}
+  canonicalPath="/recognitions/"
+  structuredData={structuredData}
+  lang="es"
+>
+  <section class="hero-shell hero-shell-text recognitions-hero">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal-enter">
+        <span class="eyebrow">MURAL DE RECONOCIMIENTOS</span>
+        <h1>Mural de Reconocimientos.</h1>
+        <p class="hero-intro">
+          Una recopilación visual de documentos que forman parte de mi trayectoria académica,
+          profesional y personal.
+        </p>
+        <p class="hero-body">
+          Cada pieza representa una etapa de aprendizaje, disciplina, participación o contribución
+          en tecnología, innovación, liderazgo y desarrollo profesional. Este mural muestra los
+          127 archivos de la carpeta Certificados; cuando un documento requiere privacidad o
+          confirmación, aparece como registro inventariado sin exponer su vista completa.
+        </p>
+        <div class="button-row">
+          <LinkButton label="Explorar mural" href="#recognitions-mural" variant="primary" size="large" />
+          <LinkButton label="Ver credenciales" href="/credentials/" variant="secondary" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell section-shell-tight">
+    <div class="container">
+      <div class="recognitions-overview panel reveal-enter">
+        <div>
+          <span class="mini-label">Archivos en mural</span>
+          <strong>{recognitionItems.length}</strong>
+        </div>
+        <div>
+          <span class="mini-label">Años</span>
+          <strong>{yearRange ? `${yearRange[0]} - ${yearRange[1]}` : "Por confirmar"}</strong>
+        </div>
+        <div>
+          <span class="mini-label">Instituciones</span>
+          <strong>{institutions.length}</strong>
+        </div>
+        <div>
+          <span class="mini-label">Categorías</span>
+          <strong>{categories.length}</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell recognitions-feature-section">
+    <div class="container">
+      <SectionHeader
+        eyebrow="MUESTRA RECIENTE"
+        title="Una primera lectura visual."
+        copy="El mural completo mantiene el orden cronológico y permite filtrar por año, tipo, categoría e institución."
+      />
+      <div class="recognition-feature-grid">
+        {latestItems.map((item) => <RecognitionCard item={item} compact={true} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell section-shell-last recognitions-mural-section" id="recognitions-mural" data-recognitions-page>
+    <div class="container">
+      <SectionHeader
+        eyebrow="ARCHIVO CURADO"
+        title="Explora el mural completo."
+        copy="Los filtros trabajan sobre los 127 archivos encontrados en Certificados. Las tarjetas con datos sensibles o metadatos pendientes se muestran como registros inventariados, sin publicar la vista completa."
+      />
+
+      <form class="recognitions-toolbar panel" data-recognition-filters>
+        <div class="recognition-field recognition-field-search">
+          <label for="recognition-search">Buscar</label>
+          <input id="recognition-search" type="search" name="search" placeholder="Título, institución o categoría" data-filter-search />
+        </div>
+        <div class="recognition-field">
+          <label for="recognition-year">Año</label>
+          <select id="recognition-year" name="year" data-filter-year>
+            <option value="all">Todos</option>
+            {years.map((year) => <option value={year}>{year}</option>)}
+          </select>
+        </div>
+        <div class="recognition-field">
+          <label for="recognition-type">Tipo</label>
+          <select id="recognition-type" name="type" data-filter-type>
+            <option value="all">Todos</option>
+            {types.map((type) => <option value={type}>{type}</option>)}
+          </select>
+        </div>
+        <div class="recognition-field">
+          <label for="recognition-category">Categoría</label>
+          <select id="recognition-category" name="category" data-filter-category>
+            <option value="all">Todas</option>
+            {categories.map((category) => <option value={category}>{category}</option>)}
+          </select>
+        </div>
+        <div class="recognition-field">
+          <label for="recognition-institution">Institución</label>
+          <select id="recognition-institution" name="institution" data-filter-institution>
+            <option value="all">Todas</option>
+            {institutions.map((institution) => <option value={institution}>{institution}</option>)}
+          </select>
+        </div>
+        <div class="recognition-field">
+          <label for="recognition-status">Estado</label>
+          <select id="recognition-status" name="status" data-filter-status>
+            <option value="all">Todos</option>
+            {statuses.map((status) => <option value={status}>{status}</option>)}
+          </select>
+        </div>
+        <div class="recognition-field">
+          <label for="recognition-sort">Orden</label>
+          <select id="recognition-sort" name="sort" data-filter-sort>
+            <option value="desc">Más reciente</option>
+            <option value="asc">Más antiguo</option>
+          </select>
+        </div>
+        <button class="recognition-reset" type="reset">Limpiar</button>
+      </form>
+
+      <div class="recognitions-result-line" aria-live="polite">
+        <span data-recognition-count>{recognitionItems.length}</span> registros visibles
+      </div>
+
+      <div class="recognition-grid" data-recognition-grid>
+        {recognitionItems.map((item) => <RecognitionCard item={item} />)}
+      </div>
+
+      <p class="recognitions-empty panel" data-recognition-empty hidden>
+        No hay registros del mural que coincidan con esos filtros.
+      </p>
+
+      <div class="section-spacer-sm"></div>
+
+      <CTASection
+        eyebrow="CONTEXTO"
+        title="El mural complementa la trayectoria."
+        body="Para leer la narrativa completa, continúa con experiencia, proyectos o la línea de tiempo."
+        actions={[
+          { label: "Ver Experience", href: "/experience/", variant: "primary" },
+          { label: "Abrir Timeline", href: "/timeline/", variant: "secondary" },
+          { label: "Ver Projects", href: "/projects/", variant: "ghost" },
+        ]}
+      />
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const root = document.querySelector("[data-recognitions-page]");
+      if (!root) return;
+
+      const grid = root.querySelector("[data-recognition-grid]");
+      const cards = Array.from(root.querySelectorAll("[data-recognition-card]"));
+      const count = root.querySelector("[data-recognition-count]");
+      const empty = root.querySelector("[data-recognition-empty]");
+      const search = root.querySelector("[data-filter-search]");
+      const filters = {
+        year: root.querySelector("[data-filter-year]"),
+        type: root.querySelector("[data-filter-type]"),
+        category: root.querySelector("[data-filter-category]"),
+        institution: root.querySelector("[data-filter-institution]"),
+        status: root.querySelector("[data-filter-status]"),
+        sort: root.querySelector("[data-filter-sort]"),
+      };
+      const form = root.querySelector("[data-recognition-filters]");
+
+      const normalized = (value) =>
+        String(value || "")
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .trim();
+
+      const getSortValue = (card) => {
+        const raw = card.dataset.date || `${card.dataset.year || "0"}-01-01`;
+        const time = Date.parse(raw);
+        return Number.isNaN(time) ? 0 : time;
+      };
+
+      const applyFilters = () => {
+        const term = normalized(search?.value);
+        const active = {
+          year: filters.year?.value || "all",
+          type: filters.type?.value || "all",
+          category: filters.category?.value || "all",
+          institution: filters.institution?.value || "all",
+          status: filters.status?.value || "all",
+          sort: filters.sort?.value || "desc",
+        };
+
+        const sorted = [...cards].sort((left, right) => {
+          const delta = getSortValue(right) - getSortValue(left);
+          return active.sort === "asc" ? -delta : delta;
+        });
+
+        let visible = 0;
+        sorted.forEach((card, index) => {
+          const text = normalized(
+            `${card.dataset.title} ${card.dataset.institution} ${card.dataset.category} ${card.dataset.type} ${card.dataset.status} ${card.dataset.year}`
+          );
+          const matches =
+            (!term || text.includes(term)) &&
+            (active.year === "all" || card.dataset.year === active.year) &&
+            (active.type === "all" || card.dataset.type === active.type) &&
+            (active.category === "all" || card.dataset.category === active.category) &&
+            (active.institution === "all" || card.dataset.institution === active.institution) &&
+            (active.status === "all" || card.dataset.status === active.status);
+
+          card.hidden = !matches;
+          card.style.order = String(index);
+          if (matches) visible += 1;
+        });
+
+        if (count) count.textContent = String(visible);
+        if (empty) empty.hidden = visible !== 0;
+        if (grid) grid.toggleAttribute("data-empty", visible === 0);
+      };
+
+      form?.addEventListener("input", applyFilters);
+      form?.addEventListener("change", applyFilters);
+      form?.addEventListener("reset", () => window.requestAnimationFrame(applyFilters));
+      applyFilters();
+    })();
+  </script>
+</BaseLayout>

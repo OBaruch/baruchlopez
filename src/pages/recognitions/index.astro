@@ -6,12 +6,14 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import { recognitionItems, recognitionsSummary } from "@/data/recognitions";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
+const compactLabel = (value: string) => value.trim();
+const uniqueSorted = (values: string[]) => [...new Set(values.map(compactLabel).filter(Boolean))].sort((a, b) => a.localeCompare(b));
 const years = [...new Set(recognitionItems.map((item) => item.year).filter((year): year is number => Boolean(year)))].sort((a, b) => b - a);
-const categories = [...new Set(recognitionItems.map((item) => item.category))].sort((a, b) => a.localeCompare(b));
-const types = [...new Set(recognitionItems.map((item) => item.type))].sort((a, b) => a.localeCompare(b));
-const institutions = [...new Set(recognitionItems.map((item) => item.institution))].sort((a, b) => a.localeCompare(b));
-const statuses = [...new Set(recognitionItems.map((item) => item.reviewStatus))].sort((a, b) => a.localeCompare(b));
-const latestItems = recognitionItems.filter((item) => item.publicImage).slice(0, 3);
+const categories = uniqueSorted(recognitionItems.map((item) => item.category_primary));
+const types = uniqueSorted(recognitionItems.map((item) => item.document_type));
+const institutions = uniqueSorted(recognitionItems.map((item) => item.issuer_group || item.institution || item.issuer));
+const lifeStages = uniqueSorted(recognitionItems.map((item) => item.life_stage));
+const latestItems = recognitionItems.slice(0, 3);
 const yearRange = recognitionsSummary.yearRange;
 
 const structuredData = {
@@ -19,20 +21,21 @@ const structuredData = {
   "@type": "CollectionPage",
   name: "Mural de Reconocimientos",
   description:
-    "Mural visual de certificados, constancias, nominaciones y reconocimientos públicos asociados con la trayectoria de Baruch López.",
+    "Mural visual de certificados, constancias, diplomas, reconocimientos y evidencias documentales asociados con la trayectoria de Baruch López.",
   hasPart: recognitionItems.map((item) => ({
     "@type": "CreativeWork",
-    name: item.title,
-    datePublished: item.date ?? (item.year ? String(item.year) : undefined),
-    publisher: item.institution,
-    genre: item.type,
+    name: item.title || undefined,
+    datePublished: item.sort_date ?? (item.year ? String(item.year) : undefined),
+    publisher: item.institution || item.issuer || undefined,
+    genre: item.document_type || undefined,
+    image: item.display_image || undefined,
   })),
 };
 ---
 
 <BaseLayout
   title="Mural de Reconocimientos | Baruch López"
-  description="Una recopilación visual y cronológica de certificados, constancias, premios y reconocimientos públicos de la trayectoria académica y profesional de Baruch López."
+  description="Una recopilación visual y cronológica de certificados, constancias, diplomas y reconocimientos públicos de la trayectoria académica, profesional y personal de Baruch López."
   currentPath={Astro.url.pathname}
   canonicalPath="/recognitions/"
   structuredData={structuredData}
@@ -49,9 +52,9 @@ const structuredData = {
         </p>
         <p class="hero-body">
           Cada pieza representa una etapa de aprendizaje, disciplina, participación o contribución
-          en tecnología, innovación, liderazgo y desarrollo profesional. Este mural muestra los
-          127 archivos de la carpeta Certificados; cuando un documento requiere privacidad o
-          confirmación, aparece como registro inventariado sin exponer su vista completa.
+          en tecnología, innovación, liderazgo, deporte y desarrollo profesional. Este mural
+          integra los {recognitionItems.length} archivos localizados en Certificados y muestra
+          únicamente los datos que pudieron leerse en el documento visible.
         </p>
         <div class="button-row">
           <LinkButton label="Explorar mural" href="#recognitions-mural" variant="primary" size="large" />
@@ -68,16 +71,20 @@ const structuredData = {
           <span class="mini-label">Archivos en mural</span>
           <strong>{recognitionItems.length}</strong>
         </div>
+        {
+          yearRange ? (
+            <div>
+              <span class="mini-label">Años visibles</span>
+              <strong>{`${yearRange[0]} - ${yearRange[1]}`}</strong>
+            </div>
+          ) : null
+        }
         <div>
-          <span class="mini-label">Años</span>
-          <strong>{yearRange ? `${yearRange[0]} - ${yearRange[1]}` : "Por confirmar"}</strong>
-        </div>
-        <div>
-          <span class="mini-label">Instituciones</span>
+          <span class="mini-label">Emisores</span>
           <strong>{institutions.length}</strong>
         </div>
         <div>
-          <span class="mini-label">Categorías</span>
+          <span class="mini-label">Áreas</span>
           <strong>{categories.length}</strong>
         </div>
       </div>
@@ -88,8 +95,8 @@ const structuredData = {
     <div class="container">
       <SectionHeader
         eyebrow="MUESTRA RECIENTE"
-        title="Una primera lectura visual."
-        copy="El mural completo mantiene el orden cronológico y permite filtrar por año, tipo, categoría e institución."
+        title="Una lectura visual más limpia."
+        copy="La base documental fue reconstruida para separar lo visible de lo incierto: fechas, títulos, emisores y áreas solo aparecen cuando hay lectura suficiente del documento."
       />
       <div class="recognition-feature-grid">
         {latestItems.map((item) => <RecognitionCard item={item} compact={true} />)}
@@ -102,19 +109,33 @@ const structuredData = {
       <SectionHeader
         eyebrow="ARCHIVO CURADO"
         title="Explora el mural completo."
-        copy="Los filtros trabajan sobre los 127 archivos encontrados en Certificados. Las tarjetas con datos sensibles o metadatos pendientes se muestran como registros inventariados, sin publicar la vista completa."
+        copy="Busca y filtra por año, emisor, etapa, tipo o área. Las tarjetas omiten cualquier dato que no esté confirmado visualmente."
       />
 
       <form class="recognitions-toolbar panel" data-recognition-filters>
         <div class="recognition-field recognition-field-search">
           <label for="recognition-search">Buscar</label>
-          <input id="recognition-search" type="search" name="search" placeholder="Título, institución o categoría" data-filter-search />
+          <input id="recognition-search" type="search" name="search" placeholder="Título, institución, etapa o tema" data-filter-search />
         </div>
         <div class="recognition-field">
           <label for="recognition-year">Año</label>
           <select id="recognition-year" name="year" data-filter-year>
             <option value="all">Todos</option>
             {years.map((year) => <option value={year}>{year}</option>)}
+          </select>
+        </div>
+        <div class="recognition-field">
+          <label for="recognition-institution">Emisor</label>
+          <select id="recognition-institution" name="institution" data-filter-institution>
+            <option value="all">Todos</option>
+            {institutions.map((institution) => <option value={institution}>{institution}</option>)}
+          </select>
+        </div>
+        <div class="recognition-field">
+          <label for="recognition-life-stage">Etapa</label>
+          <select id="recognition-life-stage" name="lifeStage" data-filter-life-stage>
+            <option value="all">Todas</option>
+            {lifeStages.map((lifeStage) => <option value={lifeStage}>{lifeStage}</option>)}
           </select>
         </div>
         <div class="recognition-field">
@@ -125,24 +146,10 @@ const structuredData = {
           </select>
         </div>
         <div class="recognition-field">
-          <label for="recognition-category">Categoría</label>
+          <label for="recognition-category">Área</label>
           <select id="recognition-category" name="category" data-filter-category>
             <option value="all">Todas</option>
             {categories.map((category) => <option value={category}>{category}</option>)}
-          </select>
-        </div>
-        <div class="recognition-field">
-          <label for="recognition-institution">Institución</label>
-          <select id="recognition-institution" name="institution" data-filter-institution>
-            <option value="all">Todas</option>
-            {institutions.map((institution) => <option value={institution}>{institution}</option>)}
-          </select>
-        </div>
-        <div class="recognition-field">
-          <label for="recognition-status">Estado</label>
-          <select id="recognition-status" name="status" data-filter-status>
-            <option value="all">Todos</option>
-            {statuses.map((status) => <option value={status}>{status}</option>)}
           </select>
         </div>
         <div class="recognition-field">
@@ -194,10 +201,10 @@ const structuredData = {
       const search = root.querySelector("[data-filter-search]");
       const filters = {
         year: root.querySelector("[data-filter-year]"),
+        institution: root.querySelector("[data-filter-institution]"),
+        lifeStage: root.querySelector("[data-filter-life-stage]"),
         type: root.querySelector("[data-filter-type]"),
         category: root.querySelector("[data-filter-category]"),
-        institution: root.querySelector("[data-filter-institution]"),
-        status: root.querySelector("[data-filter-status]"),
         sort: root.querySelector("[data-filter-sort]"),
       };
       const form = root.querySelector("[data-recognition-filters]");
@@ -219,10 +226,10 @@ const structuredData = {
         const term = normalized(search?.value);
         const active = {
           year: filters.year?.value || "all",
+          institution: filters.institution?.value || "all",
+          lifeStage: filters.lifeStage?.value || "all",
           type: filters.type?.value || "all",
           category: filters.category?.value || "all",
-          institution: filters.institution?.value || "all",
-          status: filters.status?.value || "all",
           sort: filters.sort?.value || "desc",
         };
 
@@ -234,15 +241,15 @@ const structuredData = {
         let visible = 0;
         sorted.forEach((card, index) => {
           const text = normalized(
-            `${card.dataset.title} ${card.dataset.institution} ${card.dataset.category} ${card.dataset.type} ${card.dataset.status} ${card.dataset.year}`
+            `${card.dataset.title} ${card.dataset.institution} ${card.dataset.issuer} ${card.dataset.lifeStage} ${card.dataset.category} ${card.dataset.type} ${card.dataset.topics} ${card.dataset.year}`
           );
           const matches =
             (!term || text.includes(term)) &&
             (active.year === "all" || card.dataset.year === active.year) &&
+            (active.institution === "all" || card.dataset.issuer === active.institution || card.dataset.institution === active.institution) &&
+            (active.lifeStage === "all" || card.dataset.lifeStage === active.lifeStage) &&
             (active.type === "all" || card.dataset.type === active.type) &&
-            (active.category === "all" || card.dataset.category === active.category) &&
-            (active.institution === "all" || card.dataset.institution === active.institution) &&
-            (active.status === "all" || card.dataset.status === active.status);
+            (active.category === "all" || card.dataset.category === active.category);
 
           card.hidden = !matches;
           card.style.order = String(index);

@@ -7,72 +7,89 @@ interface Props {
 }
 
 const { item, compact = false } = Astro.props as Props;
-const sortDate = item.date ?? (item.year ? `${item.year}-01-01` : "0000-00-00");
-const yearValue = item.year ? String(item.year) : "por-confirmar";
-const dateLabel = item.dateLabel || "Por confirmar";
+const sortDate = item.sort_date ?? (item.year ? `${item.year}-01-01` : "0000-00-00");
+const yearValue = item.year ? String(item.year) : "";
+const dateLabel = item.date_visible || yearValue;
+const issuerLabel = item.institution || item.issuer || "";
+const titleLabel = item.title || "";
+const cardTitle = titleLabel || item.document_type || item.category_primary || "";
+const description = item.description_short || item.description_expanded || "";
+const imageAlt = titleLabel
+  ? `Vista previa de ${titleLabel}${issuerLabel ? `, ${issuerLabel}` : ""}.`
+  : "Vista previa de documento del mural.";
+const tags = [...new Set([item.category_primary, item.category_secondary, item.life_stage, ...item.tags].filter(Boolean))];
+const topicsLabel = item.skills_or_topics.join(", ");
+const detailRows = [
+  ["Fecha", dateLabel],
+  ["Institución", item.institution],
+  ["Emisor", item.issuer && item.issuer !== item.institution ? item.issuer : ""],
+  ["Programa", item.issuing_department_or_program],
+  ["Plataforma", item.credential_platform],
+  ["Tipo", item.document_type],
+  ["Área", item.category_primary],
+  ["Área secundaria", item.category_secondary],
+  ["Etapa", item.life_stage],
+  ["Temas", topicsLabel],
+].filter(([, value]) => Boolean(value));
 ---
 
 <article
   class:list={["recognition-card", "panel", "reveal-enter", compact ? "recognition-card-compact" : ""]}
   data-recognition-card
-  data-title={item.title.toLowerCase()}
+  data-title={titleLabel.toLowerCase()}
   data-year={yearValue}
-  data-type={item.type}
-  data-category={item.category}
-  data-institution={item.institution}
-  data-status={item.reviewStatus}
+  data-type={item.document_type}
+  data-category={item.category_primary}
+  data-life-stage={item.life_stage}
+  data-institution={issuerLabel}
+  data-issuer={item.issuer_group || issuerLabel}
+  data-topics={topicsLabel}
   data-date={sortDate}
 >
   <div class="recognition-media">
     {
-      item.publicImage ? (
-        <img src={item.publicImage} alt={item.alt} loading="lazy" decoding="async" />
+      item.display_image ? (
+        <img src={item.display_image} alt={imageAlt} loading="lazy" decoding="async" />
       ) : (
-        <div class:list={["recognition-placeholder", `recognition-placeholder-${item.visualStatus}`]} aria-label={item.alt}>
-          <span>{item.type}</span>
-          <strong>{dateLabel}</strong>
+        <div class="recognition-placeholder" aria-label={imageAlt}>
+          {item.document_type ? <span>{item.document_type}</span> : null}
+          {dateLabel ? <strong>{dateLabel}</strong> : null}
         </div>
       )
     }
   </div>
   <div class="recognition-copy">
-    <div class="recognition-topline">
-      <span class="mini-label">{item.type}</span>
-      <span class="project-year">{dateLabel}</span>
-    </div>
-    <h3>{item.title}</h3>
-    <p class="issuer-line">{item.institution}</p>
-    <p>{item.description}</p>
-    <div class="tag-list recognition-tags" aria-label={`Categorías de ${item.title}`}>
-      <span class="tag">{item.category}</span>
-      <span class="tag">{item.confidence}</span>
-      {item.reviewStatus === "Preview publicada" ? null : <span class="tag tag-warning">{item.reviewStatus}</span>}
-    </div>
     {
-      compact ? null : (
+      item.document_type || dateLabel ? (
+        <div class="recognition-topline">
+          {item.document_type ? <span class="mini-label">{item.document_type}</span> : null}
+          {dateLabel ? <span class="project-year">{dateLabel}</span> : null}
+        </div>
+      ) : null
+    }
+    {cardTitle ? <h3>{cardTitle}</h3> : null}
+    {issuerLabel ? <p class="issuer-line">{issuerLabel}</p> : null}
+    {description ? <p>{description}</p> : null}
+    {
+      tags.length ? (
+        <div class="tag-list recognition-tags" aria-label={titleLabel ? `Categorías de ${titleLabel}` : "Categorías del documento"}>
+          {tags.map((tag) => <span class="tag">{tag}</span>)}
+        </div>
+      ) : null
+    }
+    {
+      compact || !detailRows.length ? null : (
         <details class="recognition-detail">
           <summary>Ver detalle</summary>
           <dl>
-            <div>
-              <dt>Fecha</dt>
-              <dd>{dateLabel}</dd>
-            </div>
-            <div>
-              <dt>Institución</dt>
-              <dd>{item.institution}</dd>
-            </div>
-            <div>
-              <dt>Tipo</dt>
-              <dd>{item.type}</dd>
-            </div>
-            <div>
-              <dt>Categoría</dt>
-              <dd>{item.category}</dd>
-            </div>
-            <div>
-              <dt>Estado</dt>
-              <dd>{item.reviewStatus}</dd>
-            </div>
+            {
+              detailRows.map(([label, value]) => (
+                <div>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))
+            }
           </dl>
         </details>
       )

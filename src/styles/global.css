@@ -192,6 +192,47 @@ main {
   gap: 0.55rem;
 }
 
+.language-switcher {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(2.2rem, auto));
+  gap: 0.12rem;
+  align-items: center;
+  min-height: 2.35rem;
+  padding: 0.18rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.language-switcher button {
+  min-height: 1.85rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.28rem 0.5rem;
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+
+.language-switcher button:hover,
+.language-switcher button:focus-visible {
+  color: var(--ink);
+  outline: none;
+}
+
+.language-switcher button[aria-pressed="true"] {
+  background: rgba(242, 240, 237, 0.92);
+  color: #11100e;
+}
+
 .hero-shell {
   padding: clamp(1.2rem, 3vw, 1.8rem) 0 0;
 }
@@ -1877,6 +1918,13 @@ html.motion-ready .reveal-enter.is-visible {
   }
 
   .utility-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-height: none;
+  }
+
+  .utility-links > a {
     display: none;
   }
 

@@ -145,20 +145,63 @@ const ogImageAlt = "Portrait of Baruch López.";
 
         const getDictionary = (locale) => config.dictionaries[locale]?.phrases || {};
 
+        const translateGeneratedDescription = (trimmed, locale, dictionary) => {
+          const topicLabel = (value) => dictionary[value] || dictionary[value.toLowerCase()] || value;
+
+          if (locale === "es") {
+            const timelineLabel = trimmed.match(/^Timeline with (.+) events$/);
+            if (timelineLabel) {
+              return `Línea de tiempo con ${timelineLabel[1]} eventos`;
+            }
+
+            const generated = trimmed.match(
+              /^(Document|Certificate|Certificate of participation|Diploma|Recognition|Documentary evidence) issued by (.+), related to (.+)\.$/
+            );
+            if (generated) {
+              const typeLabels = {
+                Document: "Documento",
+                Certificate: "Certificado",
+                "Certificate of participation": "Constancia",
+                Diploma: "Diploma",
+                Recognition: "Reconocimiento",
+                "Documentary evidence": "Evidencia documental",
+              };
+              return `${typeLabels[generated[1]]} emitido por ${generated[2]}, relacionado con ${topicLabel(generated[3])}.`;
+            }
+          }
+
+          if (locale === "en") {
+            const timelineLabel = trimmed.match(/^Línea de tiempo con (.+) eventos$/);
+            if (timelineLabel) {
+              return `Timeline with ${timelineLabel[1]} events`;
+            }
+
+            const generated = trimmed.match(
+              /^(Documento|Certificado|Constancia|Diploma|Reconocimiento|Evidencia documental) emitid[oa] por (.+), relacionado con (.+)\.$/
+            );
+            if (generated) {
+              const typeLabels = {
+                Documento: "Document",
+                Certificado: "Certificate",
+                Constancia: "Certificate of participation",
+                Diploma: "Diploma",
+                Reconocimiento: "Recognition",
+                "Evidencia documental": "Documentary evidence",
+              };
+              return `${typeLabels[generated[1]]} issued by ${generated[2]}, related to ${topicLabel(generated[3])}.`;
+            }
+          }
+
+          return "";
+        };
+
         const translate = (source, locale) => {
           const text = String(source || "");
           const trimmed = text.replace(/\s+/g, " ").trim();
           if (!trimmed) return text;
 
           const dictionary = getDictionary(locale);
-          let translated = dictionary[trimmed] || trimmed;
-
-          if (translated === trimmed) {
-            const entries = Object.entries(dictionary)
-              .filter(([from]) => from.length > 6 && trimmed.includes(from))
-              .sort((left, right) => right[0].length - left[0].length);
-            translated = entries.reduce((value, [from, to]) => value.split(from).join(to), trimmed);
-          }
+          const translated = dictionary[trimmed] || translateGeneratedDescription(trimmed, locale, dictionary) || trimmed;
 
           const leading = text.match(/^\s*/)?.[0] || "";
           const trailing = text.match(/\s*$/)?.[0] || "";

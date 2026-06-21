@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Omar Baruch M. Lopez - GenAI Architect CV</title>
+    <meta
+      name="description"
+      content="ATS-aware CV for Omar Baruch M. Lopez, AI Engineer II focused on applied AI, data engineering, industrial AI, GenAI tooling and enterprise AI architecture."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #15181d;
+        --muted: #56606b;
+        --soft: #f4f1ea;
+        --panel: #ffffff;
+        --line: #d9d5cc;
+        --blue: #244e78;
+        --blue-soft: #dceaf4;
+        --gold: #a9833e;
+        --charcoal: #22262d;
+        --shadow: 0 20px 50px rgba(18, 28, 42, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
+          sans-serif;
+        color: var(--ink);
+        background: var(--soft);
+        line-height: 1.55;
+      }
+
+      a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .page {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 56px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(34, 38, 45, 0.12);
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 244, 236, 0.96)),
+          radial-gradient(circle at 82% 12%, rgba(36, 78, 120, 0.16), transparent 28%);
+        box-shadow: var(--shadow);
+        padding: clamp(30px, 5vw, 58px);
+        margin-bottom: 22px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
+        gap: 30px;
+        align-items: end;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--gold);
+        font-size: 0.77rem;
+        font-weight: 750;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        color: var(--charcoal);
+        letter-spacing: 0;
+      }
+
+      h1 {
+        margin-top: 12px;
+        font-size: clamp(2.35rem, 6vw, 5.2rem);
+        line-height: 0.94;
+        max-width: 11ch;
+      }
+
+      .preferred-name {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .headline {
+        margin-top: 20px;
+        max-width: 760px;
+        font-size: clamp(1.05rem, 2vw, 1.35rem);
+        color: #2d3744;
+      }
+
+      .contact-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 24px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .contact-strip a,
+      .contact-strip span {
+        display: inline-flex;
+        min-height: 38px;
+        align-items: center;
+        border: 1px solid rgba(36, 78, 120, 0.18);
+        background: rgba(255, 255, 255, 0.72);
+        padding: 8px 12px;
+        color: #203449;
+        font-size: 0.94rem;
+      }
+
+      .hero-panel {
+        border-left: 3px solid var(--blue);
+        padding-left: 20px;
+      }
+
+      .hero-panel h2 {
+        font-size: 1.2rem;
+      }
+
+      .hero-panel p {
+        margin: 10px 0 0;
+        color: var(--muted);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border: 1px solid var(--blue);
+        background: var(--blue);
+        color: #fff;
+        padding: 10px 14px;
+        font-weight: 700;
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--blue);
+      }
+
+      .section {
+        margin-top: 22px;
+        border: 1px solid rgba(34, 38, 45, 0.12);
+        background: rgba(255, 255, 255, 0.88);
+        padding: clamp(22px, 3vw, 34px);
+      }
+
+      .section-header {
+        display: grid;
+        grid-template-columns: minmax(190px, 0.35fr) minmax(0, 1fr);
+        gap: 24px;
+        align-items: start;
+        margin-bottom: 20px;
+      }
+
+      .section-header h2 {
+        font-size: clamp(1.35rem, 2.3vw, 2.05rem);
+        line-height: 1.08;
+      }
+
+      .section-header p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .summary {
+        font-size: 1.05rem;
+        max-width: 960px;
+      }
+
+      .grid-2,
+      .grid-3 {
+        display: grid;
+        gap: 14px;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card {
+        border: 1px solid rgba(34, 38, 45, 0.12);
+        background: var(--panel);
+        padding: 18px;
+      }
+
+      .card h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 19px;
+      }
+
+      li {
+        margin: 7px 0;
+      }
+
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .tag {
+        border: 1px solid rgba(36, 78, 120, 0.16);
+        background: var(--blue-soft);
+        color: #203449;
+        padding: 6px 9px;
+        font-size: 0.88rem;
+        font-weight: 650;
+      }
+
+      .role {
+        display: grid;
+        grid-template-columns: minmax(190px, 0.32fr) minmax(0, 1fr);
+        gap: 24px;
+        padding: 20px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .role:first-of-type {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .role-meta {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .role-title {
+        margin: 0 0 4px;
+        font-size: 1.07rem;
+      }
+
+      .fine-print {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .split-list {
+        columns: 2;
+        column-gap: 34px;
+      }
+
+      .project-link {
+        font-weight: 700;
+      }
+
+      .footer-note {
+        margin-top: 20px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 860px) {
+        .hero-grid,
+        .section-header,
+        .role,
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          max-width: 100%;
+        }
+
+        .split-list {
+          columns: 1;
+        }
+      }
+
+      @media print {
+        @page {
+          size: Letter;
+          margin: 0.48in 0.5in;
+        }
+
+        * {
+          box-shadow: none !important;
+          text-shadow: none !important;
+        }
+
+        html,
+        body {
+          width: auto;
+          background: #fff !important;
+          color: #111 !important;
+          font-size: 9.25pt;
+          line-height: 1.25;
+        }
+
+        .page {
+          width: auto;
+          margin: 0;
+          padding: 0;
+        }
+
+        .hero,
+        .section {
+          border: 0;
+          background: #fff !important;
+          padding: 0;
+          margin: 0 0 7pt;
+          box-shadow: none;
+        }
+
+        .hero-grid,
+        .section-header,
+        .role,
+        .grid-2,
+        .grid-3 {
+          display: block;
+        }
+
+        .hero-panel,
+        .hero-actions,
+        .screen-only,
+        .screen-emphasis {
+          display: none !important;
+        }
+
+        h1 {
+          max-width: none;
+          margin: 0 0 3pt;
+          font-size: 20pt;
+          line-height: 1.05;
+        }
+
+        .preferred-name,
+        .headline {
+          margin: 0 0 4pt;
+          font-size: 9.8pt;
+          color: #222 !important;
+        }
+
+        .contact-strip {
+          display: block;
+          margin: 0 0 8pt;
+          padding: 0;
+        }
+
+        .contact-strip li {
+          display: inline;
+          margin: 0;
+        }
+
+        .contact-strip a,
+        .contact-strip span {
+          display: inline;
+          min-height: 0;
+          border: 0;
+          background: transparent;
+          padding: 0;
+          color: #111 !important;
+          font-size: 8.7pt;
+        }
+
+        .contact-strip li:not(:last-child)::after {
+          content: " | ";
+        }
+
+        .eyebrow {
+          display: none;
+        }
+
+        .section-header {
+          margin: 0;
+        }
+
+        .section-header h2 {
+          margin: 7pt 0 3pt;
+          padding-bottom: 1.5pt;
+          border-bottom: 0.75pt solid #222;
+          color: #111 !important;
+          font-size: 10.5pt;
+          line-height: 1.1;
+          text-transform: uppercase;
+        }
+
+        .section-header p,
+        .summary,
+        .fine-print,
+        .card p,
+        .role-meta {
+          color: #222 !important;
+        }
+
+        .summary {
+          font-size: 9.25pt;
+        }
+
+        .section-header p:not(.summary),
+        .fine-print {
+          display: none;
+        }
+
+        .card {
+          border: 0;
+          padding: 0;
+          margin: 0 0 4pt;
+          break-inside: avoid;
+        }
+
+        .card h3,
+        .role-title {
+          margin: 3pt 0 1.5pt;
+          font-size: 9.6pt;
+          color: #111 !important;
+        }
+
+        .role {
+          padding: 0;
+          border-top: 0;
+          break-inside: avoid;
+        }
+
+        .role-meta {
+          margin: 0 0 1.5pt;
+          font-size: 8.6pt;
+        }
+
+        ul {
+          margin: 0;
+          padding-left: 13pt;
+        }
+
+        li {
+          margin: 1.4pt 0;
+        }
+
+        .split-list {
+          columns: 1;
+          column-gap: 0;
+        }
+
+        .tag-list {
+          display: block;
+          margin: 0;
+        }
+
+        .tag {
+          display: inline;
+          border: 0;
+          background: transparent;
+          padding: 0;
+          color: #111 !important;
+          font-size: 8.7pt;
+          font-weight: 400;
+        }
+
+        .tag:not(:last-child)::after {
+          content: ", ";
+        }
+
+        a {
+          color: #111 !important;
+          text-decoration: none;
+        }
+
+        .footer-note {
+          margin-top: 5pt;
+          color: #333 !important;
+          font-size: 8pt;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">Executive technical CV - enterprise AI architecture focus</span>
+            <h1>Omar Baruch M. Lopez</h1>
+            <p class="headline">
+              AI Engineer II | Applied AI &amp; Data Engineering | Industrial AI | Enterprise AI
+              Architecture Focus | MBA Candidate
+            </p>
+            <ul class="contact-strip" aria-label="Contact links">
+              <li><span>Guadalajara, Mexico</span></li>
+              <li><a href="mailto:baruch.lopez@outlook.com">baruch.lopez@outlook.com</a></li>
+              <li><a href="https://www.linkedin.com/in/baruchlopez/">linkedin.com/in/baruchlopez</a></li>
+              <li><a href="https://github.com/OBaruch">github.com/OBaruch</a></li>
+              <li><a href="https://baruchlopez.com/">baruchlopez.com</a></li>
+            </ul>
+            <div class="hero-actions screen-only">
+              <a class="button" href="./baruch-lopez-genai-architect-cv.pdf">Open PDF CV</a>
+              <a class="button secondary" href="https://github.com/OBaruch">View GitHub</a>
+            </div>
+          </div>
+          <aside class="hero-panel" aria-label="Positioning">
+            <h2>Profile signal</h2>
+            <p>
+              Enterprise AI engineer with a practical foundation in data, automation, analytics and
+              stakeholder enablement, now building toward scalable GenAI and industrial AI solution
+              architecture.
+            </p>
+          </aside>
+        </div>
+      </header>
+
+      <section class="section" id="summary">
+        <div class="section-header">
+          <span class="eyebrow">Profile</span>
+          <div>
+            <h2>Professional Summary</h2>
+            <p class="summary">
+              AI Engineer II at Bosch Mexico with 4+ years building AI-driven solutions, data
+              engineering workflows, analytics capabilities and workflow automation for production,
+              operations, finance/controlling and business environments. Hands-on work includes
+              SAP-to-modern-data integration, ETL pipelines, Power BI reporting, ML MVPs, APIs,
+              runbooks and reusable documentation. Current GenAI work and learning focus includes
+              prompt engineering, AI assistants, text/image/video generation, AI agents and
+              evaluation. Robotics engineering, Dual MBA studies and active TOGAF Enterprise
+              Architecture certification preparation support work at the intersection of industrial
+              AI, enterprise architecture, governance and business-aligned solution design.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section screen-emphasis" id="readiness">
+        <div class="section-header">
+          <span class="eyebrow">Readiness</span>
+          <div>
+            <h2>AI Architecture Readiness</h2>
+            <p>
+              Practical enterprise delivery plus a focused GenAI development track.
+            </p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Enterprise delivery base</h3>
+            <ul>
+              <li>Applied AI, data analytics, ETL, SQL, Power BI, Alteryx and automation experience inside Bosch Mexico.</li>
+              <li>Translates stakeholder needs into technical workflows, dashboards, data pipelines, documentation and training.</li>
+              <li>Works in industrial and operations-adjacent contexts with attention to confidentiality, reliability and practical adoption.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>GenAI architecture focus</h3>
+            <ul>
+              <li>Current focus areas include prompt engineering, AI assistants, generative text/image/video workflows, AI agents, RAG patterns, evaluation and Responsible AI practices.</li>
+              <li>Recent training includes Duke University Generative AI, Cognigy Foundations and AI Agents for Cognigy Users.</li>
+              <li>MBA studies and TOGAF preparation support capability alignment, governance, roadmapping and value-oriented solution design.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="section-header">
+          <span class="eyebrow">Skills</span>
+          <div>
+            <h2>Core Skills</h2>
+            <p>Grouped by demonstrated capability and current architecture focus.</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>AI, ML &amp; Automation</h3>
+            <div class="tag-list">
+              <span class="tag">AI engineering</span>
+              <span class="tag">Machine learning</span>
+              <span class="tag">Python</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">Scikit-learn</span>
+              <span class="tag">Computer vision</span>
+              <span class="tag">ML MVPs</span>
+              <span class="tag">Automation</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Data Engineering &amp; Analytics</h3>
+            <div class="tag-list">
+              <span class="tag">SQL</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">Oracle SQL</span>
+              <span class="tag">SAP data integration</span>
+              <span class="tag">SQL Server</span>
+              <span class="tag">ETL</span>
+              <span class="tag">Alteryx</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">DAX</span>
+              <span class="tag">Data Lake workflows</span>
+              <span class="tag">Data pipelines</span>
+              <span class="tag">Reporting</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>GenAI / AI Tooling Focus</h3>
+            <p class="fine-print">Current learning and applied experimentation focus.</p>
+            <div class="tag-list">
+              <span class="tag">Generative AI</span>
+              <span class="tag">Prompt engineering</span>
+              <span class="tag">ChatGPT</span>
+              <span class="tag">OpenAI Codex</span>
+              <span class="tag">Anthropic Claude</span>
+              <span class="tag">AI agents</span>
+              <span class="tag">RAG</span>
+              <span class="tag">Text generation</span>
+              <span class="tag">Image generation</span>
+              <span class="tag">Video generation</span>
+              <span class="tag">Multimodal AI</span>
+              <span class="tag">Evaluation</span>
+              <span class="tag">Responsible AI</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Software, Integration &amp; Platforms</h3>
+            <div class="tag-list">
+              <span class="tag">APIs</span>
+              <span class="tag">Flask</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Airflow</span>
+              <span class="tag">AWS EC2</span>
+              <span class="tag">Elastic Beanstalk</span>
+              <span class="tag">Azure</span>
+              <span class="tag">SageMaker fundamentals</span>
+              <span class="tag">Postman</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">GitLab</span>
+              <span class="tag">Jira</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">Hugging Face</span>
+              <span class="tag">Documentation</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Architecture &amp; Business</h3>
+            <div class="tag-list">
+              <span class="tag">Solution architecture</span>
+              <span class="tag">Enterprise architecture</span>
+              <span class="tag">TOGAF certification preparation</span>
+              <span class="tag">Business capability alignment</span>
+              <span class="tag">Governance</span>
+              <span class="tag">Roadmapping</span>
+              <span class="tag">Stakeholder management</span>
+              <span class="tag">Technical leadership</span>
+              <span class="tag">Business strategy</span>
+              <span class="tag">Finance basics</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Languages</h3>
+            <ul>
+              <li>Spanish: Native</li>
+              <li>English: Full professional proficiency, supported by TOEFL iBT 78 and bilingual professional work.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <div class="section-header">
+          <span class="eyebrow">Work</span>
+          <div>
+            <h2>Professional Experience</h2>
+            <p>Reverse chronological summary focused on public-safe capability and delivery.</p>
+          </div>
+        </div>
+
+        <article class="role">
+          <div class="role-meta">
+            <h3 class="role-title">Bosch Mexico</h3>
+            <div>Guadalajara, Mexico</div>
+            <div>2022 - Present</div>
+          </div>
+          <div>
+            <h3 class="role-title">AI Engineer II, Jan 2026 - Present</h3>
+            <h3 class="role-title">AI Engineer, 2022 - Feb 2026</h3>
+            <ul>
+              <li>Delivered AI-enabled and data-driven solutions for production, operations, finance/controlling and business environments, translating stakeholder needs into technical assets.</li>
+              <li>Built production analytics and data-pipeline workflows across internal Bosch initiatives including TLP Scrap V2, OPC/TNS, AUC Tracking, Operational Cockpits and Productivity Bonus, using Alteryx, SQL Server, Power BI and SAP/data-lake sources.</li>
+              <li>Implemented integration and workflow-enablement assets including the MIURA FastAPI service, Fraccion Arancelaria customs/tariff-classification data enablement, and Airflow/SFTP/REST API automation.</li>
+              <li>Created ML/AI MVPs and PoCs across vehicle detection, staff mobility optimization, production-target regression, object detection and purchase-order anomaly detection using Python, scikit-learn, NetworkX, PyTorch/TensorFlow, YOLOv5/Detectron2 and APIs.</li>
+              <li>Authored runbooks, documentation, validation logic, manuals and training material to transfer knowledge, improve stakeholder adoption and structure ambiguous requirements into reusable workflows.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role">
+          <div class="role-meta">
+            <h3 class="role-title">Cyrus Global Capital</h3>
+            <div>United States / Remote</div>
+            <div>Jul 2024 - Present</div>
+          </div>
+          <div>
+            <h3 class="role-title">Co-Founder &amp; Chief Financial Officer</h3>
+            <ul>
+              <li>Contributes to institutional structure, financial coordination, internal reporting discipline and long-term operating perspective for a private capital initiative.</li>
+              <li>Applies data, governance, business strategy and finance fundamentals to reporting and operational structure within a private capital initiative.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role">
+          <div class="role-meta">
+            <h3 class="role-title">Bosch Mexico</h3>
+            <div>Mexico</div>
+            <div>Apr 2019 - Dec 2021</div>
+          </div>
+          <div>
+            <h3 class="role-title">Mexcellence Scholarship Program</h3>
+            <ul>
+              <li>Completed a formative Bosch-related scholarship stage that bridged robotics studies with professional exposure and applied AI/IoT project work.</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <section class="section screen-emphasis" id="bosch-portfolio">
+        <div class="section-header">
+          <span class="eyebrow">Internal Portfolio</span>
+          <div>
+            <h2>Bosch Internal Delivery Portfolio</h2>
+            <p>Condensed from internal project material for the Bosch internal recruiting context.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3>API, reconciliation and business workflow enablement</h3>
+            <ul>
+              <li>MIURA: FastAPI service implementation for M24 data retrieval, deterministic/hybrid reconciliation, operational download flows, API contracts, configuration, traceability and structured error reporting.</li>
+              <li>Fraccion Arancelaria: AI/data workflow enablement for customs classification knowledge, import/export business needs, documentation and workflow logic.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Production analytics and enterprise data pipelines</h3>
+            <ul>
+              <li>TLP Scrap V2, OPC/TNS, AUC Tracking, Operational Cockpits and Productivity Bonus: Alteryx ETL, SQL Server models, Power BI outputs and SAP/DALI/MES/NICE Data Lake source integration.</li>
+              <li>Financial, production and cost-center analytics structured for recurring operational decision support.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>AI, ML and computer vision MVPs/PoCs</h3>
+            <ul>
+              <li>Vehicle detection, staff mobility optimization, production target regression, object detection and purchase-order outlier detection using Python, scikit-learn, NetworkX, PyTorch/TensorFlow, YOLOv5, Detectron2 and APIs.</li>
+              <li>Exploratory MVP/PoC delivery with clear handoff points when business priority, data readiness or production fit changed.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Automation, migration and delivery structure</h3>
+            <ul>
+              <li>E-commerce automation with Airflow DAGs, secure SFTP transfers, REST API handling and backend customer-database updates.</li>
+              <li>KNIME migration exploration, team data-operations structuring, runbooks, documentation, testing and stakeholder handoff.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="education">
+        <div class="section-header">
+          <span class="eyebrow">Education</span>
+          <div>
+            <h2>Education</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Dual MBA - Master of Business Administration / Maestria en Direccion y Administracion de Empresas</h3>
+            <p>MIU City University Miami and UNIR Mexico | Jul 2025 - Mar 2027 | In progress</p>
+            <p class="fine-print">Business administration, strategy, finance, innovation, operations and leadership.</p>
+          </article>
+          <article class="card">
+            <h3>Licenciatura en Ingenieria Robotica</h3>
+            <p>Universidad de Guadalajara | Jan 2017 - Jun 2021</p>
+            <p class="fine-print">Official robotics engineering foundation; title issued in 2024.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="certifications">
+        <div class="section-header">
+          <span class="eyebrow">Training</span>
+          <div>
+            <h2>Certifications &amp; Training</h2>
+          </div>
+        </div>
+        <ul class="split-list">
+          <li>Introduction to Generative AI - Duke University / Coursera, May 2025</li>
+          <li>AI Agents for Cognigy Users - NiCE Cognigy, Sep 2025</li>
+          <li>Cognigy Foundations (2025) - NiCE Cognigy, Sep 2025</li>
+          <li>Machine Learning Data Lifecycle in Production - DeepLearning.AI, May 2023</li>
+          <li>Introduction to Machine Learning in Production - DeepLearning.AI, Mar 2023</li>
+          <li>Deploy Models with TensorFlow Serving and Flask - Coursera, Jan 2023</li>
+          <li>AWS Elastic Beanstalk: Deploy a Python (Flask) Web Application - Coursera, Jan 2023</li>
+          <li>AWS Shared Responsibility Model, Amazon Athena, Kinesis Streams and SageMaker fundamentals - AWS, 2024</li>
+          <li>MySQL 8.0 - Sulens / BYW Consulting Services, 2022</li>
+          <li>Agile with Atlassian Jira - Atlassian / Coursera, Mar 2022</li>
+          <li>Principles of Leadership: Leading Technical Teams Specialization - University of Colorado Boulder, Mar 2025</li>
+          <li>Introduction to Finance: The Basics - University of Illinois Urbana-Champaign, Mar 2025</li>
+          <li>Lean Six Sigma White Belt - International Lean Six Sigma Group, Nov 2025</li>
+          <li>Leading People - Harvard Business Impact, May 2026</li>
+          <li>TOGAF Enterprise Architecture certification preparation - In progress</li>
+          <li>Bosch internal training portfolio - information security, data protection, compliance, CIP, Power BI, applied ML, ABAP basics, supply-chain security and process standardization, 2022 - 2025</li>
+          <li>Professional engagements - Talent Land Guadalajara Explainable AI, Connectory Talks Data Analytics, Mentoring4GS and robotics workshops, 2019 - 2025</li>
+          <li>TOEFL iBT Score 78 - ETS, Sep 2020</li>
+        </ul>
+      </section>
+
+    </main>
+  </body>
+</html>

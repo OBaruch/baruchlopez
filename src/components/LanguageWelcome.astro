@@ -1,0 +1,50 @@
+<div
+  class="language-welcome"
+  data-language-welcome
+  data-i18n-ignore
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="language-welcome-title"
+  aria-describedby="language-welcome-questions"
+  hidden
+>
+  <div class="language-welcome-backdrop" aria-hidden="true"></div>
+
+  <section class="language-welcome-card" tabindex="-1">
+    <div class="language-welcome-orbit" aria-hidden="true">
+      <svg viewBox="0 0 48 48" role="img">
+        <circle cx="24" cy="24" r="17"></circle>
+        <path d="M7 24h34M24 7c5 4.6 8 10.3 8 17s-3 12.4-8 17c-5-4.6-8-10.3-8-17s3-12.4 8-17Z"></path>
+      </svg>
+    </div>
+
+    <h2 class="language-welcome-title" id="language-welcome-title">
+      <span lang="en">Welcome</span>
+      <span lang="es">Bienvenido</span>
+      <span lang="fr">Bienvenue</span>
+      <span lang="de">Willkommen</span>
+      <span lang="pt">Bem-vindo</span>
+    </h2>
+
+    <div class="language-welcome-rule" aria-hidden="true"></div>
+
+    <div class="language-welcome-questions" id="language-welcome-questions">
+      <p lang="en"><span>EN</span>Would you like to read this site in Spanish or English?</p>
+      <p lang="es"><span>ES</span>¿Te gustaría leer este sitio en español o inglés?</p>
+      <p lang="fr"><span>FR</span>Souhaitez-vous lire ce site en espagnol ou en anglais&nbsp;?</p>
+      <p lang="de"><span>DE</span>Möchten Sie diese Website auf Spanisch oder Englisch lesen?</p>
+      <p lang="pt"><span>PT</span>Gostaria de ler este site em espanhol ou inglês?</p>
+    </div>
+
+    <div class="language-welcome-actions" aria-label="Selecciona el idioma / Choose a language">
+      <button type="button" data-welcome-language="es">
+        <span aria-hidden="true">ES</span>
+        Español
+      </button>
+      <button type="button" data-welcome-language="en">
+        <span aria-hidden="true">EN</span>
+        English
+      </button>
+    </div>
+  </section>
+</div>

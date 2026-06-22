@@ -233,6 +233,244 @@ main {
   color: #11100e;
 }
 
+.language-welcome[hidden] {
+  display: none;
+}
+
+body.language-welcome-open {
+  overflow: hidden;
+}
+
+.language-welcome {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+  opacity: 0;
+  transition: opacity 0.26s ease;
+}
+
+.language-welcome.is-visible {
+  opacity: 1;
+}
+
+.language-welcome-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 14%, rgba(216, 180, 107, 0.16), transparent 0 34%),
+    radial-gradient(circle at 82% 82%, rgba(143, 199, 208, 0.13), transparent 0 30%),
+    rgba(2, 2, 4, 0.84);
+  backdrop-filter: blur(22px) saturate(125%);
+}
+
+.language-welcome-card {
+  position: relative;
+  isolation: isolate;
+  width: min(47rem, 100%);
+  max-height: calc(100dvh - 2rem);
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: clamp(1.35rem, 4vw, 2.6rem);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 1.4rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.105), transparent 34%),
+    linear-gradient(180deg, rgba(22, 22, 25, 0.98), rgba(9, 9, 11, 0.98));
+  box-shadow:
+    0 32px 100px rgba(0, 0, 0, 0.64),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateY(1rem) scale(0.975);
+  transition:
+    opacity 0.26s ease,
+    transform 0.36s var(--ease-out);
+}
+
+.language-welcome-card::before,
+.language-welcome-card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 999px;
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+.language-welcome-card::before {
+  top: 1.1rem;
+  right: 1.1rem;
+  width: 11rem;
+  height: 11rem;
+  border: 1px solid rgba(216, 180, 107, 0.2);
+  box-shadow: inset 0 0 5rem rgba(216, 180, 107, 0.055);
+}
+
+.language-welcome-card::after {
+  bottom: 1.1rem;
+  left: 1.1rem;
+  width: 12rem;
+  height: 12rem;
+  border: 1px solid rgba(143, 199, 208, 0.15);
+  box-shadow: inset 0 0 5rem rgba(143, 199, 208, 0.045);
+}
+
+.language-welcome.is-visible .language-welcome-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.language-welcome-orbit {
+  display: grid;
+  place-items: center;
+  width: 3.1rem;
+  height: 3.1rem;
+  margin: 0 auto 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  color: var(--accent-warm);
+  background:
+    radial-gradient(circle at 35% 22%, rgba(255, 255, 255, 0.14), transparent 0 36%),
+    rgba(255, 255, 255, 0.035);
+  box-shadow: 0 0 2.6rem rgba(216, 180, 107, 0.13);
+}
+
+.language-welcome-orbit svg {
+  width: 1.55rem;
+  height: 1.55rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.language-welcome-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.15rem 0.65rem;
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.75rem, 4.6vw, 3.15rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.language-welcome-title span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.language-welcome-title span:not(:last-child)::after {
+  content: "·";
+  color: rgba(216, 180, 107, 0.68);
+  font-size: 0.7em;
+}
+
+.language-welcome-rule {
+  width: min(18rem, 70%);
+  height: 1px;
+  margin: 1.25rem auto;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.26), transparent);
+}
+
+.language-welcome-questions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem 1.15rem;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.language-welcome-questions p {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: start;
+  margin: 0;
+  color: rgba(239, 236, 231, 0.74);
+  font-size: 0.78rem;
+  line-height: 1.48;
+}
+
+.language-welcome-questions p:last-child {
+  grid-column: 1 / -1;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+.language-welcome-questions p > span {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.75rem;
+  min-height: 1.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: rgba(242, 240, 237, 0.58);
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.language-welcome-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-width: 29rem;
+  margin: 1.65rem auto 0;
+}
+
+.language-welcome-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 3.45rem;
+  padding: 0.85rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition:
+    color 0.22s ease,
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s var(--ease-out);
+}
+
+.language-welcome-actions button:first-child {
+  border-color: rgba(216, 180, 107, 0.48);
+  background: linear-gradient(135deg, rgba(216, 180, 107, 0.23), rgba(216, 180, 107, 0.08));
+}
+
+.language-welcome-actions button:hover,
+.language-welcome-actions button:focus-visible {
+  border-color: rgba(255, 255, 255, 0.44);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0.8rem 2.2rem rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+.language-welcome-actions button > span {
+  color: rgba(242, 240, 237, 0.52);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
 .hero-shell {
   padding: clamp(1.2rem, 3vw, 1.8rem) 0 0;
 }
@@ -2253,6 +2491,57 @@ html.motion-ready .reveal-enter.is-visible {
 
   .recognitions-overview {
     grid-template-columns: 1fr;
+  }
+
+  .language-welcome {
+    padding-inline: 0.65rem;
+  }
+
+  .language-welcome-card {
+    max-height: calc(100dvh - 1.3rem);
+    padding: 1.2rem 1rem;
+    border-radius: 1.05rem;
+  }
+
+  .language-welcome-orbit {
+    width: 2.7rem;
+    height: 2.7rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .language-welcome-title {
+    gap: 0.12rem 0.45rem;
+    font-size: clamp(1.6rem, 8.5vw, 2.15rem);
+  }
+
+  .language-welcome-title span {
+    gap: 0.45rem;
+  }
+
+  .language-welcome-rule {
+    margin-block: 0.95rem;
+  }
+
+  .language-welcome-questions {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .language-welcome-questions p:last-child {
+    grid-column: auto;
+    width: auto;
+    margin-inline: 0;
+  }
+
+  .language-welcome-actions {
+    gap: 0.55rem;
+    margin-top: 1.15rem;
+  }
+
+  .language-welcome-actions button {
+    min-height: 3.1rem;
+    padding-inline: 0.7rem;
+    font-size: 0.78rem;
   }
 }
 

@@ -1,4 +1,5 @@
 ---
+import LanguageWelcome from "@/components/LanguageWelcome.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import { personSchema, siteMeta } from "@/data/site";
@@ -111,6 +112,7 @@ const ogImageAlt = "Portrait of Baruch López.";
   </head>
   <body>
     <div class="site-progress" aria-hidden="true"><span data-site-progress></span></div>
+    <LanguageWelcome />
     <div class="site-shell">
       <SiteHeader currentPath={currentPath} />
       <main>
@@ -262,6 +264,37 @@ const ogImageAlt = "Portrait of Baruch López.";
           });
         };
 
+        const welcome = document.querySelector("[data-language-welcome]");
+        const siteShell = document.querySelector(".site-shell");
+        const welcomeButtons = Array.from(document.querySelectorAll("[data-welcome-language]"));
+        const hasCompletedWelcome = () => {
+          const stored = window.localStorage?.getItem(config.welcomeStorageKey);
+          return stored === "complete" || readCookie(config.welcomeCookie) === "complete";
+        };
+        const showWelcome = () => {
+          if (!welcome) return;
+          welcome.hidden = false;
+          document.body.classList.add("language-welcome-open");
+          siteShell?.setAttribute("inert", "");
+          window.requestAnimationFrame(() => {
+            welcome.classList.add("is-visible");
+            welcomeButtons[0]?.focus();
+          });
+        };
+        const hideWelcome = () => {
+          if (!welcome) return;
+          welcome.classList.remove("is-visible");
+          document.body.classList.remove("language-welcome-open");
+          siteShell?.removeAttribute("inert");
+          window.setTimeout(() => {
+            welcome.hidden = true;
+          }, document.documentElement.classList.contains("motion-ready") ? 260 : 0);
+        };
+        const completeWelcome = () => {
+          window.localStorage?.setItem(config.welcomeStorageKey, "complete");
+          writeCookie(config.welcomeCookie, "complete");
+        };
+
         const applyLocale = (locale, options = {}) => {
           const nextLocale = normalizeLocale(locale) || config.defaultLocale;
           window.__BARUCH_LOCALE__ = nextLocale;
@@ -288,6 +321,14 @@ const ogImageAlt = "Portrait of Baruch López.";
           });
         });
 
+        welcomeButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            applyLocale(button.getAttribute("data-welcome-language"), { persist: true });
+            completeWelcome();
+            hideWelcome();
+          });
+        });
+
         const initialLocale =
           normalizeLocale(window.__BARUCH_LOCALE__) ||
           normalizeLocale(window.localStorage?.getItem(config.storageKey)) ||
@@ -296,6 +337,7 @@ const ogImageAlt = "Portrait of Baruch López.";
           config.defaultLocale;
 
         applyLocale(initialLocale);
+        if (!hasCompletedWelcome()) showWelcome();
       })();
     </script>
 

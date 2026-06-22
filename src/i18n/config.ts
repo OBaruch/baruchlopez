@@ -31,3 +31,5 @@ export const latamCountryCodes = [
 export const manualLocaleCookie = "bl_locale";
 export const geoLocaleCookie = "bl_geo_locale";
 export const localeStorageKey = "baruch_locale";
+export const languageWelcomeCookie = "bl_language_welcome";
+export const languageWelcomeStorageKey = "baruch_language_welcome_v1";

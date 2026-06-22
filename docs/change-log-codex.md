@@ -1,5 +1,37 @@
 # Change log Codex
 
+## 2026-06-22 / Selector de bienvenida multilingüe
+
+### Resumen
+
+Se agregó un popup de primera visita con bienvenida y pregunta en español, inglés, francés, alemán y portugués. El visitante elige entre `Español` y `English`; la selección se aplica al sistema bilingüe existente y se recuerda mediante `localStorage` y cookie.
+
+### Archivos modificados
+
+- `src/components/LanguageWelcome.astro`
+- `src/i18n/config.ts`
+- `src/i18n/runtime.ts`
+- `src/layouts/BaseLayout.astro`
+- `src/styles/global.css`
+- `docs/change-log-codex.md`
+
+### Decisiones técnicas
+
+- Mantener Astro estático y JavaScript de mejora progresiva.
+- No agregar dependencias.
+- Mostrar el selector una sola vez por navegador y conservar el selector EN/ES del encabezado.
+- Mantener el contenido multilingüe del popup fuera de la traducción automática.
+- Bloquear temporalmente el contenido de fondo con `inert` mientras el diálogo está abierto.
+
+### Validación
+
+- `npm.cmd run check` pasó correctamente y Astro generó 18 páginas.
+- Prueba automatizada en Chromium a 1440 × 1000 y 390 × 844.
+- Se verificaron los cinco saludos, las cinco preguntas y exactamente dos botones.
+- `Español` aplicó `lang="es"`, tradujo la navegación y persistió tras recargar.
+- `English` aplicó `lang="en"`, restauró la navegación en inglés y persistió tras recargar.
+- No hubo desbordamiento horizontal ni excepciones de JavaScript.
+
 ## 2026-05-28 / Public Guidance Cleanup
 
 ### Resumen

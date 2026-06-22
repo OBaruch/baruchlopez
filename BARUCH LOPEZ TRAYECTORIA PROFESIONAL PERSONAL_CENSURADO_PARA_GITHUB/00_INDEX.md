@@ -125,7 +125,7 @@ El [Inventario de Repositorios](00_REPOSITORY_INVENTORY.md) consolida los 30 rep
 - [Mutatis Mutandis](06_REPOSITORIES/REPO_008_Mutatis_Mutandis.md)
 - [Mech Gov Framework](06_REPOSITORIES/REPO_009_Mech_Gov_Framework.md)
 - [LLM Bridge](06_REPOSITORIES/REPO_010_LLM_Bridge.md)
-***************
+- [Linear Adapter Trainer](06_REPOSITORIES/REPO_011_Linear_Adapter_Trainer.md)
 - [Genetic Algorithm Santander](06_REPOSITORIES/REPO_012_Genetic_Algorithm_Santander.md)
 - [Gen Fraud Graph](06_REPOSITORIES/REPO_013_Gen_Fraud_Graph.md)
 - [CLA](06_REPOSITORIES/REPO_014_CLA.md)
@@ -133,18 +133,18 @@ El [Inventario de Repositorios](00_REPOSITORY_INVENTORY.md) consolida los 30 rep
 - [Autoguardrails](06_REPOSITORIES/REPO_016_Autoguardrails.md)
 - [Auto Bayesian](06_REPOSITORIES/REPO_017_Auto_Bayesian.md)
 - [Santander GitHub Profile](06_REPOSITORIES/REPO_018_Santander_GitHub_Profile.md)
-***************
+- [Relationship Exploration Map](06_REPOSITORIES/REPO_019_Relationship_Exploration_Map.md)
 - [Project Center](06_REPOSITORIES/REPO_020_Project_Center.md)
 - [Patrimonial](06_REPOSITORIES/REPO_021_Patrimonial.md)
-***************
+- [Plataforma interna de operación](06_REPOSITORIES/REPO_022_Plataforma_Interna_Operacion.md)
 - [Planetary Biological Computing](06_REPOSITORIES/REPO_023_Planetary_Biological_Computing.md)
 - [BaruchLopez](06_REPOSITORIES/REPO_024_BaruchLopez.md)
-***************
-***************
-***************
-***************
-***************
-***************
+- [Landing comercial residencial](06_REPOSITORIES/REPO_025_Landing_Comercial_Residencial.md)
+- [Sitio institucional de Alpha Signature](06_REPOSITORIES/REPO_026_Alpha_Signature_Webpage.md)
+- [Workspace documental de Alpha Signature](06_REPOSITORIES/REPO_027_Alpha_Signature_Workspace.md)
+- [Quant Trading](06_REPOSITORIES/REPO_028_Quant_Trading.md)
+- [Sitio web de fragancias](06_REPOSITORIES/REPO_029_Sitio_Web_Fragancias.md)
+- [Sitio web gastronómico](06_REPOSITORIES/REPO_030_Sitio_Web_Gastronomico.md)
 
 Los repositorios 005-018 vinculados a SantanderAI son referencias locales; no existe evidencia suficiente para atribuir autoría o participación.
 

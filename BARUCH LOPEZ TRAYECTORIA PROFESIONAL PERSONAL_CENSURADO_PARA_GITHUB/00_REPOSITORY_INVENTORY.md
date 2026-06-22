@@ -12,7 +12,7 @@
 | mutatis-mutandis | Santander | Python | scikit-learn | Copia local oficial | Participación por confirmar | No usar aún | Bajo | Alto |
 | mech-gov-framework | Santander | Python | LLM governance | Copia local oficial | Participación por confirmar | No usar aún | Bajo | Alto |
 | llm_bridge | Santander | Python | LLM adapters | Copia local oficial | Participación por confirmar | No usar aún | Bajo | Alto |
-***************
+| linear-adapter-trainer | Santander | Python | Entrenamiento de adaptadores | Copia local oficial | Referencia técnica | No atribuir autoría | Bajo | Alto |
 | genetic-algorithm | Santander | Python | Library | Copia local oficial | Participación por confirmar | No usar aún | Bajo | Alto |
 | gen-fraud-graph | Santander | Python | Graph data | Copia local oficial | Participación por confirmar | No usar aún | Bajo | Alto |
 | cla | Santander | Markdown | CLA workflow | Copia local oficial | Participación por confirmar | No usar aún | Bajo | Alto |
@@ -23,15 +23,15 @@
 | relationship-exploration-map | Proyectos git | JavaScript | Node, Docker, Nginx | MVP / branch de feature | Relationship Map | Medio-alto | Alto | Alto |
 | Project-Center | Proyectos git | Markdown | — | MVP documental | Project Center | Alto | Bajo | Alto |
 | patrimonial | Proyectos git | TypeScript | Expo, React Native, SQLite | MVP | Patrimonia | Alto | Medio | Alto |
-***************
+| Plataforma interna de operación | Privado | TypeScript | React, Next.js | En evolución | Operación empresarial | Alto en resumen | Muy alto | Alto |
 | Planetary-Biological-Computing | Proyectos git | Python/TSX | FastAPI, React, Three.js | MVP activo | GAIA-1 | Muy alto | Medio | Alto |
 | baruchlopez | Proyectos git | Astro/TS/MD | Astro | Activo | Portal personal | Muy alto | Medio | Alto |
 | altavista-residencial-webpage | Alpha | TS/TSX | React, Vite | Borrador privado | Altavista | Alto con permiso | Alto | Alto |
-***************
-***************
+| Sitio institucional Alpha Signature | Público | JavaScript/CSS | Frontend web | En evolución | Presencia institucional | Alto | Medio | Alto |
+| Workspace Alpha Signature | Privado | Markdown | Sistema documental | Uso continuo | Organización operativa | Alto en resumen | Muy alto | Alto |
 | Quant Trading | Documents | — | — | Inicial/incompleto | Investigación trading | Bajo | Medio | Medio |
-***************
-***************
+| Sitio web de fragancias | Portafolio | TypeScript/TSX | React, Vite | Prototipo funcional | Experiencia comercial | Medio-alto | Medio | Alto |
+| Sitio web gastronómico | Portafolio | TypeScript/TSX | React, Vite | Prototipo funcional | Experiencia comercial | Medio-alto | Medio | Alto |
 
 ## Nota de autoría
 

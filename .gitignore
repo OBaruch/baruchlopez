@@ -16,3 +16,9 @@ _implementation_notes/
 
 # Local exported source material
 content/linkedln/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example

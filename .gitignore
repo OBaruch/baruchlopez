@@ -22,3 +22,6 @@ content/linkedln/
 .dev.vars*
 !.dev.vars.example
 !.env.example
+
+# Private source archive; publish only the censored GitHub copy
+/BARUCH LOPEZ TRAYECTORIA PORFESIONAL PERSONAL/

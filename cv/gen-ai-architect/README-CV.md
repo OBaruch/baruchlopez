@@ -64,7 +64,7 @@ Sensitive items intentionally excluded:
 From the repository root:
 
 ```powershell
-& 'C:\Program Files\Google\Chrome\Application\chrome.exe' --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="$PWD\cv\baruch-lopez-genai-architect-cv.pdf" "$PWD\cv\baruch-lopez-genai-architect-cv.html"
+& 'C:\Program Files\Google\Chrome\Application\chrome.exe' --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="$PWD\cv\gen-ai-architect\baruch-lopez-genai-architect-cv.pdf" "$PWD\cv\gen-ai-architect\baruch-lopez-genai-architect-cv.html"
 ```
 
 After generating, validate text extraction with PyMuPDF:
@@ -72,7 +72,7 @@ After generating, validate text extraction with PyMuPDF:
 ```powershell
 @'
 import fitz
-doc = fitz.open(r"cv/baruch-lopez-genai-architect-cv.pdf")
+doc = fitz.open(r"cv/gen-ai-architect/baruch-lopez-genai-architect-cv.pdf")
 text = "\n".join(page.get_text() for page in doc)
 print(len(text))
 print(text[:2000])
